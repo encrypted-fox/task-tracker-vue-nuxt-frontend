@@ -1,36 +1,31 @@
 <template lang="pug">
 .auth__form.w-350px.flex.flex-column.gap-25.radius-6
   .auth__form-header.pv-25
-    .auth__form__title.text-center Вход
+    h1.auth__form__title.text-center Вход
   form.auth__form-content.flex.flex-column.gap-20.ph-25
-    .auth__form__field.flex.flex-column.gap-10
+    .field.flex.flex-column.gap-10
       label.field-label.block(for="login") Логин
       input.field-input(id="login" :value="login" @input="changeLogin" :class="{'field-input--error': isLoginTooShort}")
       Transition(name='fade' mode='out-in')
         .auth__form__field-input-error(v-if="isLoginTooShort")
-          | {{ loginTooShortError }}
-    .auth__form__field.flex.flex-column.gap-10
+          | {{ loginError }}
+    .field.flex.flex-column.gap-10
       label.field-label.block(for="password") Пароль
       input.field-input(id="password" type="password" :value="password" @input="changePassword" :class="{'field-input--error': isWeak}") 
       Transition(name='fade' mode='out-in')
         .auth__form__field-input-error(v-if="isWeak")
           TransitionGroup(name='fade')
-            .auth__form__field-input-error(v-for="(val) in currentMessages", :key="val.name")
+            .auth__form__field-input-error(v-for="(val) in currentErrors", :key="val.name")
               | {{ val.label }}
         
-  .auth__form-footer.flex.justify-space-between.ph-25.pb-25
+  .auth__form-footer.flex.justify-between.ph-25.pb-25
     button.btn.btn-secondary(@click="switchToRegister") Зарегистрироваться
     button.btn.btn-primary(@click="submit" :disabled="isButtonDisabled") Войти
 </template>
 
 <script setup lang="ts">
-interface ErrorMessages {
-  no2UpperCase: boolean;
-  no3LowerCase: boolean;
-  no2Digits: boolean;
-  noSpecialSign: boolean;
-  no8Characters: boolean;
-}
+import type { ErrorMessages } from '~/types';
+import { passwordErrors, loginError } from '~/utils/errors';
 
 const emit = defineEmits(['switch-to-register'])
 
@@ -40,7 +35,6 @@ const password = useState<string>("password");
 const isWeak = useState<boolean>("isWeak", () => false);
 const isLoginTooShort = useState<boolean>("isLoginTooShort", () => false);
 
-const loginTooShortError = 'Логин должен содержать минимум 3 символа';
 const errorMessages = useState<ErrorMessages>("errorMessages", () => ({
   no2UpperCase: false,
   no3LowerCase: false,
@@ -49,16 +43,8 @@ const errorMessages = useState<ErrorMessages>("errorMessages", () => ({
   no8Characters: false,
 }));
 
-const errorMessagesLabels = [
-  { name: "no2UpperCase", label: "Нужно 2 или больше заглавные буквы" },
-  { name: "no3LowerCase", label: "Нужно 3 или больше строчные буквы" },
-  { name: "no2Digits", label: "Нужно 2 или больше цифры" },
-  { name: "noSpecialSign", label: "Нужно специальный символ" },
-  { name: "no8Characters", label: "Нужно 8 или больше символов" },
-];
-
-const currentMessages = computed(() => {
-  return errorMessagesLabels.filter(el => {
+const currentErrors = computed(() => {
+  return passwordErrors.filter(el => {
     return (errorMessages.value as any)[el.name]
   })
 })
@@ -66,10 +52,6 @@ const currentMessages = computed(() => {
 const isButtonDisabled = computed(() => {
   return isWeak.value || !password.value || !login.value || isLoginTooShort.value
 })
-
-const getMessageLabel = (key: string): string | undefined => {
-  return errorMessagesLabels.find(el => el.name === key)?.label
-}
 
 const changeLogin = (e: Event) => {
   const val = (e.target as HTMLInputElement).value;
@@ -134,6 +116,9 @@ const switchToRegister = () => {
   emit('switch-to-register')
 }
 
+useHead(<any>{
+  title: 'Вход'
+})
 </script>
 <style lang="scss" scoped>
 @use '~/assets/scss/colors.scss' as *;
@@ -148,6 +133,7 @@ const switchToRegister = () => {
   &__title {
     font-size: 24px;
     font-weight: 600;
+    margin: 0;
   }
 }
 </style>

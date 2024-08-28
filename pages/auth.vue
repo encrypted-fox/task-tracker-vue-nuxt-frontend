@@ -48,7 +48,7 @@ const switchToLogin = () => {
   }
 
   &__form {
-      &-container {
+    &-container {
       border: 1px solid $grey;
       box-sizing: border-box;
     }
