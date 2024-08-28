@@ -1,21 +1,23 @@
-// @ts-nocheck
 import extractorPug from '@unocss/extractor-pug'
 import { defineNuxtConfig } from 'nuxt/config';
+import type { UnocssNuxtOptions } from "@unocss/nuxt"
+import type { RuleContext } from "unocss"
 
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
   modules: ["@pinia/nuxt", "@nuxt/test-utils", "@unocss/nuxt", "@nuxt/eslint"],
-  typescript: {
-    typeCheck: true
-  },
+  
   routeRules: {
-    '/auth/login': {prerender: true},
-    '/auth': {
-      redirect: { to: '/auth/login', statusCode: 302 }
+    '/auth': { prerender: true },
+    '/auth/login': {
+      redirect: { to: '/auth', statusCode: 302 }
+    },
+    '/auth/register': {
+      redirect: { to: '/auth', statusCode: 302 }
     }
   },
-  unocss: {
+  unocss: <UnocssNuxtOptions>{
     extractors: [
       extractorPug(),
     ],
@@ -35,31 +37,31 @@ export default defineNuxtConfig({
     rules: [
   
       // cols and rows
-      [/^justify-(.*)$/, ([_, str]) => ({ 'justify-content': str }) ],
-      [/^items-(.*)$/, ([_, str]) => ({ 'align-items': str }) ],
-      [/^col-([\.\d]+)$/, ([_, num]) => ({ width: `${100 / 12 * parseFloat(num)}%`,  'box-sizing': 'border-box' })],
+      [/^justify-(.*)$/, ([_, str]: [any, string]) => ({ 'justify-content': str }) ],
+      [/^items-(.*)$/, ([_, str]: [any, string]) => ({ 'align-items': str }) ],
+      [/^col-([\.\d]+)$/, ([_, str]: [any, string]) => ({ width: `${100 / 12 * parseFloat(str)}%`,  'box-sizing': 'border-box' })],
   
       // width and height
       ['w-auto', { width: 'auto' } ],
-      [/^w-([\.\d]+)$/, ([_, num]) => ({ width: `${num}%` })],
-      [/^w-([\.\d]+)vh$/, ([_, num]) => ({ width: `${num}vh` })],
-      [/^w-([\.\d]+)vw$/, ([_, num]) => ({ width: `${num}vw` })],
-      [/^w-([\.\d]+)px$/, ([_, num]) => ({ width: `${num}px` })],
+      [/^w-([\.\d]+)$/, ([_, str]: [any, string]) => ({ width: `${str}%` })],
+      [/^w-([\.\d]+)vh$/, ([_, str]: [any, string]) => ({ width: `${str}vh` })],
+      [/^w-([\.\d]+)vw$/, ([_, str]: [any, string]) => ({ width: `${str}vw` })],
+      [/^w-([\.\d]+)px$/, ([_, str]: [any, string]) => ({ width: `${str}px` })],
       
       ['h-auto', { height: 'auto' } ],
-      [/^h-([\.\d]+)$/, ([_, num]) => ({ height: `${num}%` })],
-      [/^h-([\.\d]+)vh$/, ([_, num]) => ({ height: `${num}vh` })],
-      [/^h-([\.\d]+)vw$/, ([_, num]) => ({ height: `${num}vw` })],
-      [/^h-([\.\d]+)px$/, ([_, num]) => ({ height: `${num}px` })],
-
+      [/^h-([\.\d]+)$/, ([_, str]: [any, string]) => ({ height: `${str}%` })],
+      [/^h-([\.\d]+)vh$/, ([_, str]: [any, string]) => ({ height: `${str}vh` })],
+      [/^h-([\.\d]+)vw$/, ([_, str]: [any, string]) => ({ height: `${str}vw` })],
+      [/^h-([\.\d]+)px$/, ([_, str]: [any, string]) => ({ height: `${str}px` })],
+  
       //padding and margin
-      [/^p-([\.\d]+)$/, ([_, num]) => ({ padding: `${num}px` })],
-      [/^pl-([\.\d]+)$/, ([_, num]) => ({ 'padding-left': `${num}px` })],
-      [/^pr-([\.\d]+)$/, ([_, num]) => ({ 'padding-right': `${num}px` })],
-      [/^pt-([\.\d]+)$/, ([_, num]) => ({ 'padding-top': `${num}px` })],
-      [/^pb-([\.\d]+)$/, ([_, num]) => ({ 'padding-bottom': `${num}px` })],
-      [/^ph-([\.\d]+)$/, ([_, num]) => ({ 'padding-left': `${num}px`, 'padding-right': `${num}px` })],
-      [/^pv-([\.\d]+)$/, ([_, num]) => ({ 'padding-top': `${num}px`, 'padding-bottom': `${num}px` })],
+      [/^p-([\.\d]+)$/, ([_, str]: [any, string]) => ({ padding: `${str}px` })],
+      [/^pl-([\.\d]+)$/, ([_, str]: [any, string]) => ({ 'padding-left': `${str}px` })],
+      [/^pr-([\.\d]+)$/, ([_, str]: [any, string]) => ({ 'padding-right': `${str}px` })],
+      [/^pt-([\.\d]+)$/, ([_, str]: [any, string]) => ({ 'padding-top': `${str}px` })],
+      [/^pb-([\.\d]+)$/, ([_, str]: [any, string]) => ({ 'padding-bottom': `${str}px` })],
+      [/^ph-([\.\d]+)$/, ([_, str]: [any, string]) => ({ 'padding-left': `${str}px`, 'padding-right': `${str}px` })],
+      [/^pv-([\.\d]+)$/, ([_, str]: [any, string]) => ({ 'padding-top': `${str}px`, 'padding-bottom': `${str}px` })],
       
       ['m-auto', { margin: 'auto' }],
       ['ml-auto', { 'margin-left': 'auto' }],
@@ -69,34 +71,34 @@ export default defineNuxtConfig({
       ['mh-auto', { 'margin-left': 'auto', 'margin-right': 'auto' }],
       ['mv-auto', { 'margin-top': 'auto', 'margin-bottom': 'auto' }],
       
-      [/^m-([\.\d]+)$/, ([_, num]) => ({ margin: `${num}px` })],
-      [/^ml-([\.\d]+)$/, ([_, num]) => ({ 'margin-left': `${num}px` })],
-      [/^mr-([\.\d]+)$/, ([_, num]) => ({ 'margin-right': `${num}px` })],
-      [/^mt-([\.\d]+)$/, ([_, num]) => ({ 'margin-top': `${num}px` })],
-      [/^mb-([\.\d]+)$/, ([_, num]) => ({ 'margin-bottom': `${num}px` })],
-      [/^mh-([\.\d]+)$/, ([_, num]) => ({ 'margin-left': `${num}px`, 'margin-right': `${num}px` })],
-      [/^mv-([\.\d]+)$/, ([_, num]) => ({ 'margin-top': `${num}px`, 'margin-bottom': `${num}px` })],
-
+      [/^m-([\.\d]+)$/, ([_, str]: [any, string]) => ({ margin: `${str}px` })],
+      [/^ml-([\.\d]+)$/, ([_, str]: [any, string]) => ({ 'margin-left': `${str}px` })],
+      [/^mr-([\.\d]+)$/, ([_, str]: [any, string]) => ({ 'margin-right': `${str}px` })],
+      [/^mt-([\.\d]+)$/, ([_, str]: [any, string]) => ({ 'margin-top': `${str}px` })],
+      [/^mb-([\.\d]+)$/, ([_, str]: [any, string]) => ({ 'margin-bottom': `${str}px` })],
+      [/^mh-([\.\d]+)$/, ([_, str]: [any, string]) => ({ 'margin-left': `${str}px`, 'margin-right': `${str}px` })],
+      [/^mv-([\.\d]+)$/, ([_, str]: [any, string]) => ({ 'margin-top': `${str}px`, 'margin-bottom': `${str}px` })],
+  
       // radius
-      [/^radius-([\.\d]+)$/, ([_, num]) => ({ 'border-radius': `${num}px` })],
-      [/^top-radius-([\.\d]+)$/, ([_, num]) => ({ 'border-top-left-radius': `${num}px`, 'border-top-right-radius': `${num}px` })],
-      [/^bottom-radius-([\.\d]+)$/, ([_, num]) => ({ 'border-bottom-left-radius': `${num}px`, 'border-bottom-right-radius': `${num}px` })],
-      [/^left-radius-([\.\d]+)$/, ([_, num]) => ({ 'border-top-left-radius': `${num}px`, 'border-bottom-left-radius': `${num}px` })],
-      [/^right-radius-([\.\d]+)$/, ([_, num]) => ({ 'border-top-right-radius': `${num}px`, 'border-bottom-right-radius': `${num}px` })],
-
+      [/^radius-([\.\d]+)$/, ([_, str]: [any, string]) => ({ 'border-radius': `${str}px` })],
+      [/^top-radius-([\.\d]+)$/, ([_, str]: [any, string]) => ({ 'border-top-left-radius': `${str}px`, 'border-top-right-radius': `${str}px` })],
+      [/^bottom-radius-([\.\d]+)$/, ([_, str]: [any, string]) => ({ 'border-bottom-left-radius': `${str}px`, 'border-bottom-right-radius': `${str}px` })],
+      [/^left-radius-([\.\d]+)$/, ([_, str]: [any, string]) => ({ 'border-top-left-radius': `${str}px`, 'border-bottom-left-radius': `${str}px` })],
+      [/^right-radius-([\.\d]+)$/, ([_, str]: [any, string]) => ({ 'border-top-right-radius': `${str}px`, 'border-bottom-right-radius': `${str}px` })],
+  
       // display
       ['block', { display: 'block' }],
       ['flex', { display: 'flex' } ],
-      [/^flex-(.*)$/, ([_, str]) => ({ 'flex-direction': str }) ],
-      [/^gap-([\.\d]+)$/, ([_, num]) => ({ 'gap': `${num}px` }) ],
+      [/^flex-(.*)$/, ([_, str]: [any, string]) => ({ 'flex-direction': str }) ],
+      [/^gap-([\.\d]+)$/, ([_, str]: [any, string]) => ({ 'gap': `${str}px` }) ],
       ['inline', { display: 'inline' } ],
       ['inline-block', { display: 'inline-block' } ],
-
+  
       // text
-      [/^text-(.*)$/, ([_, str]) => ({ 'text-align': str, 'border-color': '$violet' }) ],
+      [/^text-(.*)$/, ([_, str]: [any, string]) => ({ 'text-align': str, 'border-color': '$violet' }) ],
       
       
-      [/^btn$/, function* ([, color], { theme, symbols }) {
+      [/^btn$/, function* (_: any, { theme, symbols }: RuleContext<any>) {
         yield {
           'font-size': '14px',
           'border': '1px solid transparent',
@@ -116,7 +118,7 @@ export default defineNuxtConfig({
           'transition': 'outline .2s ease-in-out'
         }
       }],
-      [/^btn-primary$/, function* ([, color], { theme, symbols }) {
+      [/^btn-primary$/, function* (_: any, { theme, symbols }: RuleContext<any>) {
         yield {
           'background-color': theme.violet,
           'color': theme.white,
@@ -134,7 +136,7 @@ export default defineNuxtConfig({
           'background-color': theme.violetOp50,
         }
       }],
-      [/^btn-secondary$/, function* ([, color], { theme, symbols }) {
+      [/^btn-secondary$/, function* (_: any, { theme, symbols }: RuleContext<any>) {
         yield {
           'background-color': theme.softBlueOp15,
           'color': theme.softBlue,
@@ -147,7 +149,7 @@ export default defineNuxtConfig({
           [symbols.selector]: selector => `${selector}:focus`,
         }
       }],
-      [/^field-input$/, function* ([, color], { theme, symbols }) {
+      [/^field-input$/, function* (_: any, { theme, symbols }: RuleContext<any>) {
         yield {
           'color': theme.darkGreyBlue,
           'font-size': '14px',
@@ -165,13 +167,14 @@ export default defineNuxtConfig({
           'transition': 'all .2s ease-in-out',
         }
       }],
-      [/^field-label$/, ([, color]) => ({ 
+      [/^field-label$/, (_: any) => ({ 
         'font-size': '16px',
         'font-weight': '600',
         'cursor': 'pointer',
       })],
-    
+      [/^field-input--error$/, (_: any, {theme}: RuleContext<any>) => ({'outline-color': theme.red})],
+      [/^field-input-error$/, (_: any, {theme}: RuleContext<any>) => ({'color': theme.red, 'font-size': '12px'})],
     ]
-  }
+  },
 });
 

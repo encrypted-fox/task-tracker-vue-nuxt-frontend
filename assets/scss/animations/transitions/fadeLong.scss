@@ -1,0 +1,9 @@
+:deep(.fade-long-enter-active),
+:deep(.fade-long-leave-active) {
+  transition: opacity .5s ease;
+}
+
+:deep(.fade-long-enter-from),
+:deep(.fade-long-leave-to) {
+  opacity: 0;
+}

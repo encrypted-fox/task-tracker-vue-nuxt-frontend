@@ -1,0 +1,28 @@
+.bounceContentRight {
+  animation: bounceContentRight 1s forwards;
+}
+
+@keyframes bounceContentRight {
+  0% {
+    transform: translateX(0);
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+
+  50% {
+    transform: translateX(-215px);
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+  100% {
+    transform: translateX(-200px);
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+}

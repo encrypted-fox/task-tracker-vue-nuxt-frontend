@@ -1,32 +1,28 @@
 <template lang="pug">
-.auth.h-100vh.w-100.flex.justify-center.items-center
-  .auth__logo-container.flex.w-300px.h-550px.justify-center.items-flex-start.left-radius-6
-    img.mt-50(src="@/assets/icons/logo.svg")
-  .auth__form-container.w-600px.h-550px.flex.justify-center.items-center.right-radius-6
-    .auth__form.w-350px.flex.flex-column.gap-25.radius-6
-      .auth__form-header.pv-25
-        .auth__form__title.text-center Вход
-      form.auth__form-content.flex.flex-column.gap-20.ph-25
-        .auth__form__field.flex.flex-column.gap-10
-          label.field-label.block(for="login") Логин
-          input.field-input(id="login" :value="login" @input="changeLogin" :class="{'field-input--warn': isLoginTooShort}")
-          Transition(name='fade')
-            .field-input-error(v-if="isLoginTooShort")
-              | {{ loginTooShortError }}
-        .auth__form__field.flex.flex-column.gap-10
-          label.field-label.block(for="password") Пароль
-          input.field-input(id="password" type="password" :value="password" @input="changePassword" :class="{'field-input--warn': isWeak}") 
-          Transition(name='fade')
-            .field-input-error(v-if="isWeak")
-              TransitionGroup(name='fade')
-                .field-input-error(v-for="(val) in currentMessages", :key="val.name")
-                  | {{ val.label }}
-            
-      .auth__form-footer.flex.justify-space-between.ph-25.pb-25
-        button.btn.btn-secondary(@click="goToRegister") Зарегистрироваться
-        button.btn.btn-primary(@click="submit" :disabled="isButtonDisabled") Войти
-      
+.auth__form.w-350px.flex.flex-column.gap-25.radius-6
+  .auth__form-header.pv-25
+    .auth__form__title.text-center Вход
+  form.auth__form-content.flex.flex-column.gap-20.ph-25
+    .auth__form__field.flex.flex-column.gap-10
+      label.field-label.block(for="login") Логин
+      input.field-input(id="login" :value="login" @input="changeLogin" :class="{'field-input--error': isLoginTooShort}")
+      Transition(name='fade' mode='out-in')
+        .auth__form__field-input-error(v-if="isLoginTooShort")
+          | {{ loginTooShortError }}
+    .auth__form__field.flex.flex-column.gap-10
+      label.field-label.block(for="password") Пароль
+      input.field-input(id="password" type="password" :value="password" @input="changePassword" :class="{'field-input--error': isWeak}") 
+      Transition(name='fade' mode='out-in')
+        .auth__form__field-input-error(v-if="isWeak")
+          TransitionGroup(name='fade')
+            .auth__form__field-input-error(v-for="(val) in currentMessages", :key="val.name")
+              | {{ val.label }}
+        
+  .auth__form-footer.flex.justify-space-between.ph-25.pb-25
+    button.btn.btn-secondary(@click="switchToRegister") Зарегистрироваться
+    button.btn.btn-primary(@click="submit" :disabled="isButtonDisabled") Войти
 </template>
+
 <script setup lang="ts">
 interface ErrorMessages {
   no2UpperCase: boolean;
@@ -36,7 +32,7 @@ interface ErrorMessages {
   no8Characters: boolean;
 }
 
-const router = useRouter()
+const emit = defineEmits(['switch-to-register'])
 
 const login = useState<string>("login");
 const password = useState<string>("password");
@@ -52,7 +48,6 @@ const errorMessages = useState<ErrorMessages>("errorMessages", () => ({
   noSpecialSign: false,
   no8Characters: false,
 }));
-
 
 const errorMessagesLabels = [
   { name: "no2UpperCase", label: "Нужно 2 или больше заглавные буквы" },
@@ -135,63 +130,24 @@ const changePassword = (e: Event) => {
   password.value = val;
 };
 
-const goToRegister = () => {
-  router.push('/auth/register')
+const switchToRegister = () => {
+  emit('switch-to-register')
 }
+
 </script>
 <style lang="scss" scoped>
-@use '~/assets/scss/variables.scss' as *;
-.auth {
-  &__logo {
-    &-container {
-      background-color: $dark-blue-grey;
-    }
+@use '~/assets/scss/colors.scss' as *;
+
+.auth__form {
+  border: 1px solid $grey;
+
+  &-header {
+    border-bottom: 1px solid $grey;
   }
-  &__form {
-    border: 1px solid $grey;
 
-    &-header {
-      border-bottom: 1px solid $grey;
-    }
-
-    &__title {
-      font-size: 24px;
-      font-weight: 600;
-    }
-
-    &-container {
-      border: 1px solid $grey;
-      box-sizing: border-box;
-    }
-
-    &-field {
-      &__label {
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-      }
-    }
+  &__title {
+    font-size: 24px;
+    font-weight: 600;
   }
-}
-
-.field-input--warn {
-  outline-color: $red;
-}
-
-.field-input-error {
-  color: $red;
-  font-size: 12px;
-}
-
-:deep(.fade-enter-active),
-:deep(.fade-leave-active) {
-  transition: opacity 0.2s ease;
-}
-
-:deep(.fade-enter-from),
-:deep(.fade-leave-to) {
-  opacity: 0;
 }
 </style>
-
-// TODO tests and register page

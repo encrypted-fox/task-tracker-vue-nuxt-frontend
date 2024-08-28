@@ -12,6 +12,7 @@
     "lint": "yarn lint:eslint && yarn lint:prettier",
     "lint:eslint": "eslint .",
     "lint:prettier": "prettier . --check",
+    "typecheck": "npx nuxi typescript",
     "lintfix": "eslint . --fix && prettier --write --list-different ."
   },
   "dependencies": {
