@@ -1,0 +1,11 @@
+:deep(.disappear-element-enter-active),
+:deep(.disappear-element-leave-active) {
+  transition: all 0.4s ease;
+}
+
+:deep(.disappear-element-enter-from),
+:deep(.disappear-element-leave-to) {
+  opacity: 0;
+  transform: translateX(100px);
+  filter: blur(1rem);
+}

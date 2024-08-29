@@ -1,10 +1,12 @@
-.bounceContentLeft {
-  animation: bounceContentLeft 1s forwards;
+@media screen and (min-width: 768px) {
+  .bounceContentLeft {
+    animation: bounceContentLeft 1s forwards;
+  }
 }
 
 @keyframes bounceContentLeft {
   0% {
-    transform: translateX(-200px);
+    transform: translateX(-12rem);
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
     border-top-right-radius: 0px;
@@ -12,7 +14,7 @@
   }
 
   50% {
-    transform: translateX(15px);
+    transform: translateX(3rem);
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
     border-top-left-radius: 0px;

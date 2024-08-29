@@ -1,5 +1,7 @@
-.bounceLogoRight {
-  animation: bounceLogoRight 1s forwards;
+@media screen and (min-width: 768px) { 
+  .bounceLogoRight {
+    animation: bounceLogoRight 1s forwards;
+  }
 }
 
 @keyframes bounceLogoRight {

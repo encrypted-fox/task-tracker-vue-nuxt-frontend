@@ -6,4 +6,5 @@
 :deep(.fade-long-enter-from),
 :deep(.fade-long-leave-to) {
   opacity: 0;
+  filter: blur(1rem);
 }

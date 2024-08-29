@@ -1,9 +1,10 @@
 :deep(.fade-enter-active),
 :deep(.fade-leave-active) {
-  transition: opacity 0.2s ease;
+  transition: all 0.4s ease;
 }
 
 :deep(.fade-enter-from),
 :deep(.fade-leave-to) {
   opacity: 0;
+  filter: blur(1rem);
 }
