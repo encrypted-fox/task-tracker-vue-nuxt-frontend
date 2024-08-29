@@ -3,23 +3,19 @@
   .auth__form-header.py-25px.division-styling.border-0.border-b-1px
     h1.auth__form__title.text-center.text-styling.m-0 Регистрация
   form.auth__form-content.flex.flex-col.gap-15px.px-25px
-    .field
-      label.field-label(for="login") Логин
-      input.field-string.w-full(id="login" placeholder="Начните писать..." :value="login" @input="changeLogin" :class="{'field-invalid': isLoginTooShort}")
+    FieldsStringField(label='Логин' name="login" placeholder="Начните писать..." :value="login" :invalid="isLoginTooShort" @input="changeLogin")
       Transition(name='disappear-element' mode='out-in')
         .field-error(v-if="isLoginTooShort")
           | {{ loginError }}
-    .field
-      label.field-label(for="password") Пароль
-      input.field-string.w-full(id="password" type="password" placeholder="Начните писать..." :value="password" @input="changePassword" :class="{'field-invalid': isWeak}") 
+    
+    FieldsStringField(label='Пароль' name="password" placeholder="Начните писать..." type="password" :value="password" :invalid="isWeak" @input="changePassword" )
       Transition(name='fade' mode='out-in')
-        .field-input-error(v-if="isWeak || isPasswordNotMatch")
+        .field-errors(v-if="isWeak || isPasswordNotMatch")
           TransitionGroup(name='disappear-element')
             .field-error(v-for="(val) in currentErrors", :key="val.name")
               | {{ val.label }}
-    .field
-      label.field-label(for="repeatPassword") Повторить пароль
-      input.field-string.w-full(id="repeatPassword" type="password" placeholder="Начните писать..." :value="repeatPassword" @input="changeRepeatPassword" :class="{'field-input-input--error': isPasswordNotMatch}") 
+
+    FieldsStringField(label='Повторите пароль' name="repeatPassword" placeholder="Начните писать..." type="password" :value="repeatPassword" :invalid="isPasswordNotMatch" @input="changeRepeatPassword")
         
   .auth__form-footer.flex.justify-between.px-25px.pb-25px
     button.btn-lg.btn-secondary(@click="switchToLogin") Войти
@@ -59,9 +55,7 @@ const isButtonDisabled = computed(() => {
   return isWeak.value || !password.value || !login.value || isLoginTooShort.value || isPasswordNotMatch.value
 })
 
-const changeLogin = (e: Event) => {
-  const val = (e.target as HTMLInputElement).value;
-
+const changeLogin = (val: string) => {
   isLoginTooShort.value = false;
 
   if (val.length < 3) {
@@ -73,9 +67,7 @@ const changeLogin = (e: Event) => {
   login.value = val
 };
 
-const changePassword = (e: Event) => {
-  const val = (e.target as HTMLInputElement).value;
-
+const changePassword = (val: string) => {
   isWeak.value = false;
 
   if (!val.match(/(?=.*[A-ZА-Я].*[A-ZА-Я])/)) {
@@ -118,9 +110,7 @@ const changePassword = (e: Event) => {
   password.value = val;
 };
 
-const changeRepeatPassword = (e: Event) => {
-  const val = (e.target as HTMLInputElement).value;
-
+const changeRepeatPassword = (val: string) => {
   isPasswordNotMatch.value = false;
 
   if (val !== password.value) {
