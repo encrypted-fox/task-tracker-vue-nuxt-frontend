@@ -17,8 +17,8 @@
 <script setup lang="ts">
 const emit = defineEmits(['switch-to-register'])
 
-const login = useState<string>("login-form__login");
-const password = useState<string>("login-form__password");
+const login = useState<string>(() => '');
+const password = useState<string>(() => '');
 
 const isButtonDisabled = computed(() => {
   return !password.value || !login.value

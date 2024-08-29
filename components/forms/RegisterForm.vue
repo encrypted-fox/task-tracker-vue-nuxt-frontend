@@ -32,15 +32,15 @@ import { passwordErrors, loginError } from '~/utils/errors';
 
 const emit = defineEmits(['switch-to-login'])
 
-const login = useState<string>("register-form__login");
-const password = useState<string>("register-form__password");
-const repeatPassword = useState<string>("register-form__repeatPassword");
+const login = useState<string>(() => '');
+const password = useState<string>(() => '');
+const repeatPassword = useState<string>(() => '');
 
-const isWeak = useState<boolean>("isWeak", () => false);
-const isPasswordNotMatch = useState<boolean>("isPasswordNotMatch", () => false);
-const isLoginTooShort = useState<boolean>("isLoginTooShort", () => false);
+const isWeak = useState<boolean>(() => false);
+const isPasswordNotMatch = useState<boolean>(() => false);
+const isLoginTooShort = useState<boolean>(() => false);
 
-const errorMessages = useState<AuthErrorMessages>("errorMessages", () => ({
+const errorMessages = useState<AuthErrorMessages>(() => ({
   no2UpperCase: false,
   no3LowerCase: false,
   no2Digits: false,
