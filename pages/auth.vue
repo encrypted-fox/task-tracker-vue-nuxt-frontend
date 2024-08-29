@@ -1,11 +1,11 @@
 <template lang="pug">
-.auth.h-100vh.w-100.flex.justify-center.items-center
-  .auth__logo-container.flex.w-200px.h-550px.justify-center.items-flex-start.left-radius-6(ref="authLogo")
-    img.mt-50.h-100px.w-100px(src="@/assets/icons/logo.svg")
-  .auth__form-container.w-600px.h-550px.flex.justify-center.items-center.right-radius-6(ref="authContent")
+.auth.h-screen.w-full.flex.justify-center.items-center.main-bg-styling.p-20px.box-border.flex-col(class="md:flex-row")
+  .auth__logo-container.flex.items-center.bg-gray-700.w-full.h-100px.top-0(class="!fixed md:justify-center md:!items-start md:w-200px md:h-650px md:rounded-l-md md:!relative" ref="authLogo")
+    img.h-50px.w-50px.ml-20px(@click="$router.push({path: '/'})" class="md:h-100px md:w-100px md:ml-0 md:mt-30px" src="@/assets/icons/logo.svg")
+  .auth__form-container.box-border.w-full.h-650px.flex.justify-center.items-center.rounded-r-md.mt-100px(class="md:mt-0 md:w-600px md:initial-border-styling md:border-coloring" ref="authContent")
     Transition(name='fade-long' mode="out-in")
-      LoginForm(@switch-to-register="switchToRegister" v-if="isLogin")
-      RegisterForm(@switch-to-login="switchToLogin" v-else)
+      FormsLoginForm(@switch-to-register="switchToRegister" v-if="isLogin" key="login-form")
+      FormsRegisterForm(@switch-to-login="switchToLogin" v-else key="register-form")
       
 </template>
 
@@ -35,22 +35,13 @@ const switchToLogin = () => {
 </script>
 
 <style lang="scss" scoped>
-@use '~/assets/scss/colors.scss' as *;
 @use '~/assets/scss/animations.scss' as *;
 
 .auth {
   &__logo {
     &-container {
-      background-color: $dark-blue-grey;
       position: relative;
       z-index: 1;
-    }
-  }
-
-  &__form {
-    &-container {
-      border: 1px solid $grey;
-      box-sizing: border-box;
     }
   }
 }
