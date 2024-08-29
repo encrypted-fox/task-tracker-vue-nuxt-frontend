@@ -1,4 +1,4 @@
-export interface ErrorMessages {
+export interface AuthErrorMessages {
   no2UpperCase: boolean;
   no3LowerCase: boolean;
   no2Digits: boolean;
