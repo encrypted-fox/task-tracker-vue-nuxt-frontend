@@ -6,7 +6,7 @@
 
 @keyframes bounceContentLeft {
   0% {
-    transform: translateX(-12rem);
+    transform: translateX(-200px);
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
     border-top-right-radius: 0px;
@@ -14,7 +14,7 @@
   }
 
   50% {
-    transform: translateX(3rem);
+    transform: translateX(15px);
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
     border-top-left-radius: 0px;
