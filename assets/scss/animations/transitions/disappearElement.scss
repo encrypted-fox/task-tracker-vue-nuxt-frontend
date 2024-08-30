@@ -1,11 +1,11 @@
-:deep(.disappear-element-enter-active),
-:deep(.disappear-element-leave-active) {
+.disappear-element-enter-active,
+.disappear-element-leave-active {
   transition: all 0.4s ease;
 }
 
-:deep(.disappear-element-enter-from),
-:deep(.disappear-element-leave-to) {
+.disappear-element-enter-from,
+.disappear-element-leave-to {
   opacity: 0;
-  transform: translateX(100px);
+  transform: scaleX(0);
   filter: blur(1rem);
 }
