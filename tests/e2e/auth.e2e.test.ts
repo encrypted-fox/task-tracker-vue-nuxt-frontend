@@ -84,31 +84,31 @@ describe('register page renders correctly', () => {
 
   it('login form presented', async () => {
     const page = await createPage('/auth')
-    
+
     await page.locator('button.btn.btn-secondary').click()
     await page.waitForTimeout(1500)
     expect(await page.locator('form').isVisible()).toBe(true)
-    
+
     await page.close()
   }, 10000)
 
   it('login inputs presented', async () => {
     const page = await createPage('/auth')
-    
+
     await page.locator('button.btn.btn-secondary').click()
     await page.waitForTimeout(1500)
     expect(await page.locator('input').count()).toBe(3)
-    
+
     await page.close()
   }, 10000)
 
   it('login labels presented', async () => {
     const page = await createPage('/auth')
-    
+
     await page.locator('button.btn.btn-secondary').click()
     await page.waitForTimeout(1500)
     expect(await page.locator('label').count()).toBe(3)
-    
+
     await page.close()
   }, 10000)
 
@@ -117,7 +117,7 @@ describe('register page renders correctly', () => {
 
     await page.locator('button.btn.btn-secondary').click()
     await page.waitForTimeout(1500)
-    
+
     expect(await page.locator('button').count()).toBe(2)
 
     await page.close()
