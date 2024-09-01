@@ -1,8 +1,7 @@
-<template>
-  <div>
-    <NuxtRouteAnnouncer />
-  </div>
-  <NuxtPage />
+<template lang="pug">
+.root
+  NuxtPage
+  ModalsNotifications
 </template>
 <script setup lang="ts">
 const themeStore = useThemeStore()
