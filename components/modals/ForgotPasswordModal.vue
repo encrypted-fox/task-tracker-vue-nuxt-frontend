@@ -21,9 +21,14 @@ ModalsDefaultModal(:isShown='isShown')
 
 <script setup lang="ts">
 import IconClose from '~/assets/icons/close.svg?raw'
+import type { AuthUser } from '~/types'
+import { recoverySuccessMessage } from '~/utils/messages'
+
 defineProps<{
   isShown: boolean
 }>()
+
+const notificationsStore = useNotificationsStore()
 
 const emit = defineEmits<{ changeIsShown: [] }>()
 
@@ -37,5 +42,23 @@ const changeText = (val: string) => {
 
 const changeIsShown = () => {
   emit('changeIsShown')
+}
+
+const submit = async () => {
+  try {
+    const response = await $fetch<AuthUser>('/login', {
+      method: 'POST',
+      body: { loginOrEmail: text.value },
+    })
+
+    if (response) {
+      notificationsStore.addNotification({
+        message: recoverySuccessMessage,
+        type: 'success',
+      })
+    }
+  } catch (e) {
+    await useErrorHandler(e, 'recovery')
+  }
 }
 </script>

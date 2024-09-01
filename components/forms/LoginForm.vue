@@ -31,7 +31,13 @@
   )
 </template>
 <script setup lang="ts">
+import type { AuthUser } from '~/types'
+import { useErrorHandler } from '~/composables/useErrorHandler'
+import { useAuth } from '~/composables/useAuth'
+
 const emit = defineEmits(['switch-to-register'])
+
+const notificationsStore = useNotificationsStore()
 
 const login = useState<string>(() => '')
 const password = useState<string>(() => '')
@@ -39,7 +45,7 @@ const password = useState<string>(() => '')
 const isPasswordModalShown = useState<boolean>(() => false)
 
 const isButtonDisabled = computed(() => {
-  return !password.value || !login.value
+  return !login.value || !password.value
 })
 
 const changePasswordModalShown = () => {
@@ -56,6 +62,21 @@ const changePassword = (val: string) => {
 
 const switchToRegister = () => {
   emit('switch-to-register')
+}
+
+const submit = async () => {
+  try {
+    const response = await $fetch<AuthUser>('/login', {
+      method: 'POST',
+      body: { login: login.value, password: password.value },
+    })
+
+    if (response) {
+      useAuth(response, 'login')
+    }
+  } catch (e) {
+    await useErrorHandler(e, 'login')
+  }
 }
 
 useHead({

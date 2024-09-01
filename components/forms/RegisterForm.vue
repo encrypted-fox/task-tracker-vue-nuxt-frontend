@@ -58,8 +58,8 @@
 </template>
 
 <script setup lang="ts">
-import type { AuthErrorMessages } from '~/types'
-import { passwordErrors, loginError, emailError } from '~/utils/errors'
+import type { AuthErrorMessages, AuthUser } from '~/types'
+import { passwordErrors, loginError, emailError } from '~/utils/messages'
 
 const emit = defineEmits(['switch-to-login'])
 
@@ -90,9 +90,9 @@ const currentErrors = computed(() => {
 
 const isButtonDisabled = computed(() => {
   return (
-    isWeak.value ||
-    !password.value ||
     !login.value ||
+    !password.value ||
+    isWeak.value ||
     isLoginTooShort.value ||
     isPasswordNotMatch.value
   )
@@ -191,6 +191,26 @@ const changeRepeatPassword = (val: string) => {
 
 const switchToLogin = () => {
   emit('switch-to-login')
+}
+
+const submit = async () => {
+  try {
+    const response = await $fetch<AuthUser>('/register', {
+      method: 'POST',
+      body: {
+        login: login.value,
+        email: email.value,
+        password: password.value,
+        repeatPassword: repeatPassword.value,
+      },
+    })
+
+    if (response) {
+      useAuth(response, 'register')
+    }
+  } catch (e) {
+    await useErrorHandler(e, 'register')
+  }
 }
 
 useHead({
