@@ -7,3 +7,16 @@ export interface AuthErrorMessages {
   no8Characters: boolean
   noMatch?: boolean
 }
+
+export interface AuthUser {
+  accessToken: string | null
+  profilePicture?: string
+}
+
+export interface Notification {
+  id?: string
+  timeout?: ReturnType<typeof setTimeout>
+  message: string
+  actions?: []
+  type: 'text' | 'success' | 'warn' | 'danger'
+}
