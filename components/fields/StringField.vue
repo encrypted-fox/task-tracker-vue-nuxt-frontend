@@ -1,6 +1,6 @@
 <template lang="pug">
 .field
-  label.field-label(:for='password', v-if='label') {{ label }}
+  label.field-label(:for='name', v-if='label') {{ label }}
   input.field-string.w-full(
     :class='{ "!field-invalid": invalid }',
     :id='name',
