@@ -1,12 +1,12 @@
 <template lang="pug">
-.menu.w-full.h-50px.fixed.top-0.z-100(class='md:w-fit md:h-screen md:left-0 md:z-1')
+.menu.w-full.h-50px.fixed.top-0.z-100(class='md:w-fit md:h-100dvh md:left-0 md:z-1')
   .btn.btn-round.icon.chevron.w-20px.h-20px.absolute.top-95px.hidden.fill-zinc-50.bg-zinc-700(
     :class='{ "chevron-left": isMenuOpen, "chevron-right": !isMenuOpen, "-right-10px md:block hover:opacity-100 hover:bg-zinc-600 active:bg-zinc-700": true }',
     @click='switchMenuExpanded',
     v-html='IconChevron'
   )
-  .menu-content.w-full.h-50px.flex.justify-between.items-center.bg-zinc-700(
-    class='md:w-fit md:h-screen md:px-20px md:top-unset md:left-0 md:flex-col md:justify-start md:items-start md:overflow-y-auto'
+  .menu-content.w-full.h-50px.flex.justify-between.items-center.bg-zinc-700.box-border(
+    class='md:w-fit md:h-100dvh md:px-20px md:top-unset md:left-0 md:flex-col md:justify-start md:items-start md:overflow-y-auto'
   )
     img.icon.h-40px.w-40px.ml-20px(
       class='md:h-50px md:w-50px md:ml-0 md:mt-20px',

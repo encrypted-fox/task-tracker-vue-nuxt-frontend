@@ -1,5 +1,5 @@
 <template lang="pug">
-.w-350px.flex.flex-col.gap-20px
+.w-350px.m-a.flex.flex-col.gap-20px
   .pb-25px.division-styling.border-0.border-b-2px
     h1.m-0.auth__form__title.text-center.text-styling {{ $t('forms.login.login') }}
 

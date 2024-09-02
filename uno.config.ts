@@ -43,7 +43,7 @@ export default <UnocssNuxtOptions>defineConfig({
 
     // modals
     overlay:
-      'flex pt-50px box-border md:pt-0 md:justify-center md:items-center fixed w-full h-screen z-10 top-0 bg-black/10 dark:bg-black/50',
+      'flex pt-50px box-border md:pt-0 md:justify-center md:items-center fixed w-full h-100dvh z-10 top-0 bg-black/10 dark:bg-black/50',
     'modal-header':
       'pb-20px flex justify-between items-center division-styling border-0 border-b-2px',
     'modal-content': 'flex flex-col gap-15px',

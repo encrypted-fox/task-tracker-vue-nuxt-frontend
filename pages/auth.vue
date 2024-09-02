@@ -1,9 +1,9 @@
 <template lang="pug">
 .auth.w-full.flex.flex-col.items-center.p-20px.box-border.pt-150px.overflow-y-auto(
-  class='md:h-screen md:pt-0 md:flex-row md:justify-center'
+  class='md:h-100dvh md:pt-20px md:flex-row md:justify-center'
 )
-  .auth__logo-container.relative.z-1.flex.flex-row.justify-between.items-center.bg-zinc-700.w-full.h-50px.top-0(
-    class='!fixed md:flex-col md:w-200px md:h-700px md:rounded-l-md md:!relative',
+  .relative.z-1.flex.flex-row.justify-between.items-center.bg-zinc-700.w-full.h-50px.top-0(
+    class='!fixed md:flex-col md:w-200px md:h-100% md:max-h-700px md:rounded-l-md md:!relative',
     ref='authLogo'
   )
     img.icon.h-30px.w-30px.ml-20px(
@@ -28,8 +28,8 @@
         @click='switchLocale'
       )
 
-  .auth__form-container.box-border.w-full.min-h-screen.flex.justify-center.rounded-r-md(
-    class='md:items-center md:w-500px md:min-h-0 md:h-700px md:initial-border-styling md:border-coloring',
+  .box-border.w-full.flex.justify-center.rounded-r-md.overflow-y-auto(
+    class='md:w-500px md:h-100% md:py-50px md:items-start md:initial-border-styling md:border-coloring',
     ref='authContent'
   )
     Transition(name='fade', mode='out-in')
@@ -103,15 +103,5 @@ onMounted(() => {
   }
 })
 </script>
-
-<style lang="scss" scoped>
-.auth {
-  &__logo {
-    &-container {
-      z-index: 1;
-    }
-  }
-}
-</style>
 
 // TODO tests and register page
