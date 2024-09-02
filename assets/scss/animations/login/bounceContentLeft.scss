@@ -1,6 +1,6 @@
 @media screen and (min-width: 768px) {
   .bounceContentLeft {
-    animation: bounceContentLeft .5s forwards;
+    animation: bounceContentLeft 0.5s ease-in-out forwards;
   }
 }
 
