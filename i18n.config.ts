@@ -6,12 +6,12 @@ export default defineI18nConfig(() => ({
       forms: {
         login: {
           login: 'Вход',
-          forgotPassword: 'Забыли пароль?'
+          forgotPassword: 'Забыли пароль?',
         },
         register: {
           register: 'Регистрация',
           email: 'Электронная почта',
-          repeatPassword: 'Повторите пароль'
+          repeatPassword: 'Повторите пароль',
         },
         common: {
           toRegister: 'Зарегистрироваться',
@@ -20,14 +20,25 @@ export default defineI18nConfig(() => ({
           username: 'Имя пользователя',
           password: 'Пароль',
           startTyping: 'Начните писать...',
-          emailPlaceholder: "example{'@'}gmail.com"
-        }
+          emailPlaceholder: "example{'@'}gmail.com",
+        },
+      },
+      menu: {
+        tasks: 'Задачи',
+        boards: 'Доски',
+        projects: 'Проекты',
+        calendar: 'Календарь',
+        team: 'Команда',
+        profile: 'Профиль',
+        theme: 'Сменить тему',
+        translate: 'Сменить язык',
+        settings: 'Настройки',
       },
       modals: {
         forgotPassword: {
           passwordRecovery: 'Восстановление пароля',
           enterLoginOrEmail: 'Введите имя пользователя или электронную почту',
-          recover: 'Восстановить'
+          recover: 'Восстановить',
         },
       },
       common: {
@@ -42,32 +53,32 @@ export default defineI18nConfig(() => ({
           no8Characters: 'Нужно 8 или больше символов',
           noMatch: 'Пароли не совпадают',
         },
-        
+
         loginError: 'Имя пользователя должно содержать минимум 3 символа',
         emailError: 'Неправильный формат электронной почты',
-        
+
         loginSuccessMessage: 'Вход выполнен успешно!',
         loginErrorMessage: 'Во время входа произошла ошибка!',
-        
+
         registerSuccessMessage: 'Регистрация выполнена успешно!',
         registerErrorMessage: 'Во время регистрации произошла ошибка!',
-        
+
         recoverySuccessMessage:
           'Восстановление выполнено успешно! Проверьте почту',
         recoveryErrorMessage: 'Во время восстановления произошла ошибка!',
-        ordinaryErrorMessage: 'Произошла ошибка!'
-      }
+        ordinaryErrorMessage: 'Произошла ошибка!',
+      },
     },
     en: {
       forms: {
         login: {
           login: 'Login',
-          forgotPassword: 'Forgot password?'
+          forgotPassword: 'Forgot password?',
         },
         register: {
           register: 'Register',
           email: 'Email',
-          repeatPassword: 'Repeat password'
+          repeatPassword: 'Repeat password',
         },
         common: {
           toRegister: 'Register',
@@ -76,14 +87,25 @@ export default defineI18nConfig(() => ({
           username: 'Username',
           password: 'Password',
           startTyping: 'Start typing...',
-          emailPlaceholder: "example{'@'}gmail.com"
-        }
+          emailPlaceholder: "example{'@'}gmail.com",
+        },
+      },
+      menu: {
+        tasks: 'Tasks',
+        boards: 'Boards',
+        projects: 'Projects',
+        calendar: 'Calendar',
+        team: 'Team',
+        profile: 'Profile',
+        theme: 'Change theme',
+        translate: 'Change language',
+        settings: 'Settings',
       },
       modals: {
         forgotPassword: {
           passwordRecovery: 'Recover password',
           enterLoginOrEmail: 'Enter username or email',
-          recover: 'Recover'
+          recover: 'Recover',
         },
       },
       common: {
@@ -96,23 +118,22 @@ export default defineI18nConfig(() => ({
           no2Digits: 'Need 2 or more digits',
           noSpecialSign: 'Need special symbol',
           no8Characters: 'Need 8 or more symbols',
-          noMatch: 'Passwords don\'t match',
+          noMatch: "Passwords don't match",
         },
-        
+
         loginError: 'Login must contain at least 3 symbols',
         emailError: 'Incorrect email format',
-        
+
         loginSuccessMessage: 'Login is successfull!',
         loginErrorMessage: 'There is an error during login!',
-        
+
         registerSuccessMessage: 'Registration is successfull!',
         registerErrorMessage: 'There is an error during registration!',
-        
-        recoverySuccessMessage:
-          'Recovery is successfull! Check the email',
+
+        recoverySuccessMessage: 'Recovery is successfull! Check the email',
         recoveryErrorMessage: 'There is an error during recovery!',
-        ordinaryErrorMessage: 'There is an error!'
-      }
+        ordinaryErrorMessage: 'There is an error!',
+      },
     },
-  }
+  },
 }))

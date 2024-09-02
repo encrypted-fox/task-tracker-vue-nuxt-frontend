@@ -3,7 +3,7 @@ import { defineNuxtConfig } from 'nuxt/config'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-04-03',
+  compatibilityDate: '2024-09-02',
 
   devtools: {
     enabled: true,
@@ -22,25 +22,29 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
   ],
   buildModules: ['@nuxtjs/svg'],
-  
+
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
     head: {
-      viewport: "width=device-width, initial-scale=1, maximum-scale=1",
-    }
+      viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
+    },
   },
-  
+
   routeRules: {
-    '/auth': { prerender: true },
+    '/': { redirect: '/tasks' },
+    '/en': { redirect: '/tasks' },
+    '/ru': { redirect: '/tasks' },
+    '/tasks': { ssr: true },
+    '/auth': { ssr: true },
   },
-  
+
   i18n: {
     vueI18n: './i18n.config.ts', // if you are using custom path, default,
     strategy: 'prefix',
     locales: ['ru', 'en'],
     detectBrowserLanguage: {
       useCookie: true,
-      alwaysRedirect: true
-    }
-  }
+      alwaysRedirect: true,
+    },
+  },
 })
