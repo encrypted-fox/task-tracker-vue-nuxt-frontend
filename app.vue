@@ -1,16 +1,25 @@
 <template lang="pug">
 .root
+  NavbarMenu(v-if='mayShowMenu')
   NuxtPage
   ModalsNotifications
 </template>
 <script setup lang="ts">
 const themeStore = useThemeStore()
 
-const theme = computed(() => themeStore.theme)
+const bodyClass = computed(
+  () =>
+    `${themeStore.theme === 'light' ? 'bg-white' : 'bg-zinc-900'} ${themeStore.theme}`
+)
+
+const route = useRoute()
+const localePath = useLocalePath()
+
+const mayShowMenu = computed(() => !route.path.includes('auth'))
 
 useHead({
   bodyAttrs: {
-    class: theme,
+    class: bodyClass,
   },
 })
 </script>
@@ -23,6 +32,14 @@ body {
   font-family: 'Inter', sans-serif;
   * {
     outline: none;
+  }
+}
+
+.active-route {
+  div {
+    fill: #fb923c;
+    color: #fb923c;
+    transition: all ease-in-out 0.2s;
   }
 }
 </style>

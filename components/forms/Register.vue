@@ -1,12 +1,12 @@
 <template lang="pug">
-.auth__form.flex.w-350px.flex-col.gap-20px
-  .auth__form-header.pb-25px.division-styling.border-0.border-b-2px
-    h1.auth__form__title.text-center.text-styling.m-0 {{$t('forms.register.register')}}
-  form.auth__form-content.flex.flex-col.gap-15px
+.w-350px.flex.flex-col.gap-20px
+  .pb-25px.division-styling.border-0.border-b-2px
+    h1.m-0.text-center.text-styling {{ $t('forms.register.register') }}
+  form.flex.flex-col.gap-15px
     FieldsString(
       name='login',
-      :label="$t('forms.common.username')",
-      :placeholder="$t('forms.common.startTyping')",
+      :label='$t("forms.common.username")',
+      :placeholder='$t("forms.common.startTyping")',
       :value='login',
       :invalid='isLoginTooShort',
       @input='changeLogin'
@@ -17,8 +17,8 @@
 
     FieldsString(
       name='email',
-      :label="$t('forms.register.email')",
-      :placeholder="$t('forms.common.emailPlaceholder')",
+      :label='$t("forms.register.email")',
+      :placeholder='$t("forms.common.emailPlaceholder")',
       :value='email',
       :invalid='isEmail',
       @input='changeEmail'
@@ -30,8 +30,8 @@
     FieldsString(
       name='password',
       type='password',
-      :label="$t('forms.common.password')",
-      :placeholder="$t('forms.common.startTyping')",
+      :label='$t("forms.common.password")',
+      :placeholder='$t("forms.common.startTyping")',
       :value='password',
       :invalid='isWeak || isPasswordNotMatch',
       @input='changePassword'
@@ -45,16 +45,16 @@
     FieldsString(
       name='repeatPassword',
       type='password',
-      :label="$t('forms.register.repeatPassword')",
-      :placeholder="$t('forms.common.startTyping')",
+      :label='$t("forms.register.repeatPassword")',
+      :placeholder='$t("forms.common.startTyping")',
       :value='repeatPassword',
       :invalid='isPasswordNotMatch',
       @input='changeRepeatPassword'
     )
 
-  .auth__form-footer.flex.justify-between
-    button.btn-lg.btn-secondary(@click='switchToLogin') {{$t('forms.common.toLogin')}}
-    button.btn-lg.btn-primary(@click='submit', :disabled='isButtonDisabled') {{$t('forms.common.toRegister')}}
+  .flex.justify-between
+    button.btn-lg.btn-secondary(@click='switchToLogin') {{ $t('forms.common.toLogin') }}
+    button.btn-lg.btn-primary(@click='submit', :disabled='isButtonDisabled') {{ $t('forms.common.toRegister') }}
 </template>
 
 <script setup lang="ts">
@@ -82,7 +82,9 @@ const errorMessages = useState<AuthErrorMessages>(() => ({
 }))
 
 const currentErrors = computed(() => {
-  return Object.keys(errorMessages.value).filter(el => errorMessages.value[el] === true).map(key => getI18nMessage(`messages.passwordErrors.${key}`))
+  return Object.keys(errorMessages.value)
+    .filter((el) => errorMessages.value[el] === true)
+    .map((key) => getI18nMessage(`messages.passwordErrors.${key}`))
 })
 
 const isButtonDisabled = computed(() => {

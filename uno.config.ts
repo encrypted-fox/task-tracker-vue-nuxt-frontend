@@ -7,26 +7,24 @@ export default <UnocssNuxtOptions>defineConfig({
   extractors: [extractorPug()],
   presets: [presetWind({ dark: 'class' })],
   shortcuts: {
-    // background
-    'main-bg-styling': 'bg-white dark:bg-slate-900',
-
     // text
-    'text-styling': 'text-gray-700 dark:text-slate-50',
+    'text-styling': 'text-zinc-700 dark:text-zinc-50',
 
     // border
-    'border-coloring': 'border-gray-300 dark:border-gray-700',
+    'border-coloring': 'border-zinc-300 dark:border-zinc-700',
     'initial-border-styling': 'border-solid border-2px border-transparent',
     'division-styling': 'initial-border-styling border-coloring',
     'main-border-styling': 'initial-border-styling rounded-md',
     'border-styling': 'main-border-styling border-coloring',
 
     // buttons
-    btn: 'main-border-styling hover:opacity-85 focus:border-indigo-500 active:opacity-100 disabled:cursor-not-allowed cursor-pointer transition-all duration-200',
+    btn: 'select-none main-border-styling hover:opacity-85 focus:border-indigo-500 active:opacity-100 disabled:cursor-not-allowed cursor-pointer transition-all duration-200',
     'btn-xs': 'text-xs px-8px py-4px',
     'btn-sm': 'text-xs px-8px py-4px',
     'btn-md': 'text-sm px-10px py-6px',
     'btn-lg': 'text-sm px-12px py-8px',
     'btn-xl': 'text-sm px-14px py-10px',
+    'btn-round': '!rounded-full',
     'btn-round-sm': 'p-4px !rounded-full w-20px h-20px',
     'btn-round-md': 'p-6px !rounded-full w-20px h-20px',
     'btn-round-lg': 'p-8px !rounded-full w-25px h-25px',
@@ -35,10 +33,10 @@ export default <UnocssNuxtOptions>defineConfig({
     'btn-primary-disabled':
       'disabled:bg-indigo-300 dark:disabled:bg-indigo-950 dark:disabled:text-indigo-500',
     'btn-primary':
-      'bg-indigo-500 text-slate-50 fill-slate-50 btn-primary-disabled btn focus:!border-orange-300 dark:focus:!border-slate-50',
+      'bg-indigo-500 text-zinc-50 fill-zinc-50 btn-primary-disabled btn focus:!border-orange-300 dark:focus:!border-zinc-50',
     'btn-secondary-disabled': 'dark:bg-indigo-950 dark:text-indigo-500 btn',
     'btn-secondary-dark':
-      'dark:bg-gray-700 dark:fill-slate-50 dark:text-slate-50 btn',
+      'dark:bg-zinc-700 dark:fill-zinc-50 dark:text-zinc-50 btn',
     'btn-secondary':
       'bg-indigo-50 fill-indigo-500 text-indigo-500 btn-secondary-disabled btn-secondary-dark btn',
     'btn-flat': '!bg-transparent',
@@ -51,21 +49,21 @@ export default <UnocssNuxtOptions>defineConfig({
     'modal-content': 'flex flex-col gap-15px',
     'modal-footer': 'flex justify-between',
     modal:
-      'w-full md:w-500px bg-white dark:bg-slate-900 p-20px md:rounded-md flex flex-col gap-20px',
+      'w-full md:w-500px bg-white dark:bg-zinc-900 p-20px md:rounded-md flex flex-col gap-20px',
 
     // fields
     field: 'flex flex-col gap-10px',
     'field-label':
-      'block text-gray-700 dark:text-slate-50 font-medium text-base',
+      'block text-zinc-700 dark:text-zinc-50 font-medium text-base',
     'field-invalid': 'border-red-500',
     'field-error': 'block text-xs text-red-500',
 
     'field-string':
-      'transition-all duration-200 border-styling text-sm px-10px py-8px box-border text-gray-700 bg-white dark:text-slate-50 dark:bg-slate-900 focus:border-indigo-500',
+      'transition-all duration-200 border-styling text-sm px-10px py-8px box-border text-zinc-700 bg-white dark:text-zinc-50 dark:bg-zinc-900 focus:border-indigo-500',
 
     // icons
-    icon: 'w-[inherit] h-[inherit] fill-[inherit]',
-    'icon-secondary': 'icon !fill-gray-700 dark:!fill-slate-50',
+    icon: 'select-none w-[inherit] h-[inherit] fill-[inherit]',
+    'icon-secondary': 'icon !fill-zinc-700 dark:!fill-zinc-50',
 
     // notifications
     'notification-container':

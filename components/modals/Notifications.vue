@@ -38,7 +38,7 @@ const notifications = computed<Array<Notification>>(
 )
 
 const getNotificationClass = (notification: Notification) => {
-  if (notification.type === 'text') return 'bg-slate-50 dark:bg-slate-800'
+  if (notification.type === 'text') return 'bg-zinc-50 dark:bg-zinc-800'
   if (notification.type === 'success')
     return '!border-transparent bg-emerald-50 dark:bg-emerald-800'
   if (notification.type === 'warn')

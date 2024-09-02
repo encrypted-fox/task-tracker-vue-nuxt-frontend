@@ -1,22 +1,22 @@
 <template lang="pug">
-ModalsDefault(:isShown='isShown')
+ModalsDefault(:is-shown='isShown')
   template(v-slot:modal-header)
-    h1.title.text-styling.m-0.text-base {{ $t('modals.forgotPassword.passwordRecovery') }}
+    h1.m-0.text-styling.text-base {{ $t('modals.forgotPassword.passwordRecovery') }}
     .btn.btn-round-sm.btn-secondary(@click='changeIsShown')
       .icon(v-html='IconClose') 
 
   template(v-slot:modal-content)
     FieldsString(
       name='text',
-      :label="$t('modals.forgotPassword.enterLoginOrEmail')",
-      :placeholder="$t('forms.common.startTyping')",
+      :label='$t("modals.forgotPassword.enterLoginOrEmail")',
+      :placeholder='$t("forms.common.startTyping")',
       :value='text',
       @input='changeText'
     )
 
   template(v-slot:modal-footer)
-    button.btn-lg.btn-secondary(@click='changeIsShown') {{$t('common.cancel')}}
-    button.btn-lg.btn-primary(@click='submit', :disabled='isButtonDisabled') {{$t('modals.forgotPassword.recover')}}
+    button.btn-lg.btn-secondary(@click='changeIsShown') {{ $t('common.cancel') }}
+    button.btn-lg.btn-primary(@click='submit', :disabled='isButtonDisabled') {{ $t('modals.forgotPassword.recover') }}
 </template>
 
 <script setup lang="ts">

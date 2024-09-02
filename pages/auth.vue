@@ -1,22 +1,32 @@
 <template lang="pug">
-.auth.w-full.flex.flex-col.items-center.main-bg-styling.p-20px.box-border.pt-150px.overflow-y-auto(
+.auth.w-full.flex.flex-col.items-center.p-20px.box-border.pt-150px.overflow-y-auto(
   class='md:h-screen md:pt-0 md:flex-row md:justify-center'
 )
-  .auth__logo-container.relative.z-1.flex.flex-row.justify-between.items-center.bg-gray-700.w-full.h-50px.top-0(
+  .auth__logo-container.relative.z-1.flex.flex-row.justify-between.items-center.bg-zinc-700.w-full.h-50px.top-0(
     class='!fixed md:flex-col md:w-200px md:h-700px md:rounded-l-md md:!relative',
     ref='authLogo'
   )
-    img.h-32px.w-32px.ml-20px(
+    img.icon.h-30px.w-30px.ml-20px(
       class='md:h-100px md:w-100px md:ml-0 md:mt-30px',
       src='@/assets/icons/logo.svg'
     )
-    .flex.justify-between.gap-10px.mb-0.mr-20px(class='md:gap-15px md:mb-50px md:mr-0')
-      .btn.btn-round-sm.fill-slate-50(@click='switchTheme')
-        Transition(name='fade', mode='out-in')
-          .icon(v-html='IconThemeDark', v-if='theme === "light"') 
-          .icon(v-html='IconThemeLight', v-else) 
-      .btn.btn-round-sm.fill-slate-50(@click='switchLanguage')
-        .icon(v-html='IconTranslate') 
+    .flex.justify-between.gap-20px.mb-0.mr-20px(class='md:gap-15px md:mb-50px md:mr-0')
+      Transition(name='fade', mode='out-in')
+        .btn.icon.w-25px.h-25px.fill-zinc-50(
+          v-html='IconThemeDark',
+          @click='switchTheme',
+          v-if='theme === "light"'
+        ) 
+        .btn.icon.w-25px.h-25px.fill-zinc-50(
+          v-html='IconThemeLight',
+          @click='switchTheme',
+          v-else
+        ) 
+
+      .btn.icon.w-20px.h-20px.fill-zinc-50(
+        v-html='IconTranslate',
+        @click='switchLocale'
+      )
 
   .auth__form-container.box-border.w-full.min-h-screen.flex.justify-center.rounded-r-md(
     class='md:items-center md:w-500px md:min-h-0 md:h-700px md:initial-border-styling md:border-coloring',
@@ -43,8 +53,8 @@ import IconTranslate from '~/assets/icons/translate.svg?raw'
 const themeStore = useThemeStore()
 const localeStore = useLocaleStore()
 
-const route = useRoute()
 const router = useRouter()
+const route = useRoute()
 const localePath = useLocalePath()
 
 const authLogo = useState<HTMLElement | null>('authLogo', () => null)
@@ -58,12 +68,12 @@ const switchTheme = () => {
   themeStore.changeTheme()
 }
 
-const switchLanguage = () => {
+const switchLocale = () => {
   localeStore.changeLocale()
 }
 
 const switchToRegister = () => {
-  router.push({ path: localePath(`/auth`), query: { register: null }})
+  router.push({ path: localePath(`/auth`), query: { register: null } })
 
   authLogo.value?.classList.add('bounceLogoRight')
   authContent.value?.classList.add('bounceContentRight')
@@ -74,7 +84,7 @@ const switchToRegister = () => {
 }
 
 const switchToLogin = () => {
-  router.push({ path: localePath(`/auth`), query: { login: null }})
+  router.push({ path: localePath(`/auth`), query: { login: null } })
 
   authLogo.value?.classList.add('bounceLogoLeft')
   authContent.value?.classList.add('bounceContentLeft')
@@ -89,7 +99,7 @@ onMounted(() => {
     isLogin.value = false
     switchToRegister()
   } else if (!('login' in route.query)) {
-    router.push({ path: localePath(`/auth`), query: { login: null }})
+    router.push({ path: localePath(`/auth`), query: { login: null } })
   }
 })
 </script>
