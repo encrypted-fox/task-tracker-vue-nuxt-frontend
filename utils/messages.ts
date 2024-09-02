@@ -1,1 +1,3 @@
-export const getI18nMessage = (sign: string) => { return useNuxtApp().$i18n.t(sign) }
+export const getI18nMessage = (sign: string) => {
+  return useNuxtApp().$i18n.t(sign)
+}

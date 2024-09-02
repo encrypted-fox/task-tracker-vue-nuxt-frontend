@@ -14,13 +14,16 @@ export const useLocaleStore = defineStore(
       i18n.setLocale(locale.value)
     }
 
-    watch(() => i18n.getLocaleCookie(), (newVal, oldVal) => {
-      if (import.meta.client) {
-        if (newVal && newVal !== oldVal) {
-          locale.value = newVal
+    watch(
+      () => i18n.getLocaleCookie(),
+      (newVal, oldVal) => {
+        if (import.meta.client) {
+          if (newVal && newVal !== oldVal) {
+            locale.value = newVal
+          }
         }
       }
-    })
+    )
 
     return { locale, changeLocale }
   },
