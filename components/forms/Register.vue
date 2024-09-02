@@ -1,37 +1,37 @@
 <template lang="pug">
 .auth__form.flex.w-350px.flex-col.gap-20px
   .auth__form-header.pb-25px.division-styling.border-0.border-b-2px
-    h1.auth__form__title.text-center.text-styling.m-0 Регистрация
+    h1.auth__form__title.text-center.text-styling.m-0 {{$t('forms.register.register')}}
   form.auth__form-content.flex.flex-col.gap-15px
-    FieldsStringField(
-      label='Логин',
+    FieldsString(
       name='login',
-      placeholder='Начните писать...',
+      :label="$t('forms.common.username')",
+      :placeholder="$t('forms.common.startTyping')",
       :value='login',
       :invalid='isLoginTooShort',
       @input='changeLogin'
     )
       Transition(name='disappear-element', mode='out-in')
         .field-error(v-if='isLoginTooShort')
-          | {{ loginError }}
+          | {{ $t('messages.loginError') }}
 
-    FieldsStringField(
-      label='Электронная почта',
+    FieldsString(
       name='email',
-      placeholder='example@example.com',
+      :label="$t('forms.register.email')",
+      :placeholder="$t('forms.common.emailPlaceholder')",
       :value='email',
       :invalid='isEmail',
       @input='changeEmail'
     )
       Transition(name='disappear-element', mode='out-in')
         .field-error(v-if='isEmail')
-          | {{ emailError }}
+          | {{ $t('messages.emailError') }}
 
-    FieldsStringField(
-      label='Пароль',
+    FieldsString(
       name='password',
-      placeholder='Начните писать...',
       type='password',
+      :label="$t('forms.common.password')",
+      :placeholder="$t('forms.common.startTyping')",
       :value='password',
       :invalid='isWeak || isPasswordNotMatch',
       @input='changePassword'
@@ -39,27 +39,26 @@
       Transition(name='fade', mode='out-in')
         .field-errors(v-if='isWeak || isPasswordNotMatch')
           TransitionGroup(name='disappear-element')
-            .field-error(v-for='val in currentErrors', :key='val.name')
-              | {{ val.label }}
+            .field-error(v-for='val in currentErrors', :key='val')
+              | {{ val }}
 
-    FieldsStringField(
-      label='Повторите пароль',
+    FieldsString(
       name='repeatPassword',
-      placeholder='Начните писать...',
       type='password',
+      :label="$t('forms.register.repeatPassword')",
+      :placeholder="$t('forms.common.startTyping')",
       :value='repeatPassword',
       :invalid='isPasswordNotMatch',
       @input='changeRepeatPassword'
     )
 
   .auth__form-footer.flex.justify-between
-    button.btn-lg.btn-secondary(@click='switchToLogin') Войти
-    button.btn-lg.btn-primary(@click='submit', :disabled='isButtonDisabled') Зарегистрироваться
+    button.btn-lg.btn-secondary(@click='switchToLogin') {{$t('forms.common.toLogin')}}
+    button.btn-lg.btn-primary(@click='submit', :disabled='isButtonDisabled') {{$t('forms.common.toRegister')}}
 </template>
 
 <script setup lang="ts">
 import type { AuthErrorMessages, AuthUser } from '~/types'
-import { passwordErrors, loginError, emailError } from '~/utils/messages'
 
 const emit = defineEmits(['switch-to-login'])
 
@@ -83,9 +82,7 @@ const errorMessages = useState<AuthErrorMessages>(() => ({
 }))
 
 const currentErrors = computed(() => {
-  return passwordErrors.filter((el) => {
-    return errorMessages.value[el.name]
-  })
+  return Object.keys(errorMessages.value).filter(el => errorMessages.value[el] === true).map(key => getI18nMessage(`messages.passwordErrors.${key}`))
 })
 
 const isButtonDisabled = computed(() => {
@@ -206,10 +203,10 @@ const submit = async () => {
     })
 
     if (response) {
-      useAuth(response, 'register')
+      useAuth(response, getI18nMessage('messages.registerSuccess'))
     }
   } catch (e) {
-    await useErrorHandler(e, 'register')
+    await useErrorHandler(e, getI18nMessage('messages.registerErrorMessage'))
   }
 }
 

@@ -1,28 +1,27 @@
 <template lang="pug">
-ModalsDefaultModal(:isShown='isShown')
+ModalsDefault(:isShown='isShown')
   template(v-slot:modal-header)
-    h1.title.text-styling.m-0.text-base Восстановление пароля
+    h1.title.text-styling.m-0.text-base {{ $t('modals.forgotPassword.passwordRecovery') }}
     .btn.btn-round-sm.btn-secondary(@click='changeIsShown')
       .icon(v-html='IconClose') 
 
   template(v-slot:modal-content)
-    FieldsStringField(
-      label='Введите логин или электронную почту',
+    FieldsString(
       name='text',
-      placeholder='Начните писать...',
+      :label="$t('modals.forgotPassword.enterLoginOrEmail')",
+      :placeholder="$t('forms.common.startTyping')",
       :value='text',
       @input='changeText'
     )
 
   template(v-slot:modal-footer)
-    button.btn-lg.btn-secondary(@click='changeIsShown') Отмена
-    button.btn-lg.btn-primary(@click='submit', :disabled='isButtonDisabled') Восстановить
+    button.btn-lg.btn-secondary(@click='changeIsShown') {{$t('common.cancel')}}
+    button.btn-lg.btn-primary(@click='submit', :disabled='isButtonDisabled') {{$t('modals.forgotPassword.recover')}}
 </template>
 
 <script setup lang="ts">
 import IconClose from '~/assets/icons/close.svg?raw'
 import type { AuthUser } from '~/types'
-import { recoverySuccessMessage } from '~/utils/messages'
 
 defineProps<{
   isShown: boolean
@@ -53,12 +52,12 @@ const submit = async () => {
 
     if (response) {
       notificationsStore.addNotification({
-        message: recoverySuccessMessage,
+        message: getI18nMessage('messages.recoverySuccess'),
         type: 'success',
       })
     }
   } catch (e) {
-    await useErrorHandler(e, 'recovery')
+    await useErrorHandler(e, getI18nMessage('messages.recoveryErrorMessage'))
   }
 }
 </script>

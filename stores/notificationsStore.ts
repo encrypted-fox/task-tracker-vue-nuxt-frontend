@@ -1,36 +1,5 @@
-import { defineStore } from '#imports'
-import type { AuthUser, Notification } from '~/types'
 import { v4 as uuid } from 'uuid'
-
-export const useThemeStore = defineStore(
-  'theme',
-  () => {
-    const theme = useState(() => 'light')
-
-    const changeTheme = () => {
-      theme.value = theme.value === 'light' ? 'dark' : 'light'
-    }
-
-    return { theme, changeTheme }
-  },
-  { persist: true }
-)
-
-export const useUserStore = defineStore(
-  'user',
-  () => {
-    const user = useState<AuthUser>(() => ({
-      accessToken: null,
-    }))
-
-    const changeUser = (newUser: AuthUser) => {
-      user.value = newUser
-    }
-
-    return { user, changeUser }
-  },
-  { persist: true }
-)
+import type { Notification } from '~/types'
 
 export const useNotificationsStore = defineStore('notifications', () => {
   const notifications = useState<Array<Notification>>(() => [])

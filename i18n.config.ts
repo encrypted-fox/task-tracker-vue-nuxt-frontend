@@ -1,0 +1,118 @@
+export default defineI18nConfig(() => ({
+  legacy: false,
+  locale: 'ru',
+  messages: {
+    ru: {
+      forms: {
+        login: {
+          login: 'Вход',
+          forgotPassword: 'Забыли пароль?'
+        },
+        register: {
+          register: 'Регистрация',
+          email: 'Электронная почта',
+          repeatPassword: 'Повторите пароль'
+        },
+        common: {
+          toRegister: 'Зарегистрироваться',
+          toLogin: 'Войти',
+
+          username: 'Имя пользователя',
+          password: 'Пароль',
+          startTyping: 'Начните писать...',
+          emailPlaceholder: "example{'@'}gmail.com"
+        }
+      },
+      modals: {
+        forgotPassword: {
+          passwordRecovery: 'Восстановление пароля',
+          enterLoginOrEmail: 'Введите имя пользователя или электронную почту',
+          recover: 'Восстановить'
+        },
+      },
+      common: {
+        cancel: 'Отмена',
+      },
+      messages: {
+        passwordErrors: {
+          no2UpperCase: 'Нужно 2 или больше заглавные буквы',
+          no3LowerCase: 'Нужно 3 или больше строчные буквы',
+          no2Digits: 'Нужно 2 или больше цифры',
+          noSpecialSign: 'Нужен специальный символ',
+          no8Characters: 'Нужно 8 или больше символов',
+          noMatch: 'Пароли не совпадают',
+        },
+        
+        loginError: 'Имя пользователя должно содержать минимум 3 символа',
+        emailError: 'Неправильный формат электронной почты',
+        
+        loginSuccessMessage: 'Вход выполнен успешно!',
+        loginErrorMessage: 'Во время входа произошла ошибка!',
+        
+        registerSuccessMessage: 'Регистрация выполнена успешно!',
+        registerErrorMessage: 'Во время регистрации произошла ошибка!',
+        
+        recoverySuccessMessage:
+          'Восстановление выполнено успешно! Проверьте почту',
+        recoveryErrorMessage: 'Во время восстановления произошла ошибка!',
+        ordinaryErrorMessage: 'Произошла ошибка!'
+      }
+    },
+    en: {
+      forms: {
+        login: {
+          login: 'Login',
+          forgotPassword: 'Forgot password?'
+        },
+        register: {
+          register: 'Register',
+          email: 'Email',
+          repeatPassword: 'Repeat password'
+        },
+        common: {
+          toRegister: 'Register',
+          toLogin: 'Login',
+
+          username: 'Username',
+          password: 'Password',
+          startTyping: 'Start typing...',
+          emailPlaceholder: "example{'@'}gmail.com"
+        }
+      },
+      modals: {
+        forgotPassword: {
+          passwordRecovery: 'Recover password',
+          enterLoginOrEmail: 'Enter username or email',
+          recover: 'Recover'
+        },
+      },
+      common: {
+        cancel: 'Cancel',
+      },
+      messages: {
+        passwordErrors: {
+          no2UpperCase: 'Need 2 or more uppercase letters',
+          no3LowerCase: 'Need 3 or more lowercase letters',
+          no2Digits: 'Need 2 or more digits',
+          noSpecialSign: 'Need special symbol',
+          no8Characters: 'Need 8 or more symbols',
+          noMatch: 'Passwords don\'t match',
+        },
+        
+        loginError: 'Login must contain at least 3 symbols',
+        emailError: 'Incorrect email format',
+        
+        loginSuccessMessage: 'Login is successfull!',
+        loginErrorMessage: 'There is an error during login!',
+        
+        registerSuccessMessage: 'Registration is successfull!',
+        registerErrorMessage: 'There is an error during registration!',
+        
+        recoverySuccessMessage:
+          'Recovery is successfull! Check the email',
+        recoveryErrorMessage: 'There is an error during recovery!',
+        ordinaryErrorMessage: 'There is an error!'
+      }
+    },
+  }
+}))

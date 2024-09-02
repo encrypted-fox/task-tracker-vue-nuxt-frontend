@@ -1,38 +1,37 @@
 <template lang="pug">
 .auth__form.flex.w-350px.flex-col.gap-20px
   .auth__form-header.pb-25px.division-styling.border-0.border-b-2px
-    h1.auth__form__title.text-center.text-styling.m-0 Вход
+    h1.auth__form__title.text-center.text-styling.m-0 {{ $t('forms.login.login') }}
 
   form.auth__form-content.flex.flex-col.gap-15px
-    FieldsStringField(
-      label='Логин',
+    FieldsString(
       name='login',
-      placeholder='Начните писать...',
+      :label="$t('forms.common.username')",
+      :placeholder="$t('forms.common.startTyping')",
       :value='login',
       @input='changeLogin'
     )
-    FieldsStringField(
-      label='Пароль',
+    FieldsString(
       name='password',
-      placeholder='Начните писать...',
       type='password',
+      :label="$t('forms.common.password')",
+      :placeholder="$t('forms.common.startTyping')",
       :value='password',
       @input='changePassword'
     )
-    .link(@click='changePasswordModalShown') Забыли пароль?
+    .link(@click='changePasswordModalShown') {{$t('forms.login.forgotPassword')}}
 
   .auth__form-footer.flex.justify-between
-    button.btn-lg.btn-secondary(@click='switchToRegister') Зарегистрироваться
-    button.btn-lg.btn-primary(@click='submit', :disabled='isButtonDisabled') Войти
+    button.btn-lg.btn-secondary(@click='switchToRegister') {{$t('forms.common.toRegister')}}
+    button.btn-lg.btn-primary(@click='submit', :disabled='isButtonDisabled') {{$t('forms.common.toLogin')}}
 
-  ModalsForgotPasswordModal(
+  ModalsForgotPassword(
     :isShown='isPasswordModalShown',
     @changeIsShown='changePasswordModalShown'
   )
 </template>
 <script setup lang="ts">
 import type { AuthUser } from '~/types'
-import { useErrorHandler } from '~/composables/useErrorHandler'
 import { useAuth } from '~/composables/useAuth'
 
 const emit = defineEmits(['switch-to-register'])
@@ -72,10 +71,10 @@ const submit = async () => {
     })
 
     if (response) {
-      useAuth(response, 'login')
+      useAuth(response, getI18nMessage('messages.loginSuccess'))
     }
   } catch (e) {
-    await useErrorHandler(e, 'login')
+    await useErrorHandler(e, getI18nMessage('messages.loginErrorMessage'))
   }
 }
 
