@@ -1,53 +1,53 @@
 <template lang="pug">
-.menu.w-full.h-50px.fixed.top-0.flex.justify-between.items-center.bg-zinc-700(
-  class='md:w-fit md:h-screen md:px-20px md:top-unset md:left-0 md:flex-col md:justify-start md:items-start'
-)
-  img.icon.h-40px.w-40px.ml-20px(
-    class='md:h-50px md:w-50px md:ml-0 md:mt-20px',
-    src='@/assets/icons/logo.svg'
-  )
-
+.menu.w-full.h-50px.fixed.top-0.z-100(class='md:w-fit md:h-screen md:left-0 md:z-1')
   .btn.btn-round.icon.chevron.w-20px.h-20px.absolute.top-95px.hidden.fill-zinc-50.bg-zinc-700(
     :class='{ "chevron-left": isMenuOpen, "chevron-right": !isMenuOpen, "-right-10px md:block hover:opacity-100 hover:bg-zinc-600 active:bg-zinc-700": true }',
     @click='switchMenuExpanded',
     v-html='IconChevron'
   )
-
-  DesktopNavbarMenu(
-    :is-menu-open='isMenuOpen',
-    :current-page='currentPage',
-    @go-to-page='goToPage'
+  .menu-content.w-full.h-50px.flex.justify-between.items-center.bg-zinc-700(
+    class='md:w-fit md:h-screen md:px-20px md:top-unset md:left-0 md:flex-col md:justify-start md:items-start md:overflow-y-auto'
   )
+    img.icon.h-40px.w-40px.ml-20px(
+      class='md:h-50px md:w-50px md:ml-0 md:mt-20px',
+      src='@/assets/icons/logo.svg'
+    )
 
-  .mr-20px(
-    class='md:mt-auto md:mr-0 md:mb-20px md:pl-10px md:flex md:flex-col md:gap-25px'
-  )
-    .flex.gap-20px(class='md:flex-col')
-      .btn.flex.items-center.gap-20px(@click='switchTheme')
-        Transition(name='fade', mode='out-in')
-          .h-25px.w-25px.fill-zinc-50(
-            v-html='IconThemeDark',
-            v-if='theme === "light"'
-          )
-          .h-25px.w-25px.fill-zinc-50(v-html='IconThemeLight', v-else)
-        Transition(name='fade', mode='out-in')
-          .hidden.text-zinc-50(class='md:block', v-if='isMenuOpen') {{ $t('menu.theme') }}
+    DesktopNavbarMenu(
+      :is-menu-open='isMenuOpen',
+      :current-page='currentPage',
+      @go-to-page='goToPage'
+    )
 
-      .btn.flex.items-center.gap-20px(@click='switchLocale')
-        .h-25px.w-25px.fill-zinc-50(v-html='IconTranslate')
-        Transition(name='fade', mode='out-in')
-          .hidden.text-zinc-50(class='md:block', v-if='isMenuOpen') {{ $t('menu.translate') }}
+    .mr-20px(
+      class='md:pt-50px md:mt-auto md:mr-0 md:mb-20px md:pl-10px md:flex md:flex-col md:gap-25px'
+    )
+      .flex.gap-20px(class='md:flex-col')
+        .btn.flex.items-center.gap-20px(@click='switchTheme')
+          Transition(name='fade', mode='out-in')
+            .h-25px.w-25px.fill-zinc-50(
+              v-html='IconThemeDark',
+              v-if='theme === "light"'
+            )
+            .h-25px.w-25px.fill-zinc-50(v-html='IconThemeLight', v-else)
+          Transition(name='fade', mode='out-in')
+            .hidden.text-zinc-50(class='md:block', v-if='isMenuOpen') {{ $t('menu.theme') }}
 
-      .btn(class='md:hidden md:mr-0', @click='switchMenuExpanded')
-        Transition(name='fade', mode='out-in')
-          .h-25px.w-25px.fill-zinc-50(v-html='IconClose', v-if='isMenuOpen')
-          .h-25px.w-25px.fill-zinc-50(v-html='IconMenu', v-else)
+        .btn.flex.items-center.gap-20px(@click='switchLocale')
+          .h-25px.w-25px.fill-zinc-50(v-html='IconTranslate')
+          Transition(name='fade', mode='out-in')
+            .hidden.text-zinc-50(class='md:block', v-if='isMenuOpen') {{ $t('menu.translate') }}
 
-  ModalsMobileNavbarMenu(
-    :is-menu-open='isMenuOpen',
-    :current-page='currentPage',
-    @go-to-page='goToPage'
-  )
+        .btn(class='md:hidden md:mr-0', @click='switchMenuExpanded')
+          Transition(name='fade', mode='out-in')
+            .h-25px.w-25px.fill-zinc-50(v-html='IconClose', v-if='isMenuOpen')
+            .h-25px.w-25px.fill-zinc-50(v-html='IconMenu', v-else)
+
+    ModalsMobileNavbarMenu(
+      :is-menu-open='isMenuOpen',
+      :current-page='currentPage',
+      @go-to-page='goToPage'
+    )
 </template>
 
 <script setup lang="ts">

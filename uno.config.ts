@@ -43,13 +43,13 @@ export default <UnocssNuxtOptions>defineConfig({
 
     // modals
     overlay:
-      'flex mt-50px md:mt-0 md:justify-center md:items-center fixed w-full h-screen z-10 top-0 bg-black/10 dark:bg-black/50',
+      'flex pt-50px box-border md:pt-0 md:justify-center md:items-center fixed w-full h-screen z-10 top-0 bg-black/10 dark:bg-black/50',
     'modal-header':
       'pb-20px flex justify-between items-center division-styling border-0 border-b-2px',
     'modal-content': 'flex flex-col gap-15px',
     'modal-footer': 'flex justify-between',
     modal:
-      'w-full md:w-500px bg-white dark:bg-zinc-900 p-20px md:rounded-md flex flex-col gap-20px',
+      'w-full overflow-y-auto md:w-500px bg-white dark:bg-zinc-900 p-20px md:rounded-md flex flex-col gap-20px',
 
     // fields
     field: 'flex flex-col gap-10px',
