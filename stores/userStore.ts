@@ -4,7 +4,7 @@ export const useUserStore = defineStore(
   'user',
   () => {
     const user = useState<AuthUser>(() => ({
-      accessToken: null,
+      accessToken: '1',
     }))
 
     const changeUser = (newUser: AuthUser) => {

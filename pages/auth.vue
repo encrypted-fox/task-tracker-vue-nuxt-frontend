@@ -1,16 +1,16 @@
 <template lang="pug">
-.auth.w-full.flex.flex-col.items-center.p-20px.box-border.pt-150px.overflow-y-auto(
+.auth.w-full.p-20px.pt-100px.flex.flex-col.items-center.overflow-y-auto.box-border(
   class='md:h-100dvh md:pt-20px md:flex-row md:justify-center'
 )
-  .relative.z-1.flex.flex-row.justify-between.items-center.bg-zinc-700.w-full.h-50px.top-0(
-    class='!fixed md:flex-col md:w-200px md:h-100% md:max-h-700px md:rounded-l-md md:!relative',
+  .w-full.h-50px.fixed.top-0.z-1.flex.flex-row.justify-between.items-center.bg-zinc-700(
+    class='md:w-200px md:h-100% md:relative md:flex-col md:rounded-l-md',
     ref='authLogo'
   )
-    img.icon.h-30px.w-30px.ml-20px(
-      class='md:h-100px md:w-100px md:ml-0 md:mt-30px',
+    img.icon.w-30px.h-30px.ml-20px(
+      class='md:w-100px md:h-100px md:ml-0 md:mt-30px',
       src='@/assets/icons/logo.svg'
     )
-    .flex.justify-between.gap-20px.mb-0.mr-20px(class='md:gap-15px md:mb-50px md:mr-0')
+    .mb-0.mr-20px.flex.justify-between.gap-20px(class='md:gap-15px md:mb-50px md:mr-0')
       Transition(name='fade', mode='out-in')
         .btn.icon.w-25px.h-25px.fill-zinc-50(
           v-html='IconThemeDark',
@@ -57,8 +57,8 @@ const router = useRouter()
 const route = useRoute()
 const localePath = useLocalePath()
 
-const authLogo = useState<HTMLElement | null>('authLogo', () => null)
-const authContent = useState<HTMLElement | null>('authContent', () => null)
+const authLogo = useState<HTMLElement | null>(() => null)
+const authContent = useState<HTMLElement | null>(() => null)
 
 const isLogin = useState<boolean>('isLogin', () => true)
 
@@ -73,7 +73,7 @@ const switchLocale = () => {
 }
 
 const switchToRegister = () => {
-  router.push({ path: localePath(`/auth`), query: { register: null } })
+  router.push({ path: localePath(`/auth`), query: { type: 'register' } })
 
   authLogo.value?.classList.add('bounceLogoRight')
   authContent.value?.classList.add('bounceContentRight')
@@ -84,7 +84,7 @@ const switchToRegister = () => {
 }
 
 const switchToLogin = () => {
-  router.push({ path: localePath(`/auth`), query: { login: null } })
+  router.push({ path: localePath(`/auth`), query: { type: 'login' } })
 
   authLogo.value?.classList.add('bounceLogoLeft')
   authContent.value?.classList.add('bounceContentLeft')
@@ -95,11 +95,11 @@ const switchToLogin = () => {
 }
 
 onMounted(() => {
-  if ('register' in route.query) {
+  if (route.query?.type === 'register') {
     isLogin.value = false
     switchToRegister()
   } else if (!('login' in route.query)) {
-    router.push({ path: localePath(`/auth`), query: { login: null } })
+    router.push({ path: localePath(`/auth`), query: { type: 'login' } })
   }
 })
 </script>
