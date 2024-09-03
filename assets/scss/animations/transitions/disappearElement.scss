@@ -1,10 +1,10 @@
-.disappear-element-enter-active,
-.disappear-element-leave-active {
+body .disappear-element-enter-active,
+body .disappear-element-leave-active {
   transition: all 0.4s ease-in-out;
 }
 
-.disappear-element-enter-from,
-.disappear-element-leave-to {
+body .disappear-element-enter-from,
+body .disappear-element-leave-to {
   opacity: 0;
   transform: scaleX(0);
   filter: blur(1rem);
