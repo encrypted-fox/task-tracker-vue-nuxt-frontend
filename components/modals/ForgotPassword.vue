@@ -8,7 +8,7 @@ ModalsDefault(:is-shown='isShown')
   template(v-slot:modal-content)
     FieldsString(
       name='text',
-      :label='$t("modals.forgotPassword.enterLoginOrEmail")',
+      :label='$t("modals.forgotPassword.enterUsernameOrEmail")',
       :placeholder='$t("forms.common.startTyping")',
       :value='text',
       @input='changeText'
@@ -46,10 +46,13 @@ const changeIsShown = () => {
 
 const submit = async () => {
   try {
-    const response = await $fetch<AuthUser>(`${appConfig.backendUrl}/api/auth/forgot`, {
-      method: 'POST',
-      body: { loginOrEmail: text.value },
-    })
+    const response = await $fetch<AuthUser>(
+      `${appConfig.backendUrl}/api/auth/forgot`,
+      {
+        method: 'POST',
+        body: { usernameOrEmail: text.value },
+      }
+    )
 
     if (response) {
       notificationsStore.addNotification({

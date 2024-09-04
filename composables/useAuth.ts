@@ -5,6 +5,7 @@ export const useAuth = (response: AuthUser, notification?: string) => {
   if (response.token) {
     const userStore = useUserStore()
     const notificationsStore = useNotificationsStore()
+    const localePath = useLocalePath()
 
     userStore.changeUser(response)
 
@@ -15,6 +16,8 @@ export const useAuth = (response: AuthUser, notification?: string) => {
     }
 
     notificationsStore.addNotification({ message, type: 'success' })
+
+    navigateTo(localePath('/tasks'))
   } else {
     throw 'auth'
   }

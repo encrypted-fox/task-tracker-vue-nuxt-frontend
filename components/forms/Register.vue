@@ -4,16 +4,16 @@
     h1.m-0.text-center.text-styling {{ $t('forms.register.register') }}
   form.flex.flex-col.gap-15px
     FieldsString(
-      name='login',
+      name='username',
       :label='$t("forms.common.username")',
       :placeholder='$t("forms.common.startTyping")',
-      :value='login',
-      :invalid='isLoginTooShort',
-      @input='changeLogin'
+      :value='username',
+      :invalid='isUsernameTooShort',
+      @input='changeUsername'
     )
       Transition(name='disappear-element', mode='out-in')
-        .field-error(v-if='isLoginTooShort')
-          | {{ $t('messages.loginError') }}
+        .field-error(v-if='isUsernameTooShort')
+          | {{ $t('messages.usernameError') }}
 
     FieldsString(
       name='email',
@@ -62,14 +62,16 @@ import type { AuthErrorMessages, AuthUser } from '~/types'
 
 const emit = defineEmits(['switch-to-login'])
 
-const login = useState<string>(() => '')
+const appConfig = useAppConfig()
+
+const username = useState<string>(() => '')
 const email = useState<string>(() => '')
 const password = useState<string>(() => '')
 const repeatPassword = useState<string>(() => '')
 
 const isWeak = useState<boolean>(() => false)
 const isPasswordNotMatch = useState<boolean>(() => false)
-const isLoginTooShort = useState<boolean>(() => false)
+const isUsernameTooShort = useState<boolean>(() => false)
 const isEmail = useState<boolean>(() => false)
 
 const errorMessages = useState<AuthErrorMessages>(() => ({
@@ -89,24 +91,24 @@ const currentErrors = computed(() => {
 
 const isButtonDisabled = computed(() => {
   return (
-    !login.value ||
+    !username.value ||
     !password.value ||
     isWeak.value ||
-    isLoginTooShort.value ||
+    isUsernameTooShort.value ||
     isPasswordNotMatch.value
   )
 })
 
-const changeLogin = (val: string) => {
-  isLoginTooShort.value = false
+const changeUsername = (val: string) => {
+  isUsernameTooShort.value = false
 
   if (val.length < 3) {
-    isLoginTooShort.value = true
+    isUsernameTooShort.value = true
   } else {
-    isLoginTooShort.value = false
+    isUsernameTooShort.value = false
   }
 
-  login.value = val
+  username.value = val
 }
 
 const changeEmail = (val: string) => {
@@ -145,7 +147,7 @@ const changePassword = (val: string) => {
     errorMessages.value.no3LowerCase = false
   }
 
-  if (!val.match(/(?=.*[!@#$&*-^%"'()=+\\/#;)])/)) {
+  if (!val.match(/(?=.*[!@#$&*\-^%])/)) {
     isWeak.value = true
     errorMessages.value.noSpecialSign = true
   } else {
@@ -199,7 +201,7 @@ const submit = async () => {
       {
         method: 'POST',
         body: {
-          login: login.value,
+          username: username.value,
           email: email.value,
           password: password.value,
           repeatPassword: repeatPassword.value,

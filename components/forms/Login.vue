@@ -5,11 +5,11 @@
 
   form.flex.flex-col.gap-15px
     FieldsString(
-      name='login',
+      name='username',
       :label='$t("forms.common.username")',
       :placeholder='$t("forms.common.startTyping")',
-      :value='login',
-      @input='changeLogin'
+      :value='username',
+      @input='changeUsername'
     )
     FieldsString(
       name='password',
@@ -35,24 +35,25 @@ import type { AuthUser } from '~/types'
 
 const emit = defineEmits(['switch-to-register'])
 
+const appConfig = useAppConfig()
 const notificationsStore = useNotificationsStore()
 const userStore = useUserStore()
 
-const login = useState<string>(() => '')
+const username = useState<string>(() => '')
 const password = useState<string>(() => '')
 
 const isPasswordModalShown = useState<boolean>(() => false)
 
 const isButtonDisabled = computed(() => {
-  return !login.value || !password.value
+  return !username.value || !password.value
 })
 
 const changePasswordModalShown = () => {
   isPasswordModalShown.value = !isPasswordModalShown.value
 }
 
-const changeLogin = (val: string) => {
-  login.value = val
+const changeUsername = (val: string) => {
+  username.value = val
 }
 
 const changePassword = (val: string) => {
@@ -69,7 +70,7 @@ const submit = async () => {
       `${appConfig.backendUrl}/api/auth/login`,
       {
         method: 'POST',
-        body: { login: login.value, password: password.value },
+        body: { username: username.value, password: password.value },
       }
     )
 
