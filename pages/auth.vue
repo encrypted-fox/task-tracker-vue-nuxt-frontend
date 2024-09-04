@@ -2,7 +2,7 @@
 .auth.w-full.p-20px.pt-100px.flex.flex-col.items-center.overflow-y-auto.box-border(
   class='md:h-100dvh md:pt-20px md:flex-row md:justify-center'
 )
-  .w-full.h-50px.fixed.top-0.z-1.flex.flex-row.justify-between.items-center.bg-zinc-700(
+  .w-full.h-50px.fixed.top-0.z-15.flex.flex-row.justify-between.items-center.bg-zinc-700(
     class='md:w-200px md:h-100% md:relative md:flex-col md:rounded-l-md',
     ref='authLogo'
   )
