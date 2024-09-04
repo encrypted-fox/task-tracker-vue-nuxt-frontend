@@ -2,7 +2,7 @@ import type { AuthUser } from '~/types'
 import { useNotificationsStore } from '#imports'
 
 export const useAuth = (response: AuthUser, notification?: string) => {
-  if (response.accessToken) {
+  if (response.token) {
     const userStore = useUserStore()
     const notificationsStore = useNotificationsStore()
 
@@ -15,5 +15,7 @@ export const useAuth = (response: AuthUser, notification?: string) => {
     }
 
     notificationsStore.addNotification({ message, type: 'success' })
+  } else {
+    throw 'auth'
   }
 }
