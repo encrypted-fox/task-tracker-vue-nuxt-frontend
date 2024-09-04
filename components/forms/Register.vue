@@ -194,18 +194,21 @@ const switchToLogin = () => {
 
 const submit = async () => {
   try {
-    const response = await $fetch<AuthUser>('/register', {
-      method: 'POST',
-      body: {
-        login: login.value,
-        email: email.value,
-        password: password.value,
-        repeatPassword: repeatPassword.value,
-      },
-    })
+    const response = await $fetch<AuthUser>(
+      `${appConfig.backendUrl}/api/auth/register`,
+      {
+        method: 'POST',
+        body: {
+          login: login.value,
+          email: email.value,
+          password: password.value,
+          repeatPassword: repeatPassword.value,
+        },
+      }
+    )
 
     if (response) {
-      useAuth(response, getI18nMessage('messages.registerSuccess'))
+      useAuth(response, getI18nMessage('messages.registerSuccessMessage'))
     }
   } catch (e) {
     await useErrorHandler(e, getI18nMessage('messages.registerErrorMessage'))

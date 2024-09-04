@@ -27,6 +27,7 @@ defineProps<{
   isShown: boolean
 }>()
 
+const appConfig = useAppConfig()
 const notificationsStore = useNotificationsStore()
 
 const emit = defineEmits<{ changeIsShown: [] }>()
@@ -45,7 +46,7 @@ const changeIsShown = () => {
 
 const submit = async () => {
   try {
-    const response = await $fetch<AuthUser>('/login', {
+    const response = await $fetch<AuthUser>(`${appConfig.backendUrl}/api/auth/forgot`, {
       method: 'POST',
       body: { loginOrEmail: text.value },
     })

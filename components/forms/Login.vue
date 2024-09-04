@@ -32,11 +32,11 @@
 </template>
 <script setup lang="ts">
 import type { AuthUser } from '~/types'
-import { useAuth } from '~/composables/useAuth'
 
 const emit = defineEmits(['switch-to-register'])
 
 const notificationsStore = useNotificationsStore()
+const userStore = useUserStore()
 
 const login = useState<string>(() => '')
 const password = useState<string>(() => '')
@@ -65,13 +65,16 @@ const switchToRegister = () => {
 
 const submit = async () => {
   try {
-    const response = await $fetch<AuthUser>('/login', {
-      method: 'POST',
-      body: { login: login.value, password: password.value },
-    })
+    const response = await $fetch<AuthUser>(
+      `${appConfig.backendUrl}/api/auth/login`,
+      {
+        method: 'POST',
+        body: { login: login.value, password: password.value },
+      }
+    )
 
     if (response) {
-      useAuth(response, getI18nMessage('messages.loginSuccess'))
+      useAuth(response, getI18nMessage('messages.loginSuccessMessage'))
     }
   } catch (e) {
     await useErrorHandler(e, getI18nMessage('messages.loginErrorMessage'))
