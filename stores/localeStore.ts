@@ -3,29 +3,20 @@ export const useLocaleStore = defineStore(
   () => {
     const i18n = useI18n()
     const route = useRoute()
+    const router = useRouter()
 
-    const locale = useState(() => i18n.locale)
+    const locale = useState(() => i18n.locale.value)
 
     const changeLocale = () => {
       if (locale.value === 'en') {
         locale.value = 'ru'
-        navigateTo(`/${locale.value}${route.path.slice(3)}`)
       } else {
         locale.value = 'en'
       }
-      i18n.setLocale(locale.value)
+      router.push({query: route.query, path: `/${locale.value}${route.path.slice(3)}`})
     }
 
-    watch(
-      () => i18n.getLocaleCookie(),
-      (newVal, oldVal) => {
-        if (import.meta.client) {
-          if (newVal && newVal !== oldVal) {
-            locale.value = newVal
-          }
-        }
-      }
-    )
+
 
     return { locale, changeLocale }
   },

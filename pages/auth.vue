@@ -3,12 +3,12 @@
   class='md:h-100dvh md:pt-20px md:flex-row md:justify-center'
 )
   .w-full.h-50px.fixed.top-0.z-15.flex.flex-row.justify-between.items-center.bg-zinc-700(
-    class='md:w-200px md:h-100% md:relative md:flex-col md:rounded-l-md',
+    class='md:w-200px md:h-100% md:relative md:z-1 md:flex-col md:rounded-l-md',
     ref='authLogo'
   )
-    img.icon.w-30px.h-30px.ml-20px(
+    .icon.w-30px.h-30px.ml-20px(
       class='md:w-100px md:h-100px md:ml-0 md:mt-30px',
-      src='@/assets/icons/logo.svg'
+      v-html="IconLogo"
     )
     .mb-0.mr-20px.flex.justify-between.gap-20px(class='md:gap-15px md:mb-50px md:mr-0')
       Transition(name='fade', mode='out-in')
@@ -23,7 +23,7 @@
           v-else
         ) 
 
-      .btn.icon.w-20px.h-20px.fill-zinc-50(
+      .btn.icon.h-25px.w-25px.fill-zinc-50(
         v-html='IconTranslate',
         @click='switchLocale'
       )
@@ -46,6 +46,7 @@
 </template>
 
 <script setup lang="ts">
+import IconLogo from '~/assets/icons/logo.svg?raw'
 import IconThemeDark from '~/assets/icons/theme-dark.svg?raw'
 import IconThemeLight from '~/assets/icons/theme-light.svg?raw'
 import IconTranslate from '~/assets/icons/translate.svg?raw'
@@ -73,7 +74,7 @@ const switchLocale = () => {
 }
 
 const switchToRegister = () => {
-  router.push({ path: localePath(`/auth`), query: { type: 'register' } })
+  navigateTo({ path: localePath(`/auth`), query: { type: 'register' } })
 
   authLogo.value?.classList.add('bounceLogoRight')
   authContent.value?.classList.add('bounceContentRight')
@@ -84,7 +85,7 @@ const switchToRegister = () => {
 }
 
 const switchToLogin = () => {
-  router.push({ path: localePath(`/auth`), query: { type: 'login' } })
+  navigateTo({ path: localePath(`/auth`), query: { type: 'login' } })
 
   authLogo.value?.classList.add('bounceLogoLeft')
   authContent.value?.classList.add('bounceContentLeft')
@@ -98,7 +99,7 @@ onMounted(() => {
   if (route.query?.type === 'register') {
     isLogin.value = false
     switchToRegister()
-  } else if (!('login' in route.query)) {
+  } else if (route.query?.type !== 'login') {
     router.push({ path: localePath(`/auth`), query: { type: 'login' } })
   }
 })

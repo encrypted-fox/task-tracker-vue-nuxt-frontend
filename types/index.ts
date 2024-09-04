@@ -9,8 +9,19 @@ export interface AuthErrorMessages {
 }
 
 export interface AuthUser {
-  token: string | null
-  profilePicture?: string
+  username?: string
+  email?: string
+
+  phone?: string
+
+  firstName?: string
+  middleName?: string
+  lastName?: string
+
+  avatar?: string
+  description?: string
+
+  token?: string | null
 }
 
 export interface Notification {

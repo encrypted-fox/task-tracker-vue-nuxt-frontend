@@ -16,7 +16,7 @@ ModalsDefault(
       )
         .h-25px.w-25px.fill-zinc-50(v-html='iconsByRoute[routeItem]')
         Transition(name='fade', mode='out-in')
-          .text-zinc-50(:key='$t(`menu.${routeItem}`)') {{ $t(`menu.${routeItem}`) }}
+          .text-zinc-50 {{ $t(`menu.${routeItem}`) }}
 </template>
 
 <script setup lang="ts">

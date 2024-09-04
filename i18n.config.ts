@@ -37,7 +37,8 @@ export default defineI18nConfig(() => ({
       modals: {
         forgotPassword: {
           passwordRecovery: 'Восстановление пароля',
-          enterLoginOrEmail: 'Введите имя пользователя или электронную почту',
+          enterUsernameOrEmail:
+            'Введите имя пользователя или электронную почту',
           recover: 'Восстановить',
         },
       },
@@ -54,7 +55,7 @@ export default defineI18nConfig(() => ({
           noMatch: 'Пароли не совпадают',
         },
 
-        loginError: 'Имя пользователя должно содержать минимум 3 символа',
+        usernameError: 'Имя пользователя должно содержать минимум 3 символа',
         emailError: 'Неправильный формат электронной почты',
 
         loginSuccessMessage: 'Вход выполнен успешно!',
@@ -104,7 +105,7 @@ export default defineI18nConfig(() => ({
       modals: {
         forgotPassword: {
           passwordRecovery: 'Recover password',
-          enterLoginOrEmail: 'Enter username or email',
+          enterUsernameOrEmail: 'Enter username or email',
           recover: 'Recover',
         },
       },
@@ -121,7 +122,7 @@ export default defineI18nConfig(() => ({
           noMatch: "Passwords don't match",
         },
 
-        loginError: 'Login must contain at least 3 symbols',
+        usernameError: 'Username must contain at least 3 symbols',
         emailError: 'Incorrect email format',
 
         loginSuccessMessage: 'Login is successfull!',

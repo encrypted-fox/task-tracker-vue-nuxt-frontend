@@ -4,7 +4,7 @@ Teleport(to='#teleports')
     .overlay(
       v-bind='$attrs',
       v-if='isShown',
-      :key='isShown',
+      :key="`${isShown}-${route.path}-${localeStore.locale}`"
       :class='overlayClass'
     )
       .modal(:class='modalClass')
@@ -25,4 +25,7 @@ defineProps<{
   modalClass?: string
   overlayClass?: string
 }>()
+
+const route = useRoute()
+const localeStore = useLocaleStore()
 </script>

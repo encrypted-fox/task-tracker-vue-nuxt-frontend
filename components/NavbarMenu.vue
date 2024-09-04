@@ -8,7 +8,7 @@
   .menu-content.w-full.h-50px.flex.justify-between.items-center.bg-zinc-700.box-border(
     class='md:w-fit md:h-100dvh md:px-20px md:top-unset md:left-0 md:flex-col md:justify-start md:items-start md:overflow-y-auto'
   )
-    img.icon.h-40px.w-40px.ml-20px(
+    img.icon.h-30px.w-30px.ml-20px(
       class='md:h-50px md:w-50px md:ml-0 md:mt-20px',
       src='@/assets/icons/logo.svg'
     )
