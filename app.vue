@@ -1,11 +1,13 @@
 <template lang="pug">
-.root
-  NavbarMenu(v-if='mayShowMenu')
-  NuxtPage
-  ModalsNotifications
+NavbarMenu(v-if='mayShowMenu')
+Transition(name="fade", mode="out-in")
+  .root(:key="`${route.path}-${localeStore.locale}`")
+    NuxtPage
+ModalsNotifications
 </template>
 <script setup lang="ts">
 const themeStore = useThemeStore()
+const localeStore = useLocaleStore()
 
 const bodyClass = computed(
   () =>
@@ -13,6 +15,7 @@ const bodyClass = computed(
 )
 
 const route = useRoute()
+const i18n = useI18n()
 const localePath = useLocalePath()
 
 const mayShowMenu = computed(() => !route.path.includes('auth'))
@@ -50,8 +53,8 @@ body {
 
 .active-route {
   div {
-    fill: #fb923c;
-    color: #fb923c;
+    fill: #fdba74;
+    color: #fdba74;
     transition: all ease-in-out 0.2s;
   }
 }
