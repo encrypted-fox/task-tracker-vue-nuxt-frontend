@@ -30,8 +30,21 @@ useHead({
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
+  transition: background-color 0.2s ease-in-out;
+
   * {
     outline: none;
+  }
+
+  input,
+  label,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    transition: color 0.2s ease-in-out;
   }
 }
 
