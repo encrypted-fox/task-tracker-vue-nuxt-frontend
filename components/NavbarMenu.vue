@@ -31,12 +31,20 @@
             )
             .h-25px.w-25px.fill-zinc-50(v-html='IconThemeLight', v-else)
           Transition(name='fade', mode='out-in')
-            .hidden.text-zinc-50(class='md:block', v-if='isMenuOpen') {{ $t('menu.theme') }}
+            .hidden.text-zinc-50(
+              class='md:block',
+              v-if='isMenuOpen',
+              :key='$t("menu.theme")'
+            ) {{ $t('menu.theme') }}
 
         .btn.flex.items-center.gap-20px(@click='switchLocale')
           .h-25px.w-25px.fill-zinc-50(v-html='IconTranslate')
           Transition(name='fade', mode='out-in')
-            .hidden.text-zinc-50(class='md:block', v-if='isMenuOpen') {{ $t('menu.translate') }}
+            .hidden.text-zinc-50(
+              class='md:block',
+              v-if='isMenuOpen',
+              :key='$t("menu.translate")'
+            ) {{ $t('menu.translate') }}
 
         .btn(class='md:hidden md:mr-0', @click='switchMenuExpanded')
           Transition(name='fade', mode='out-in')

@@ -8,7 +8,7 @@
   )
     .h-25px.w-25px.fill-zinc-50(v-html='iconsByRoute[routeItem]')
     Transition(name='fade', mode='out-in')
-      .text-zinc-50(v-if='isMenuOpen') {{ $t(`menu.${routeItem}`) }}
+      .text-zinc-50(v-if='isMenuOpen', :key='$t(`menu.${routeItem}`)') {{ $t(`menu.${routeItem}`) }}
 </template>
 
 <script setup lang="ts">
