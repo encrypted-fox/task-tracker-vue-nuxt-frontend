@@ -9,7 +9,7 @@ export interface AuthErrorMessages {
 }
 
 export interface AuthUser {
-  accessToken: string | null
+  token: string | null
   profilePicture?: string
 }
 

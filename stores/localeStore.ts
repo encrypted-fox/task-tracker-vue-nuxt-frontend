@@ -2,12 +2,14 @@ export const useLocaleStore = defineStore(
   'locale',
   () => {
     const i18n = useI18n()
+    const route = useRoute()
 
     const locale = useState(() => i18n.locale)
 
     const changeLocale = () => {
       if (locale.value === 'en') {
         locale.value = 'ru'
+        navigateTo(`/${locale.value}${route.path.slice(3)}`)
       } else {
         locale.value = 'en'
       }

@@ -3,9 +3,7 @@ import type { AuthUser } from '~/types'
 export const useUserStore = defineStore(
   'user',
   () => {
-    const user = useState<AuthUser>(() => ({
-      accessToken: '1',
-    }))
+    const user = useState<AuthUser>(() => ({ token: null }))
 
     const changeUser = (newUser: AuthUser) => {
       user.value = newUser
