@@ -12,7 +12,8 @@ export default <UnocssNuxtOptions>defineConfig({
 
     // border
     'border-coloring': 'border-zinc-300 dark:border-zinc-700',
-    'initial-border-styling': 'border-solid border-2px border-transparent',
+    'initial-border-styling':
+      'border-solid border-2px border-transparent transition-border transition-duration-200 ease-in-out',
     'division-styling': 'initial-border-styling border-coloring',
     'main-border-styling': 'initial-border-styling rounded-md',
     'border-styling': 'main-border-styling border-coloring',
@@ -59,7 +60,7 @@ export default <UnocssNuxtOptions>defineConfig({
     'field-error': 'block text-xs text-red-500',
 
     'field-string':
-      'transition-all duration-200 border-styling text-sm px-10px py-8px box-border text-zinc-700 bg-white dark:text-zinc-50 dark:bg-zinc-900 focus:border-indigo-500',
+      'transition-all duration-200 border-styling text-sm px-10px py-8px bg-transparent box-border text-zinc-700 dark:text-zinc-50 focus:border-indigo-500',
 
     // icons
     icon: 'select-none w-[inherit] h-[inherit] fill-[inherit]',
@@ -67,7 +68,7 @@ export default <UnocssNuxtOptions>defineConfig({
 
     // notifications
     'notification-container':
-      'w-full max-h-144px md:max-h-298px md:pr-20px md:pb-10px flex flex-col gap-10px md:w-fit fixed bottom-0 md:bottom-unset md:top-0 md:top-20px md:right-0 z-20 overflow-y-auto',
+      'w-full max-h-158px md:max-h-298px md:pr-20px md:pb-10px flex flex-col-reverse md:flex-col gap-10px md:w-fit fixed bottom-0 md:bottom-unset md:top-0 md:top-20px md:right-0 z-20 overflow-y-auto',
     notification:
       'w-full md:w-fit box-border border-styling border-coloring flex justify-between gap-10px items-center p-15px shadow-md',
     'notification-icon-success':
