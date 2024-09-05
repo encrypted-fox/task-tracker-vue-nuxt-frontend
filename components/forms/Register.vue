@@ -2,6 +2,7 @@
 .w-350px.m-a.flex.flex-col.gap-20px
   .pb-25px.division-styling.border-0.border-b-2px
     h1.m-0.text-center.text-styling {{ $t('forms.register.register') }}
+
   form.flex.flex-col.gap-15px
     FieldsString(
       name='username',
@@ -52,9 +53,13 @@
       @input='changeRepeatPassword'
     )
 
-  .flex.justify-between
-    button.btn-lg.btn-secondary(@click='switchToLogin') {{ $t('forms.common.toLogin') }}
-    button.btn-lg.btn-primary(@click='submit', :disabled='isButtonDisabled') {{ $t('forms.common.toRegister') }}
+    .flex.justify-between
+      .link(@click='switchToLogin') {{ $t('forms.common.toLogin') }}
+
+  button.btn-lg.w-full.btn-primary(
+    @click='submit',
+    :disabled='isButtonDisabled'
+  ) {{ $t('forms.common.toRegister') }}
 </template>
 
 <script setup lang="ts">
@@ -99,7 +104,7 @@ const isButtonDisabled = computed(() => {
   )
 })
 
-const changeUsername = (val: string) => {
+const changeUsername = (val: string): void => {
   isUsernameTooShort.value = false
 
   if (val.length < 3) {
@@ -111,7 +116,7 @@ const changeUsername = (val: string) => {
   username.value = val
 }
 
-const changeEmail = (val: string) => {
+const changeEmail = (val: string): void => {
   isEmail.value = false
 
   if (!val.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
@@ -123,7 +128,7 @@ const changeEmail = (val: string) => {
   email.value = val
 }
 
-const changePassword = (val: string) => {
+const changePassword = (val: string): void => {
   isWeak.value = false
 
   if (!val.match(/(?=.*[A-ZА-Я].*[A-ZА-Я])/)) {
@@ -174,7 +179,7 @@ const changePassword = (val: string) => {
   password.value = val
 }
 
-const changeRepeatPassword = (val: string) => {
+const changeRepeatPassword = (val: string): void => {
   isPasswordNotMatch.value = false
 
   if (val !== password.value) {
@@ -190,11 +195,11 @@ const changeRepeatPassword = (val: string) => {
   repeatPassword.value = val
 }
 
-const switchToLogin = () => {
+const switchToLogin = (): void => {
   emit('switch-to-login')
 }
 
-const submit = async () => {
+const submit = async (): void => {
   try {
     const response = await $fetch<AuthUser>(
       `${appConfig.backendUrl}/api/auth/register`,
