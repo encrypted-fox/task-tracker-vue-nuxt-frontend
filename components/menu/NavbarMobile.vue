@@ -17,6 +17,11 @@ ModalsDefault(
         .h-25px.w-25px.fill-zinc-50(v-html='iconsByRoute[routeItem]')
         Transition(name='fade', mode='out-in')
           .text-zinc-50 {{ $t(`menu.${routeItem}`) }}
+
+      .btn.flex.items-center.gap-20px.mt-auto(@click='exit')
+        .h-25px.w-25px.fill-zinc-50(v-html='IconExit')
+        Transition(name='fade', mode='out-in')
+          .text-zinc-50(v-if='isMenuOpen', :key='$t(`menu.exit`)') {{ $t(`menu.exit`) }}
 </template>
 
 <script setup lang="ts">
@@ -27,13 +32,14 @@ import IconProject from '~/assets/icons/project.svg?raw'
 import IconTeam from '~/assets/icons/team.svg?raw'
 import IconProfile from '~/assets/icons/profile.svg?raw'
 import IconSettings from '~/assets/icons/settings.svg?raw'
+import IconExit from '~/assets/icons/exit.svg?raw'
 
 defineProps<{
   isMenuOpen: boolean
   currentPage: string
 }>()
 
-const emit = defineEmits<{ 'go-to-page': [string] }>()
+const emit = defineEmits<{ 'go-to-page': [string]; exit: [] }>()
 
 const routes = [
   'tasks',
@@ -55,7 +61,11 @@ const iconsByRoute = {
   settings: IconSettings,
 }
 
-const goToPage = (page: string) => {
+const goToPage = (page: string): void => {
   emit('go-to-page', page)
+}
+
+const exit = (): void => {
+  emit('exit')
 }
 </script>
