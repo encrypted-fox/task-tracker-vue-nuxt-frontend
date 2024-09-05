@@ -36,15 +36,15 @@ const text = useState<string>(() => '')
 
 const isButtonDisabled = computed(() => !text.value)
 
-const changeText = (val: string) => {
+const changeText = (val: string): void => {
   text.value = val
 }
 
-const changeIsShown = () => {
+const changeIsShown = (): void => {
   emit('changeIsShown')
 }
 
-const submit = async () => {
+const submit = async (): void => {
   try {
     const response = await $fetch<AuthUser>(
       `${appConfig.backendUrl}/api/auth/forgot`,

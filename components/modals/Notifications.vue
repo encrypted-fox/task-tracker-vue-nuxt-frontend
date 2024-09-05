@@ -19,7 +19,7 @@ Teleport(to='#teleports')
               .icon(v-html='IconWarn')
             .notification-message {{ notification.message }}
           .notification-dismiss
-            .btn.btn-round-sm.btn-secondary.btn-flat(
+            .btn.btn-round-sm.btn-secondary.btn-seemless(
               @click='dismissNotification(notification.id)'
             )
               .icon(v-html='IconClose')
@@ -33,11 +33,9 @@ import IconWarn from '~/assets/icons/warn.svg?raw'
 
 const notificationsStore = useNotificationsStore()
 
-const notifications = computed<Array<Notification>>(
-  () => notificationsStore.notifications
-)
+const notifications = computed(() => notificationsStore.notifications)
 
-const getNotificationClass = (notification: Notification) => {
+const getNotificationClass = (notification: Notification): string => {
   if (notification.type === 'text') return 'bg-zinc-50 dark:bg-zinc-800'
   if (notification.type === 'success')
     return '!border-transparent bg-emerald-50 dark:bg-emerald-800'
@@ -47,7 +45,7 @@ const getNotificationClass = (notification: Notification) => {
     return '!border-transparent bg-rose-50 dark:bg-rose-800'
 }
 
-const dismissNotification = (id: string) => {
+const dismissNotification = (id: string): void => {
   notificationsStore.removeNotification(id)
 }
 </script>
