@@ -1,8 +1,9 @@
 <template lang="pug">
-NavbarMenu(v-if='mayShowMenu')
-Transition(name="fade", mode="out-in")
-  .root(:key="`${route.path}-${localeStore.locale}`")
-    NuxtPage
+.flex.items-between
+  NavbarMenu(v-if='mayShowMenu')
+  Transition(name='fade', mode='out-in')
+    .w-full.h-100dvh(:key='localeStore.locale')
+      NuxtPage
 ModalsNotifications
 </template>
 <script setup lang="ts">
@@ -15,7 +16,6 @@ const bodyClass = computed(
 )
 
 const route = useRoute()
-const i18n = useI18n()
 const localePath = useLocalePath()
 
 const mayShowMenu = computed(() => !route.path.includes('auth'))
@@ -56,6 +56,51 @@ body {
     fill: #fdba74;
     color: #fdba74;
     transition: all ease-in-out 0.2s;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.light {
+  ::-webkit-scrollbar-track {
+    background: #e4e4e7;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #71717a;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #71717a;
+  }
+
+  input:-internal-autofill-selected {
+    background-color: lightblue;
+  }
+}
+
+.dark {
+  ::-webkit-scrollbar-track {
+    background: #27272a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #71717a;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #71717a;
   }
 }
 </style>
