@@ -1,6 +1,9 @@
 import { FetchError } from 'ofetch'
 
-export const useErrorHandler = async (e: unknown, notification?: string) => {
+export const useErrorHandler = async (
+  e: unknown,
+  notification?: string
+): Promise<void> => {
   if (e instanceof FetchError) {
     const notificationsStore = useNotificationsStore()
 

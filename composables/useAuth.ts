@@ -1,7 +1,7 @@
 import type { AuthUser } from '~/types'
 import { useNotificationsStore } from '#imports'
 
-export const useAuth = (response: AuthUser, notification?: string) => {
+export const useAuth = (response: AuthUser, notification?: string): void => {
   if (response.token) {
     const userStore = useUserStore()
     const notificationsStore = useNotificationsStore()
