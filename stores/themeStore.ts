@@ -1,9 +1,9 @@
 export const useThemeStore = defineStore(
   'theme',
   () => {
-    const theme = useState(() => 'light')
+    const theme = useState<string>(() => 'light')
 
-    const changeTheme = () => {
+    const changeTheme = (): void => {
       theme.value = theme.value === 'light' ? 'dark' : 'light'
     }
 

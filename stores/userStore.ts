@@ -5,11 +5,15 @@ export const useUserStore = defineStore(
   () => {
     const user = useState<AuthUser>(() => ({ token: null }))
 
-    const changeUser = (newUser: AuthUser) => {
+    const changeUser = (newUser: AuthUser): void => {
       user.value = newUser
     }
 
-    return { user, changeUser }
+    const exit = (): void => {
+      user.value = { token: null }
+    }
+
+    return { user, changeUser, exit }
   },
   { persist: true }
 )

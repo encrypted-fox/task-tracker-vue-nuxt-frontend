@@ -5,18 +5,19 @@ export const useLocaleStore = defineStore(
     const route = useRoute()
     const router = useRouter()
 
-    const locale = useState(() => i18n.locale.value)
+    const locale = useState<string>(() => i18n.locale.value)
 
-    const changeLocale = () => {
+    const changeLocale = (): void => {
       if (locale.value === 'en') {
         locale.value = 'ru'
       } else {
         locale.value = 'en'
       }
-      router.push({query: route.query, path: `/${locale.value}${route.path.slice(3)}`})
+      router.push({
+        query: route.query,
+        path: `/${locale.value}${route.path.slice(3)}`,
+      })
     }
-
-
 
     return { locale, changeLocale }
   },

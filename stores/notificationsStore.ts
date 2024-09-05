@@ -4,7 +4,7 @@ import type { Notification } from '~/types'
 export const useNotificationsStore = defineStore('notifications', () => {
   const notifications = useState<Array<Notification>>(() => [])
 
-  const addNotification = (notification: Notification) => {
+  const addNotification = (notification: Notification): void => {
     if (import.meta.client) {
       const id = uuid()
 
@@ -16,7 +16,7 @@ export const useNotificationsStore = defineStore('notifications', () => {
     }
   }
 
-  const removeNotification = (id: string) => {
+  const removeNotification = (id: string): void => {
     const index = notifications.value.findIndex(
       (el: Notification) => el.id === id
     )
