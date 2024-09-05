@@ -1,5 +1,5 @@
 <template lang="pug">
-.auth.w-full.p-20px.pt-100px.flex.flex-col.items-center.overflow-y-auto.box-border(
+.auth.w-full.p-20px.pt-70px.flex.flex-col.items-center.overflow-y-auto.box-border(
   class='md:h-100dvh md:pt-20px md:flex-row md:justify-center'
 )
   .w-full.h-50px.fixed.top-0.z-15.flex.flex-row.justify-between.items-center.bg-zinc-700(
@@ -8,7 +8,7 @@
   )
     .icon.w-30px.h-30px.ml-20px(
       class='md:w-100px md:h-100px md:ml-0 md:mt-30px',
-      v-html="IconLogo"
+      v-html='IconLogo'
     )
     .mb-0.mr-20px.flex.justify-between.gap-20px(class='md:gap-15px md:mb-50px md:mr-0')
       Transition(name='fade', mode='out-in')
@@ -65,15 +65,15 @@ const isLogin = useState<boolean>('isLogin', () => true)
 
 const theme = computed(() => themeStore.theme)
 
-const switchTheme = () => {
+const switchTheme = (): void => {
   themeStore.changeTheme()
 }
 
-const switchLocale = () => {
+const switchLocale = (): void => {
   localeStore.changeLocale()
 }
 
-const switchToRegister = () => {
+const switchToRegister = (): void => {
   navigateTo({ path: localePath(`/auth`), query: { type: 'register' } })
 
   authLogo.value?.classList.add('bounceLogoRight')
@@ -84,7 +84,7 @@ const switchToRegister = () => {
   isLogin.value = false
 }
 
-const switchToLogin = () => {
+const switchToLogin = (): void => {
   navigateTo({ path: localePath(`/auth`), query: { type: 'login' } })
 
   authLogo.value?.classList.add('bounceLogoLeft')
