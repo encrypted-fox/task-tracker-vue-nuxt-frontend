@@ -24,6 +24,7 @@ export default defineNuxtConfig({
   buildModules: ['@nuxtjs/svg'],
 
   app: {
+    pageTransition: { name: 'fade', mode: 'out-in' },
     head: {
       viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
     },
