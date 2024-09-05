@@ -3,6 +3,11 @@ export default defineI18nConfig(() => ({
   locale: 'ru',
   messages: {
     ru: {
+      pages: {
+        tasks: {
+          title: 'Список задач',
+        },
+      },
       forms: {
         login: {
           login: 'Вход',
@@ -21,6 +26,7 @@ export default defineI18nConfig(() => ({
           password: 'Пароль',
           startTyping: 'Начните писать...',
           emailPlaceholder: "example{'@'}gmail.com",
+          search: 'Поиск...',
         },
       },
       menu: {
@@ -33,6 +39,8 @@ export default defineI18nConfig(() => ({
         theme: 'Сменить тему',
         translate: 'Сменить язык',
         settings: 'Настройки',
+        logout: 'Вы успешно вышли из аккаунта!',
+        exit: 'Выход',
       },
       modals: {
         forgotPassword: {
@@ -71,6 +79,11 @@ export default defineI18nConfig(() => ({
       },
     },
     en: {
+      pages: {
+        tasks: {
+          title: 'Tasks list',
+        },
+      },
       forms: {
         login: {
           login: 'Login',
@@ -89,6 +102,7 @@ export default defineI18nConfig(() => ({
           password: 'Password',
           startTyping: 'Start typing...',
           emailPlaceholder: "example{'@'}gmail.com",
+          search: 'Search...',
         },
       },
       menu: {
@@ -101,6 +115,8 @@ export default defineI18nConfig(() => ({
         theme: 'Change theme',
         translate: 'Change language',
         settings: 'Settings',
+        logout: 'Logout was successful!',
+        exit: 'Exit',
       },
       modals: {
         forgotPassword: {
