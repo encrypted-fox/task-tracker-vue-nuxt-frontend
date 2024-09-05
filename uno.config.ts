@@ -19,7 +19,7 @@ export default <UnocssNuxtOptions>defineConfig({
     'border-styling': 'main-border-styling border-coloring',
 
     // buttons
-    btn: 'select-none main-border-styling hover:opacity-85 focus:border-indigo-500 active:opacity-100 disabled:cursor-not-allowed cursor-pointer transition-all duration-200',
+    btn: 'select-none main-border-styling hover:opacity-85 focus:!border-indigo-500 active:opacity-100 disabled:cursor-not-allowed cursor-pointer transition-all duration-200',
     'btn-xs': 'text-xs px-8px py-4px',
     'btn-sm': 'text-xs px-8px py-4px',
     'btn-md': 'text-sm px-10px py-6px',
@@ -30,17 +30,29 @@ export default <UnocssNuxtOptions>defineConfig({
     'btn-round-md': 'p-6px !rounded-full w-20px h-20px',
     'btn-round-lg': 'p-8px !rounded-full w-25px h-25px',
     'btn-round-xl': 'p-10px !rounded-full w-25px h-25px',
+
     link: 'w-fit transition-all duration-200 text-indigo-500 text-sm hover:text-indigo-400 active:text-indigo-500 cursor-pointer',
+
     'btn-primary-disabled':
       'disabled:bg-indigo-300 dark:disabled:bg-indigo-950 dark:disabled:text-indigo-500',
     'btn-primary':
       'bg-indigo-500 text-zinc-50 fill-zinc-50 btn-primary-disabled btn focus:!border-orange-300 dark:focus:!border-zinc-50',
-    'btn-secondary-disabled': 'dark:bg-indigo-950 dark:text-indigo-500 btn',
+
+    'btn-secondary-disabled':
+      'disabled:bg-indigo-950 disabled:fill-indigo-500 disabled:text-indigo-500 dark:disabled:bg-zinc-800 dark:disabled:fill-zinc-500 dark:disabled:text-zinc-500',
     'btn-secondary-dark':
-      'dark:bg-zinc-700 dark:fill-zinc-50 dark:text-zinc-50 btn',
+      'dark:bg-zinc-700 dark:fill-zinc-50 dark:text-zinc-200 btn',
     'btn-secondary':
-      'bg-indigo-50 fill-indigo-500 text-indigo-500 btn-secondary-disabled btn-secondary-dark btn',
-    'btn-flat': '!bg-transparent',
+      'bg-indigo-50 fill-indigo-500 text-indigo-500 btn btn-secondary-dark btn-secondary-disabled',
+
+    'btn-link-disabled':
+      'disabled:bg-blue-50 disabled:text-blue-300 disabled:fill-blue-300 dark:disabled:bg-blue-950 dark:disabled:fill-blue-700 dark:disabled:text-blue-500',
+    'btn-link-dark':
+      'dark:bg-blue-700 dark:fill-zinc-50 dark:text-zinc-50 dark:focus:!border-zinc-200',
+    'btn-link':
+      'bg-blue-100 fill-blue-700 text-blue-700 btn-link-dark btn btn-link-disabled',
+
+    'btn-seemless': '!bg-transparent',
 
     // modals
     overlay:
@@ -59,8 +71,13 @@ export default <UnocssNuxtOptions>defineConfig({
     'field-invalid': 'border-red-500',
     'field-error': 'block text-xs text-red-500',
 
+    'field-container': 'h-40px relative',
+    'field-icon':
+      'icon h-100% w-40px absolute cursor-pointer top-0 box-border flex justify-center items-center p-10px fill-zinc-700 dark:fill-zinc-50',
+    'field-icon-prepend': 'field-icon left-0',
+    'field-icon-append': 'field-icon right-0',
     'field-string':
-      'transition-all duration-200 border-styling text-sm px-10px py-8px bg-transparent box-border text-zinc-700 dark:text-zinc-50 focus:border-indigo-500',
+      'transition-all duration-200 h-40px border-styling text-sm px-10px py-8px bg-transparent box-border text-zinc-700 dark:text-zinc-50 focus:border-indigo-500',
 
     // icons
     icon: 'select-none w-[inherit] h-[inherit] fill-[inherit]',
