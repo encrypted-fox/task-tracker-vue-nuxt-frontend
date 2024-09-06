@@ -1,7 +1,7 @@
 <template lang="pug">
 .w-350px.m-a.flex.flex-col.gap-20px
   .pb-25px.division-styling.border-0.border-b-2px
-    h1.m-0.text-center.text-styling {{ $t('forms.login.login') }}
+    h1.m-0.text-center.text-styling.text-2xl {{ $t('forms.login.login') }}
 
   form.flex.flex-col.gap-15px
     FieldsString(
@@ -20,7 +20,7 @@
       @input='changePassword'
     )
     .flex.justify-between
-      .link(@click='changePasswordModalShown') {{ $t('forms.login.forgotPassword') }}
+      .link(@click='switchIsForgotPasswordModalShown') {{ $t('forms.login.forgotPassword') }}
       .link(@click='switchToRegister') {{ $t('forms.common.toRegister') }}
 
   button.w-full.btn-lg.btn-primary(
@@ -29,8 +29,8 @@
   ) {{ $t('forms.common.toLogin') }}
 
   ModalsForgotPassword(
-    :isShown='isPasswordModalShown',
-    @changeIsShown='changePasswordModalShown'
+    :is-shown='isForgotPasswordModalShown',
+    @switch-is-shown='switchIsForgotPasswordModalShown'
   )
 </template>
 <script setup lang="ts">
@@ -45,14 +45,14 @@ const userStore = useUserStore()
 const username = useState<string>(() => '')
 const password = useState<string>(() => '')
 
-const isPasswordModalShown = useState<boolean>(() => false)
+const isForgotPasswordModalShown = useState<boolean>(() => false)
 
 const isButtonDisabled = computed(() => {
   return !username.value || !password.value
 })
 
-const changePasswordModalShown = (): void => {
-  isPasswordModalShown.value = !isPasswordModalShown.value
+const switchIsForgotPasswordModalShown = (): void => {
+  isForgotPasswordModalShown.value = !isForgotPasswordModalShown.value
 }
 
 const changeUsername = (val: string): void => {
@@ -67,7 +67,7 @@ const switchToRegister = (): void => {
   emit('switch-to-register')
 }
 
-const submit = async (): void => {
+const submit = async (): Promise<void> => {
   try {
     const response = await $fetch<AuthUser>(
       `${appConfig.backendUrl}/api/auth/login`,

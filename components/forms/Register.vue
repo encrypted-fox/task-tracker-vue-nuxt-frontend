@@ -1,7 +1,7 @@
 <template lang="pug">
 .w-350px.m-a.flex.flex-col.gap-20px
   .pb-25px.division-styling.border-0.border-b-2px
-    h1.m-0.text-center.text-styling {{ $t('forms.register.register') }}
+    h1.m-0.text-center.text-styling.text-2xl {{ $t('forms.register.register') }}
 
   form.flex.flex-col.gap-15px
     FieldsString(
@@ -199,7 +199,7 @@ const switchToLogin = (): void => {
   emit('switch-to-login')
 }
 
-const submit = async (): void => {
+const submit = async (): Promise<void> => {
   try {
     const response = await $fetch<AuthUser>(
       `${appConfig.backendUrl}/api/auth/register`,
