@@ -9,26 +9,30 @@ Teleport(to='#teleports')
           :key='notification.id'
         ) 
           .flex.justify-between.items-center.gap-10px
-            .notification-icon-success(v-if='notification.type === "success"')
-              .icon(v-html='IconTick')
-            .notification-icon-warn(v-else-if='notification.type === "warn"')
-              .icon(v-html='IconWarn')
-            .notification-icon-danger(
-              v-else-if='notification.type === "danger"'
+            .notification-icon-success(
+              v-if='notification.type === "success"',
+              v-html='IconSuccess'
             )
-              .icon(v-html='IconWarn')
+            .notification-icon-warn(
+              v-else-if='notification.type === "warn"',
+              v-html='IconWarn'
+            )
+            .notification-icon-danger(
+              v-else-if='notification.type === "danger"',
+              v-html='IconWarn'
+            )
             .notification-message {{ notification.message }}
           .notification-dismiss
-            .btn.btn-round-sm.btn-secondary.btn-seemless(
-              @click='dismissNotification(notification.id)'
+            .btn.icon.btn-round-sm.btn-secondary.btn-seemless(
+              @click='dismissNotification(notification.id)',
+              v-html='IconClose'
             )
-              .icon(v-html='IconClose')
 </template>
 
 <script setup lang="ts">
 import type { Notification } from '~/types'
 import IconClose from '~/assets/icons/close.svg?raw'
-import IconTick from '~/assets/icons/tick.svg?raw'
+import IconSuccess from '~/assets/icons/success.svg?raw'
 import IconWarn from '~/assets/icons/warn.svg?raw'
 
 const notificationsStore = useNotificationsStore()
@@ -43,6 +47,7 @@ const getNotificationClass = (notification: Notification): string => {
     return '!border-transparent bg-amber-50 dark:bg-amber-800'
   if (notification.type === 'danger')
     return '!border-transparent bg-rose-50 dark:bg-rose-800'
+  else return ''
 }
 
 const dismissNotification = (id: string): void => {
