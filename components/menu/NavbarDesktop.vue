@@ -1,20 +1,20 @@
 <template lang="pug">
 .pl-10px.mt-75px.hidden.flex-col.gap-25px(class='md:flex')
-  .btn.flex.items-center.gap-20px(
+  button.btn.p-2px.flex.justify-start.items-center.gap-20px(
     v-for='routeItem in routes',
     @click='goToPage(routeItem)',
     :class='{ "active-route": currentPage === routeItem }',
     :key='routeItem'
   )
-    .h-25px.w-25px.fill-zinc-50(v-html='iconsByRoute[routeItem]')
+    .h-25px.w-25px.flex.items-center.justify-center.fill-zinc-50(v-html='iconsByRoute[routeItem]')
     Transition(name='fade', mode='out-in')
       .text-nowrap.text-zinc-50(
         v-if='isMenuOpen',
         :key='$t(`menu.${routeItem}`)'
       ) {{ $t(`menu.${routeItem}`) }}
 
-  .btn.flex.items-center.gap-20px(@click='exit')
-    .h-25px.w-25px.fill-zinc-50(v-html='IconExit')
+  button.btn.p-2px.flex.justify-start.items-center.gap-20px(@click='exit')
+    .h-25px.w-25px.flex.items-center.justify-center.fill-zinc-50(v-html='IconExit')
     Transition(name='fade', mode='out-in')
       .text-nowrap.text-zinc-50(v-if='isMenuOpen', :key='$t(`menu.exit`)') {{ $t(`menu.exit`) }}
 </template>

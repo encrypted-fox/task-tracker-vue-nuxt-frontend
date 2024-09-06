@@ -7,8 +7,8 @@ ModalsDefault(
   :overlay-class='"md:hidden"'
 )
   template(v-slot:modal-content)
-    .flex.justify-center.pl-10px.flex-col.gap-25px
-      .btn.flex.items-center.gap-20px(
+    .flex.justify-center.flex-col.gap-25px
+      button.btn.btn-md.flex.justify-start.items-center.gap-20px(
         v-for='routeItem in routes',
         @click='goToPage(routeItem)',
         :class='{ "active-route": currentPage === routeItem }',
@@ -18,7 +18,7 @@ ModalsDefault(
         Transition(name='fade', mode='out-in')
           .text-zinc-50 {{ $t(`menu.${routeItem}`) }}
 
-      .btn.flex.items-center.gap-20px.mt-auto(@click='exit')
+      button.btn.btn-md.flex.justify-start.items-center.gap-20px.mt-auto(@click='exit')
         .h-25px.w-25px.fill-zinc-50(v-html='IconExit')
         Transition(name='fade', mode='out-in')
           .text-zinc-50(v-if='isMenuOpen', :key='$t(`menu.exit`)') {{ $t(`menu.exit`) }}

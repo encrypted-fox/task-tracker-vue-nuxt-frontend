@@ -1,6 +1,6 @@
 <template lang="pug">
 .flex.items-between
-  NavbarMenu(v-if='mayShowMenu')
+  PageMenu(v-if='isMenuShown')
   Transition(name='fade', mode='out-in')
     .w-full.h-100dvh(:key='localeStore.locale')
       NuxtPage
@@ -18,7 +18,7 @@ const bodyClass = computed(
 const route = useRoute()
 const localePath = useLocalePath()
 
-const mayShowMenu = computed(() => !route.path.includes('auth'))
+const isMenuShown = computed(() => !route.path.includes('auth'))
 
 useHead({
   bodyAttrs: {
@@ -48,6 +48,10 @@ body {
   h5,
   h6 {
     transition: color 0.2s ease-in-out;
+  }
+
+  button {
+    background-color: transparent;
   }
 }
 
