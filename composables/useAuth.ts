@@ -17,7 +17,7 @@ export const useAuth = (response: AuthUser, notification?: string): void => {
 
     notificationsStore.addNotification({ message, type: 'success' })
 
-    navigateTo(localePath('/tasks'))
+    navigateTo(localePath('tasks'))
   } else {
     throw 'auth'
   }
