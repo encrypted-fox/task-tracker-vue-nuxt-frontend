@@ -19,31 +19,32 @@ export default <UnocssNuxtOptions>defineConfig({
     'border-styling': 'main-border-styling border-coloring',
 
     // buttons
-    btn: 'select-none main-border-styling hover:opacity-85 focus:!border-indigo-500 active:opacity-100 disabled:cursor-not-allowed cursor-pointer transition-all duration-200',
+    btn: 'flex justify-center items-center shrink-0 select-none box-border main-border-styling hover:opacity-85 focus:!border-indigo-500 active:opacity-100 disabled:cursor-not-allowed cursor-pointer transition-all duration-200',
     'btn-xs': 'text-xs px-8px py-4px',
     'btn-sm': 'text-xs px-8px py-4px',
     'btn-md': 'text-sm px-10px py-6px',
     'btn-lg': 'text-sm px-12px py-8px',
     'btn-xl': 'text-sm px-14px py-10px',
     'btn-round': '!rounded-full',
-    'btn-round-sm': 'p-4px !rounded-full w-20px h-20px',
-    'btn-round-md': 'p-6px !rounded-full w-20px h-20px',
-    'btn-round-lg': 'p-8px !rounded-full w-25px h-25px',
-    'btn-round-xl': 'p-10px !rounded-full w-25px h-25px',
+    'btn-round-xs': 'p-2px !rounded-full w-20px h-20px',
+    'btn-round-sm': 'p-4px !rounded-full w-25px h-25px',
+    'btn-round-md': 'p-4px !rounded-full w-30px h-30px',
+    'btn-round-lg': 'p-4px !rounded-full w-35px h-35px',
+    'btn-round-xl': 'p-6px !rounded-full w-40px h-40px',
 
     link: 'w-fit transition-all duration-200 text-indigo-500 text-sm hover:text-indigo-400 active:text-indigo-500 cursor-pointer',
 
     'btn-primary-disabled':
       'disabled:bg-indigo-300 dark:disabled:bg-indigo-950 dark:disabled:text-indigo-500',
     'btn-primary':
-      'bg-indigo-500 text-zinc-50 fill-zinc-50 btn-primary-disabled btn focus:!border-orange-300 dark:focus:!border-zinc-50',
+      'bg-indigo-500 text-zinc-50 !fill-zinc-50 btn-primary-disabled btn focus:!border-orange-300 dark:focus:!border-zinc-50',
 
     'btn-secondary-disabled':
-      'disabled:bg-indigo-950 disabled:fill-indigo-500 disabled:text-indigo-500 dark:disabled:bg-zinc-800 dark:disabled:fill-zinc-500 dark:disabled:text-zinc-500',
+      'disabled:bg-indigo-950 disabled:!fill-indigo-500 disabled:text-indigo-500 dark:disabled:bg-zinc-800 dark:disabled:!fill-zinc-500 dark:disabled:text-zinc-500',
     'btn-secondary-dark':
-      'dark:bg-zinc-700 dark:fill-zinc-50 dark:text-zinc-200 btn',
+      'dark:bg-zinc-700 dark:!fill-zinc-50 dark:text-zinc-200 btn',
     'btn-secondary':
-      'bg-indigo-50 fill-indigo-500 text-indigo-500 btn btn-secondary-dark btn-secondary-disabled',
+      'bg-indigo-50 !fill-indigo-500 text-indigo-500 btn btn-secondary-dark btn-secondary-disabled',
 
     'btn-link-disabled':
       'disabled:bg-blue-50 disabled:text-blue-300 disabled:fill-blue-300 dark:disabled:bg-blue-950 dark:disabled:fill-blue-700 dark:disabled:text-blue-500',
@@ -80,7 +81,7 @@ export default <UnocssNuxtOptions>defineConfig({
       'transition-all duration-200 h-40px border-styling text-sm px-10px py-8px bg-transparent box-border text-zinc-700 dark:text-zinc-50 focus:border-indigo-500',
 
     // icons
-    icon: 'select-none w-[inherit] h-[inherit] fill-[inherit]',
+    icon: 'flex justify-center items-center box-border select-none fill-[inherit]',
     'icon-secondary': 'icon !fill-zinc-700 dark:!fill-zinc-50',
 
     // notifications
@@ -89,11 +90,14 @@ export default <UnocssNuxtOptions>defineConfig({
     notification:
       'w-full md:w-fit box-border border-styling border-coloring flex justify-between gap-10px items-center p-15px shadow-md',
     'notification-icon-success':
-      'w-25px h-25px bg-emerald-200 fill-emerald-600 p-4px rounded-full',
+      'icon w-25px h-25px p-5px bg-emerald-200 !fill-emerald-600 p-4px rounded-full',
     'notification-icon-warn':
-      'w-25px h-25px bg-amber-200 fill-amber-600 p-4px rounded-full',
+      'icon w-25px h-25px p-5px bg-amber-200 !fill-amber-600 p-4px rounded-full',
     'notification-icon-danger':
-      'w-25px h-25px bg-rose-200 fill-rose-600 p-4px rounded-full',
+      'icon w-25px h-25px p-5px bg-rose-200 !fill-rose-600 p-4px rounded-full',
     'notification-message': 'text-sm text-styling inline-block w-200px',
+
+    // pages
+    'page': 'w-full md:h-100% p-20px pt-70px md:p-30px flex flex-col gap-20px overflow-y-auto box-border'
   },
 })
