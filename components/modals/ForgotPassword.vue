@@ -2,8 +2,10 @@
 ModalsDefault(:is-shown='isShown')
   template(v-slot:modal-header)
     h1.m-0.text-styling.text-base {{ $t('modals.forgotPassword.passwordRecovery') }}
-    .btn.btn-round-sm.btn-secondary(@click='changeIsShown')
-      .icon(v-html='IconClose') 
+    .btn.icon.btn-round-sm.btn-secondary(
+      @click='switchIsShown',
+      v-html='IconClose'
+    ) 
 
   template(v-slot:modal-content)
     FieldsString(
@@ -15,7 +17,7 @@ ModalsDefault(:is-shown='isShown')
     )
 
   template(v-slot:modal-footer)
-    button.btn-lg.btn-secondary(@click='changeIsShown') {{ $t('common.cancel') }}
+    button.btn-lg.btn-secondary(@click='switchIsShown') {{ $t('common.cancel') }}
     button.btn-lg.btn-primary(@click='submit', :disabled='isButtonDisabled') {{ $t('modals.forgotPassword.recover') }}
 </template>
 
@@ -30,7 +32,7 @@ defineProps<{
 const appConfig = useAppConfig()
 const notificationsStore = useNotificationsStore()
 
-const emit = defineEmits<{ changeIsShown: [] }>()
+const emit = defineEmits<{ 'switch-is-shown': [] }>()
 
 const text = useState<string>(() => '')
 
@@ -40,11 +42,11 @@ const changeText = (val: string): void => {
   text.value = val
 }
 
-const changeIsShown = (): void => {
-  emit('changeIsShown')
+const switchIsShown = (): void => {
+  emit('switch-is-shown')
 }
 
-const submit = async (): void => {
+const submit = async (): Promise<void> => {
   try {
     const response = await $fetch<AuthUser>(
       `${appConfig.backendUrl}/api/auth/forgot`,
