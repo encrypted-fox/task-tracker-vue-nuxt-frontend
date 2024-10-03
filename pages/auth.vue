@@ -3,7 +3,7 @@
   class='md:h-100dvh md:pt-20px md:flex-row md:justify-center'
 )
   .w-full.h-50px.fixed.top-0.z-15.flex.flex-row.justify-between.items-center.bg-zinc-700(
-    class='md:w-200px md:h-100% md:relative md:z-1 md:flex-col md:rounded-l-md',
+    :class='{ "md:w-200px md:h-100% md:relative md:z-1 md:flex-col md:rounded-l-md": true, [additionalAuthLogoClass]: true }',
     ref='authLogo'
   )
     .icon.w-30px.h-30px.ml-20px(
@@ -29,7 +29,7 @@
       )
 
   .box-border.w-full.flex.justify-center.rounded-r-md.overflow-y-auto(
-    class='md:w-500px md:h-100% md:py-50px md:items-start md:initial-border-styling md:border-coloring',
+    :class='{ "md:w-500px md:h-100% md:py-50px md:items-start md:initial-border-styling md:border-coloring": true, [additionalAuthContentClass]: true }',
     ref='authContent'
   )
     Transition(name='fade', mode='out-in')
@@ -61,7 +61,21 @@ const localePath = useLocalePath()
 const authLogo = useState<HTMLElement | null>(() => null)
 const authContent = useState<HTMLElement | null>(() => null)
 
-const isLogin = useState<boolean>('isLogin', () => true)
+const additionalAuthLogoClass = useState(() =>
+  route.query?.type !== 'register'
+    ? ''
+    : 'md:translate-x-500px md:rounded-l-none md:rounded-r-md'
+)
+const additionalAuthContentClass = useState(() =>
+  route.query?.type !== 'register'
+    ? ''
+    : 'md:-translate-x-200px md:rounded-r-none md:rounded-l-md'
+)
+
+const isLogin = useState<boolean>(
+  'isLogin',
+  () => route.query?.type !== 'register' || false
+)
 
 const theme = computed(() => themeStore.theme)
 
@@ -98,7 +112,6 @@ const switchToLogin = (): void => {
 onMounted(() => {
   if (route.query?.type === 'register') {
     isLogin.value = false
-    switchToRegister()
   } else if (route.query?.type !== 'login') {
     router.push({ path: localePath(`/auth`), query: { type: 'login' } })
   }

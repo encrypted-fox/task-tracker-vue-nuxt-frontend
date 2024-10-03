@@ -30,7 +30,7 @@ export default <UnocssNuxtOptions>defineConfig({
     'btn-round-sm': 'p-4px !rounded-full w-25px h-25px',
     'btn-round-md': 'p-4px !rounded-full w-30px h-30px',
     'btn-round-lg': 'p-4px !rounded-full w-35px h-35px',
-    'btn-round-xl': 'p-6px !rounded-full w-40px h-40px',
+    'btn-round-xl': 'p-10px !rounded-full w-40px h-40px',
 
     link: 'w-fit transition-all duration-200 text-indigo-500 text-sm hover:text-indigo-400 active:text-indigo-500 cursor-pointer',
 
@@ -98,6 +98,6 @@ export default <UnocssNuxtOptions>defineConfig({
     'notification-message': 'text-sm text-styling inline-block w-200px',
 
     // pages
-    'page': 'w-full md:h-100% p-20px pt-70px md:p-30px flex flex-col gap-20px overflow-y-auto box-border'
+    page: 'w-full h-100% p-20px pt-70px md:p-30px flex flex-col gap-20px overflow-y-auto box-border',
   },
 })
