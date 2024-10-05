@@ -16,6 +16,8 @@
     "lintfix": "eslint . --fix && prettier --write --list-different ."
   },
   "dependencies": {
+    "@vueuse/components": "^11.1.0",
+    "@vueuse/core": "^11.1.0",
     "date-fns": "^3.6.0",
     "nuxt": "^3.13.0",
     "uuid": "^10.0.0",
