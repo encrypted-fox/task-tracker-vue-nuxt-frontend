@@ -52,7 +52,7 @@ export default defineI18nConfig(() => ({
       },
       common: {
         cancel: 'Отмена',
-        listEmpty: 'Список пуст'
+        listEmpty: 'Список пуст',
       },
       messages: {
         passwordErrors: {
@@ -128,7 +128,7 @@ export default defineI18nConfig(() => ({
       },
       common: {
         cancel: 'Cancel',
-        listEmpty: 'List is empty'
+        listEmpty: 'List is empty',
       },
       messages: {
         passwordErrors: {
