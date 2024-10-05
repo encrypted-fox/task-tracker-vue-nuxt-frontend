@@ -6,17 +6,14 @@
     :class='{ "active-route": currentPage === routeItem }',
     :key='routeItem'
   )
-    .h-25px.w-25px.flex.items-center.justify-center.fill-zinc-50(v-html='iconsByRoute[routeItem]')
+    .h-25px.w-25px.flex.items-center.justify-center.fill-zinc-50(
+      v-html='iconsByRoute[routeItem]'
+    )
     Transition(name='fade', mode='out-in')
       .text-nowrap.text-zinc-50(
         v-if='isMenuOpen',
         :key='$t(`menu.${routeItem}`)'
       ) {{ $t(`menu.${routeItem}`) }}
-
-  button.btn.p-2px.flex.justify-start.items-center.gap-20px(@click='exit')
-    .h-25px.w-25px.flex.items-center.justify-center.fill-zinc-50(v-html='IconExit')
-    Transition(name='fade', mode='out-in')
-      .text-nowrap.text-zinc-50(v-if='isMenuOpen', :key='$t(`menu.exit`)') {{ $t(`menu.exit`) }}
 </template>
 
 <script setup lang="ts">

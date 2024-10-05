@@ -1,14 +1,15 @@
 <template lang="pug">
-.tasks.page
+.page
   PageHeader(
     :isItemsFolded='isItemsFolded',
     :search='search',
-    :is-filters-button-shown="true",
-    :is-sort-button-shown="false",
-    :is-fold-button-shown="true",
+    :is-filters-button-shown='true',
+    :is-sort-button-shown='true',
+    :is-fold-button-shown='false',
     @switch-is-items-folded='switchIsItemsFolded',
     @changeSearch='changeSearch'
   )
+  PageList(:path='"tasks"')
 </template>
 
 <script setup lang="ts">

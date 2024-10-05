@@ -28,8 +28,8 @@ export default <UnocssNuxtOptions>defineConfig({
     'btn-round': '!rounded-full',
     'btn-round-xs': 'p-2px !rounded-full w-20px h-20px',
     'btn-round-sm': 'p-4px !rounded-full w-25px h-25px',
-    'btn-round-md': 'p-4px !rounded-full w-30px h-30px',
-    'btn-round-lg': 'p-4px !rounded-full w-35px h-35px',
+    'btn-round-md': 'p-6px !rounded-full w-30px h-30px',
+    'btn-round-lg': 'p-8px !rounded-full w-35px h-35px',
     'btn-round-xl': 'p-10px !rounded-full w-40px h-40px',
 
     link: 'w-fit transition-all duration-200 text-indigo-500 text-sm hover:text-indigo-400 active:text-indigo-500 cursor-pointer',
@@ -72,7 +72,7 @@ export default <UnocssNuxtOptions>defineConfig({
     'field-invalid': 'border-red-500',
     'field-error': 'block text-xs text-red-500',
 
-    'field-container': 'h-40px relative',
+    'field-container': 'relative',
     'field-icon':
       'icon h-100% w-40px absolute cursor-pointer top-0 box-border flex justify-center items-center p-10px fill-zinc-700 dark:fill-zinc-50',
     'field-icon-prepend': 'field-icon left-0',
@@ -98,6 +98,20 @@ export default <UnocssNuxtOptions>defineConfig({
     'notification-message': 'text-sm text-styling inline-block w-200px',
 
     // pages
-    page: 'w-full h-100% p-20px pt-70px md:p-30px flex flex-col gap-20px overflow-y-auto box-border',
+    page: 'h-100dvh w-full p-20px pt-70px md:p-30px flex flex-col gap-20px overflow-y-auto box-border',
+
+    // badges
+    badge:
+      'w-fit px-8px py-4px flex justify-center items-center shrink-0 select-none text-sm box-border main-border-styling hover:opacity-85 focus:!border-indigo-500 active:opacity-100 disabled:cursor-not-allowed cursor-pointer transition-all duration-200',
+    'badge-primary':
+      'badge bg-indigo-500 text-zinc-50 !fill-zinc-50 focus:!border-orange-300 dark:focus:!border-zinc-50',
+    'badge-secondary':
+      'badge bg-indigo-50 !fill-indigo-500 text-indigo-500 dark:bg-zinc-700 dark:!fill-zinc-50 dark:text-zinc-200',
+    'badge-success':
+      'badge bg-emerald-100 !fill-emerald-500 text-emerald-500 dark:bg-emerald-700 dark:!fill-emerald-50 dark:text-emerald-200',
+    'badge-warn':
+      'badge bg-amber-100 !fill-amber-500 text-amber-500 dark:bg-amber-700 dark:!fill-amber-50 dark:text-amber-200',
+    'badge-danger':
+      'badge bg-rose-100 !fill-rose-500 text-rose-500 dark:bg-rose-700 dark:!fill-rose-50 dark:text-rose-200',
   },
 })

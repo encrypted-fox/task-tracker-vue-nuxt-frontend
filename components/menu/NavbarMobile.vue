@@ -18,7 +18,9 @@ ModalsDefault(
         Transition(name='fade', mode='out-in')
           .text-zinc-50 {{ $t(`menu.${routeItem}`) }}
 
-      button.btn.btn-md.flex.justify-start.items-center.gap-20px.mt-auto(@click='exit')
+      button.btn.btn-md.flex.justify-start.items-center.gap-20px.mt-auto(
+        @click='exit'
+      )
         .h-25px.w-25px.fill-zinc-50(v-html='IconExit')
         Transition(name='fade', mode='out-in')
           .text-zinc-50(v-if='isMenuOpen', :key='$t(`menu.exit`)') {{ $t(`menu.exit`) }}

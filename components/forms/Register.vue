@@ -38,7 +38,9 @@
       @input='changePassword'
     )
       Transition(name='fade', mode='out-in')
-        .field-errors(v-if='isWeak || isPasswordNotMatch')
+        .field-errors.mt-5px.flex.flex-col.gap-5px(
+          v-if='isWeak || isPasswordNotMatch'
+        )
           TransitionGroup(name='disappear-element')
             .field-error(v-for='val in currentErrors', :key='val')
               | {{ val }}

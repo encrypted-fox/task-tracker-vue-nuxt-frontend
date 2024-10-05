@@ -61,12 +61,12 @@ const localePath = useLocalePath()
 const authLogo = useState<HTMLElement | null>(() => null)
 const authContent = useState<HTMLElement | null>(() => null)
 
-const additionalAuthLogoClass = useState(() =>
+const additionalAuthLogoClass = useState<string>(() =>
   route.query?.type !== 'register'
     ? ''
     : 'md:translate-x-500px md:rounded-l-none md:rounded-r-md'
 )
-const additionalAuthContentClass = useState(() =>
+const additionalAuthContentClass = useState<string>(() =>
   route.query?.type !== 'register'
     ? ''
     : 'md:-translate-x-200px md:rounded-r-none md:rounded-l-md'

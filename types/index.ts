@@ -31,3 +31,40 @@ export interface Notification {
   actions?: []
   type: 'text' | 'success' | 'warn' | 'danger'
 }
+
+export interface ListDataHeaderItem {
+  label: string
+  class: string
+}
+
+export type ListDataHeader = Array<ListDataHeaderItem>
+
+export interface ListDataItemsRowPart {
+  label?: string
+  outerClass: string
+  innerClass: string
+  iconPrepend?: string
+  iconAppend?: string
+  url?: string
+  img?: string
+  action?: string
+}
+
+export interface ListDataItemsRow {
+  id: string | number
+  parts: Array<ListDataItemsRowPart>
+}
+
+export type ListDataItems = Array<ListDataItemsRow>
+
+export interface ListDataSort {
+  name?: string
+  direction?: string
+}
+
+export interface ListData {
+  header: ListDataHeader
+  items: ListDataItems
+  count: number
+  sort: ListDataSort
+}
