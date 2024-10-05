@@ -28,8 +28,8 @@
     .mr-20px(
       class='md:pt-50px md:mt-auto md:mr-0 md:mb-20px md:pl-10px md:flex md:flex-col md:gap-25px'
     )
-      .flex.gap-20px(class='md:flex-col')
-        button.btn.p-2px.flex.items-center.gap-20px(@click='switchTheme')
+      .flex.items-start.gap-20px(class='md:flex-col')
+        button.btn.p-2px.flex.gap-20px(@click='switchTheme')
           Transition(name='fade', mode='out-in')
             .h-25px.w-25px.fill-zinc-50(
               v-html='IconThemeDark',
@@ -43,7 +43,7 @@
               :key='$t("menu.theme")'
             ) {{ $t('menu.theme') }}
 
-        button.btn.p-2px.flex.items-center.gap-20px(@click='switchLocale')
+        button.btn.p-2px.flex.gap-20px(@click='switchLocale')
           .h-25px.w-25px.fill-zinc-50(v-html='IconTranslate')
           Transition(name='fade', mode='out-in')
             span.text-nowrap.hidden.text-zinc-50(
@@ -56,6 +56,15 @@
           Transition(name='fade', mode='out-in')
             .h-25px.w-25px.fill-zinc-50(v-html='IconClose', v-if='isMenuOpen')
             .h-25px.w-25px.fill-zinc-50(v-html='IconMenu', v-else)
+
+        button.hidden.btn.p-2px.gap-20px(class='md:flex', @click='exit')
+          .h-25px.w-25px.fill-zinc-50(v-html='IconExit')
+          Transition(name='fade', mode='out-in')
+            span.text-nowrap.hidden.text-zinc-50(
+              class='md:block',
+              v-if='isMenuOpen',
+              :key='$t("menu.exit")'
+            ) {{ $t('menu.exit') }}
 
     MenuNavbarMobile(
       :is-menu-open='isMenuOpen',
@@ -78,6 +87,7 @@ import IconChevron from '~/assets/icons/chevron.svg?raw'
 import IconThemeDark from '~/assets/icons/theme-dark.svg?raw'
 import IconThemeLight from '~/assets/icons/theme-light.svg?raw'
 import IconTranslate from '~/assets/icons/translate.svg?raw'
+import IconExit from '~/assets/icons/exit.svg?raw'
 import IconClose from '~/assets/icons/close.svg?raw'
 
 const userStore = useUserStore()

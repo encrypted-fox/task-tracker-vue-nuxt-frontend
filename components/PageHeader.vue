@@ -11,14 +11,17 @@ form.flex.gap-10px.items-center(class='md:gap-20px')
       @input='changeSearch'
     )
     button.btn.btn-secondary.btn-round.icon.w-40px.h-40px.p-10px(
-      v-html='IconFilter', v-if='isFiltersButtonShown'
-      @click.prevent='switchIsFiltersShown',
+      v-html='IconFilter',
+      v-if='isFiltersButtonShown',
+      @click.prevent='switchIsFiltersShown'
     )
     button.btn.btn-secondary.btn-round.icon.w-40px.h-40px.p-10px(
-      v-html='IconSort', v-if='isSortButtonShown'
-      @click.prevent='switchIsSortShown',
+      class='md:hidden',
+      v-html='IconSort',
+      v-if='isSortButtonShown',
+      @click.prevent='switchIsSortShown'
     )
-  Transition(name='fade', mode='out-in' v-if='isFoldButtonShown')
+  Transition(name='fade', mode='out-in', v-if='isFoldButtonShown')
     button.btn.btn-secondary.btn-round.icon.w-40px.h-40px.p-10px.ml-auto(
       v-html='IconItemsFolded',
       @click.prevent='switchIsItemsFolded',
@@ -36,10 +39,10 @@ import IconFold from '~/assets/icons/fold.svg?raw'
 const props = defineProps<{
   isItemsFolded: boolean
   search: string
-  filters?: Object
-  sort?: Object
-  filtersPath?: Object
-  sortPath?: Object
+  filters?: object
+  sort?: object
+  filtersPath?: object
+  sortPath?: object
   isFiltersButtonShown: boolean
   isSortButtonShown: boolean
   isFoldButtonShown: boolean
@@ -48,8 +51,8 @@ const props = defineProps<{
 const emit = defineEmits<{
   'switch-is-items-folded': []
   'change-search': [string]
-  'change-filters': [Object]
-  'change-sort': [Object]
+  'change-filters': [object]
+  'change-sort': [object]
 }>()
 
 const isFiltersShown = useState<boolean>(() => false)
@@ -71,11 +74,11 @@ const changeSearch = (val: string): void => {
   emit('change-search', val)
 }
 
-const changeFilters = (val: Object): void => {
+const changeFilters = (val: object): void => {
   emit('change-filters', val)
 }
 
-const changeSort = (val: Object): void => {
+const changeSort = (val: object): void => {
   emit('change-sort', val)
 }
 </script>
