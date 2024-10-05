@@ -2,7 +2,7 @@
 .flex.items-between
   PageMenu(v-if='isMenuShown')
   Transition(name='fade', mode='out-in')
-    .w-full.h-100dvh(:key='localeStore.locale')
+    .page-container(:key='localeStore.locale')
       NuxtPage
 ModalsNotifications
 </template>
@@ -55,6 +55,18 @@ body {
   }
 }
 
+.page-container {
+  width: 100%;
+  height: 100dvh;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .page-container {
+    width: calc(100% - 100px);
+  }
+}
+
 .active-route {
   div {
     fill: #fdba74;
@@ -65,6 +77,7 @@ body {
 
 ::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
