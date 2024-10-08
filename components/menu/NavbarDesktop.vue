@@ -1,19 +1,14 @@
 <template lang="pug">
-.pl-10px.mt-75px.hidden.flex-col.gap-25px(class='md:flex')
-  button.btn.p-2px.flex.justify-start.items-center.gap-20px(
+.navbar--desktop
+  button.route.btn(
     v-for='routeItem in routes',
     @click='goToPage(routeItem)',
     :class='{ "active-route": currentPage === routeItem }',
     :key='routeItem'
   )
-    .h-25px.w-25px.flex.items-center.justify-center.fill-zinc-50(
-      v-html='iconsByRoute[routeItem]'
-    )
+    .route__icon(v-html='iconsByRoute[routeItem]')
     Transition(name='fade', mode='out-in')
-      .text-nowrap.text-zinc-50(
-        v-if='isMenuOpen',
-        :key='$t(`menu.${routeItem}`)'
-      ) {{ $t(`menu.${routeItem}`) }}
+      .route__text(v-if='isMenuOpen', :key='$t(`menu.${routeItem}`)') {{ $t(`menu.${routeItem}`) }}
 </template>
 
 <script setup lang="ts">
@@ -61,3 +56,47 @@ const exit = () => {
   emit('exit')
 }
 </script>
+
+<style lang="scss" scoped>
+@use '~/assets/scss/utils/colors.scss' as *;
+
+.navbar--desktop {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .navbar--desktop {
+    padding-left: 10px;
+    margin-top: 75px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+    .route {
+      padding: 2px;
+
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      gap: 20px;
+
+      &__icon {
+        height: 30px;
+        width: 30px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        fill: $zinc-50;
+      }
+
+      &__text {
+        text-wrap: nowrap;
+        color: $zinc-50;
+      }
+    }
+  }
+}
+</style>

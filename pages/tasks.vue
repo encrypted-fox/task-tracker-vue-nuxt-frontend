@@ -1,5 +1,5 @@
 <template lang="pug">
-.page
+main.page
   PageHeader(
     :isItemsFolded='isItemsFolded',
     :search='search',
@@ -25,4 +25,7 @@ const changeSearch = (val: string): void => {
   search.value = val
 }
 </script>
-<style lang="scss" scoped></style>
+
+<style lang="scss" scoped>
+@use '~/assets/scss/classes/components/page.scss' as *;
+</style>

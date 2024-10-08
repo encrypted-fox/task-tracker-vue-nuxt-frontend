@@ -1,9 +1,9 @@
 <template lang="pug">
-.w-350px.m-a.flex.flex-col.gap-20px
-  .pb-25px.division-styling.border-0.border-b-2px
-    h1.m-0.text-center.text-styling.text-2xl {{ $t('forms.login.login') }}
+.login
+  .login__header.divider-primary
+    h1.text-primary {{ $t('forms.login.login') }}
 
-  form.flex.flex-col.gap-15px
+  form.login__form
     FieldsString(
       name='username',
       :label='$t("forms.common.username")',
@@ -19,11 +19,11 @@
       :value='password',
       @input='changePassword'
     )
-    .flex.justify-between
+    .login__form__links
       .link(@click='switchIsForgotPasswordModalShown') {{ $t('forms.login.forgotPassword') }}
       .link(@click='switchToRegister') {{ $t('forms.common.toRegister') }}
 
-  button.w-full.btn-lg.btn-primary(
+  button.btn.btn-lg.btn-primary.btn-full(
     @click='submit',
     :disabled='isButtonDisabled'
   ) {{ $t('forms.common.toLogin') }}
@@ -89,3 +89,37 @@ useHead({
   title: 'Вход',
 })
 </script>
+
+<style lang="scss" scoped>
+.login {
+  width: 350px;
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__header {
+    padding-bottom: 25px;
+
+    h1 {
+      margin: 0;
+
+      text-align: center;
+      font-size: 24px;
+      line-height: 32px;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    &__links {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+</style>

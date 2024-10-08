@@ -1,22 +1,13 @@
 <template lang="pug">
-.fake-menu.h-screen.hidden(
-  :class='{ "md:block": true, "md:!w-100px md:min-w-100px": !isMenuOpen, "md:!w-250px md:min-w-250px": isMenuOpen }'
-)
-.menu.w-full.h-50px.fixed.top-0.z-100(
-  :class='{ "md:w-fit md:h-100dvh md:left-0 md:z-1": true, "md:!w-100px": !isMenuOpen, "md:!w-250px": isMenuOpen }'
-)
-  .btn.btn-round.icon.chevron.w-30px.h-30px.p-5px.absolute.top-95px.hidden.fill-zinc-50.bg-zinc-700(
-    :class='{ "chevron-left": isMenuOpen, "chevron-right": !isMenuOpen, "-right-15px md:block hover:opacity-100 hover:bg-zinc-600 active:bg-zinc-700": true }',
+.menu--fake(:class='{ "menu--fake--closed": isMenuOpen }')
+nav.menu(:class='{ "menu--open": isMenuOpen }')
+  button.menu__open-btn.btn.btn-round.chevron(
+    :class='{ "chevron-left": isMenuOpen, "chevron-right": !isMenuOpen }',
     @click='switchMenuExpanded',
     v-html='IconChevron'
   )
-  .menu-content.w-full.h-50px.flex.justify-between.items-center.bg-zinc-700.box-border.overflow-x-hidden(
-    class='md:h-100dvh md:px-20px md:top-unset md:left-0 md:flex-col md:justify-start md:items-start md:overflow-y-auto'
-  )
-    img.icon.h-30px.w-30px.ml-20px(
-      class='md:h-50px md:w-50px md:ml-0 md:mt-20px',
-      src='@/assets/icons/logo.svg'
-    )
+  .menu__content
+    img.menu__content__logo.icon(src='@/assets/icons/logo.svg')
 
     MenuNavbarDesktop(
       :is-menu-open='isMenuOpen',
@@ -25,46 +16,31 @@
       @exit='exit'
     )
 
-    .mr-20px(
-      class='md:pt-50px md:mt-auto md:mr-0 md:mb-20px md:pl-10px md:flex md:flex-col md:gap-25px'
-    )
-      .flex.items-start.gap-20px(class='md:flex-col')
-        button.btn.p-2px.flex.gap-20px(@click='switchTheme')
-          Transition(name='fade', mode='out-in')
-            .h-25px.w-25px.fill-zinc-50(
-              v-html='IconThemeDark',
-              v-if='theme === "light"'
-            )
-            .h-25px.w-25px.fill-zinc-50(v-html='IconThemeLight', v-else)
-          Transition(name='fade', mode='out-in')
-            span.text-nowrap.hidden.text-zinc-50(
-              class='md:block',
-              v-if='isMenuOpen',
-              :key='$t("menu.theme")'
-            ) {{ $t('menu.theme') }}
+    .menu__content__controls
+      button.control.btn(@click='switchTheme')
+        Transition(name='fade', mode='out-in')
+          .control__icon(v-html='IconThemeDark', v-if='theme === "light"')
+          .control__icon(v-html='IconThemeLight', v-else)
+        Transition(name='fade', mode='out-in')
+          .control__text(v-if='isMenuOpen', :key='$t("menu.theme")') {{ $t('menu.theme') }}
 
-        button.btn.p-2px.flex.gap-20px(@click='switchLocale')
-          .h-25px.w-25px.fill-zinc-50(v-html='IconTranslate')
-          Transition(name='fade', mode='out-in')
-            span.text-nowrap.hidden.text-zinc-50(
-              class='md:block',
-              v-if='isMenuOpen',
-              :key='$t("menu.translate")'
-            ) {{ $t('menu.translate') }}
+      button.control.btn(@click='switchLocale')
+        .control__icon(v-html='IconTranslate')
+        Transition(name='fade', mode='out-in')
+          .control__text(v-if='isMenuOpen', :key='$t("menu.translate")') {{ $t('menu.translate') }}
 
-        button.btn.p-2px(class='md:hidden md:mr-0', @click='switchMenuExpanded')
-          Transition(name='fade', mode='out-in')
-            .h-25px.w-25px.fill-zinc-50(v-html='IconClose', v-if='isMenuOpen')
-            .h-25px.w-25px.fill-zinc-50(v-html='IconMenu', v-else)
+      button.control.control--mobile.btn(
+        class='md:hidden md:mr-0',
+        @click='switchMenuExpanded'
+      )
+        Transition(name='fade', mode='out-in')
+          .control__icon(v-html='IconClose', v-if='isMenuOpen')
+          .control__icon(v-html='IconMenu', v-else)
 
-        button.hidden.btn.p-2px.gap-20px(class='md:flex', @click='exit')
-          .h-25px.w-25px.fill-zinc-50(v-html='IconExit')
-          Transition(name='fade', mode='out-in')
-            span.text-nowrap.hidden.text-zinc-50(
-              class='md:block',
-              v-if='isMenuOpen',
-              :key='$t("menu.exit")'
-            ) {{ $t('menu.exit') }}
+      button.control.control--desktop.btn(@click='exit')
+        .control__icon(v-html='IconExit')
+        Transition(name='fade', mode='out-in')
+          .control__text(v-if='isMenuOpen', :key='$t("menu.exit")') {{ $t('menu.exit') }}
 
     MenuNavbarMobile(
       :is-menu-open='isMenuOpen',
@@ -171,3 +147,174 @@ const exit = (): void => {
   isMenuOpen.value = false
 }
 </script>
+
+<style lang="scss" scoped>
+@use '~/assets/scss/utils/colors.scss' as *;
+
+.menu {
+  height: 50px;
+  width: 100%;
+
+  position: fixed;
+  top: 0;
+  z-index: 100;
+
+  &--fake {
+    display: none;
+  }
+
+  &__open-btn {
+    display: none;
+  }
+
+  &__content {
+    height: 50px;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: $zinc-700;
+    box-sizing: border-box;
+
+    overflow-x: hidden;
+
+    &__logo {
+      height: 30px;
+      width: 30px;
+
+      margin-left: 20px;
+    }
+
+    &__controls {
+      margin-right: 20px;
+      display: flex;
+      gap: 15px;
+
+      .control {
+        padding: 2px;
+
+        display: flex;
+        gap: 20px;
+
+        &__icon {
+          height: 25px;
+          width: 25px;
+          fill: $zinc-50;
+        }
+
+        &__text {
+          display: none;
+        }
+
+        &--desktop {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .menu {
+    height: 100dvh;
+    width: 100px;
+
+    left: 0;
+
+    z-index: 1;
+
+    &--open {
+      width: 250px;
+    }
+
+    &--fake {
+      display: block;
+      width: 100px;
+      min-width: 100px;
+
+      &--open {
+        width: 250px;
+        min-width: 250px;
+      }
+    }
+
+    &__open-btn {
+      display: block;
+
+      height: 30px;
+      width: 30px;
+      padding: 5px;
+
+      position: absolute;
+      top: 95px;
+      right: -15px;
+
+      fill: $zinc-50;
+      background-color: $zinc-700;
+
+      &:hover {
+        opacity: 1;
+        background-color: $zinc-600;
+      }
+
+      &:active {
+        background-color: $zinc-700;
+      }
+    }
+
+    &__content {
+      height: 100dvh;
+      padding: 5px 20px;
+
+      top: unset;
+      left: 0;
+
+      flex-direction: column;
+      justify-content: start;
+      align-items: start;
+
+      overflow-y: auto;
+
+      &__logo {
+        height: 50px;
+        width: 50px;
+        margin-left: 0;
+        margin-top: 20px;
+      }
+
+      &__controls {
+        padding-top: 50px;
+        padding-left: 10px;
+        margin: auto 0 20px 0;
+
+        flex-direction: column;
+        gap: 25px;
+
+        .control {
+          &__icon {
+            height: 30px;
+            width: 30px;
+          }
+
+          &__text {
+            display: block;
+
+            text-wrap: nowrap;
+            color: $zinc-50;
+          }
+
+          &--mobile {
+            display: none;
+          }
+
+          &--desktop {
+            display: flex;
+          }
+        }
+      }
+    }
+  }
+}
+</style>

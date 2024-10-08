@@ -1,37 +1,26 @@
 <template lang="pug">
-.auth.w-full.p-20px.pt-70px.flex.flex-col.items-center.overflow-y-auto.box-border(
-  class='md:h-100dvh md:pt-20px md:flex-row md:justify-center'
-)
-  .w-full.h-50px.fixed.top-0.z-15.flex.flex-row.justify-between.items-center.bg-zinc-700(
-    :class='{ "md:w-200px md:h-100% md:relative md:z-1 md:flex-col md:rounded-l-md": true, [additionalAuthLogoClass]: true }',
-    ref='authLogo'
-  )
-    .icon.w-30px.h-30px.ml-20px(
-      class='md:w-100px md:h-100px md:ml-0 md:mt-30px',
-      v-html='IconLogo'
-    )
-    .mb-0.mr-20px.flex.justify-between.gap-20px(class='md:gap-15px md:mb-50px md:mr-0')
+main.auth
+  .auth__logo-container(:class='additionalAuthLogoClass', ref='authLogo')
+    .auth__logo-container__logo.icon(v-html='IconLogo')
+    .auth__logo-container__controls
       Transition(name='fade', mode='out-in')
-        .btn.icon.w-25px.h-25px.fill-zinc-50(
+        button.auth__logo-container__controls__btn.btn.icon(
           v-html='IconThemeDark',
           @click='switchTheme',
           v-if='theme === "light"'
         ) 
-        .btn.icon.w-25px.h-25px.fill-zinc-50(
+        button.auth__logo-container__controls__btn.btn.icon(
           v-html='IconThemeLight',
           @click='switchTheme',
           v-else
         ) 
 
-      .btn.icon.h-25px.w-25px.fill-zinc-50(
+      button.auth__logo-container__controls__btn.btn.icon(
         v-html='IconTranslate',
         @click='switchLocale'
       )
 
-  .box-border.w-full.flex.justify-center.rounded-r-md.overflow-y-auto(
-    :class='{ "md:w-500px md:h-100% md:py-50px md:items-start md:initial-border-styling md:border-coloring": true, [additionalAuthContentClass]: true }',
-    ref='authContent'
-  )
+  .auth__content(:class='additionalAuthContentClass', ref='authContent')
     Transition(name='fade', mode='out-in')
       FormsLogin(
         @switch-to-register='switchToRegister',
@@ -62,14 +51,10 @@ const authLogo = useState<HTMLElement | null>(() => null)
 const authContent = useState<HTMLElement | null>(() => null)
 
 const additionalAuthLogoClass = useState<string>(() =>
-  route.query?.type !== 'register'
-    ? ''
-    : 'md:translate-x-500px md:rounded-l-none md:rounded-r-md'
+  route.query?.type !== 'register' ? '' : 'auth__logo-container--register'
 )
 const additionalAuthContentClass = useState<string>(() =>
-  route.query?.type !== 'register'
-    ? ''
-    : 'md:-translate-x-200px md:rounded-r-none md:rounded-l-md'
+  route.query?.type !== 'register' ? '' : 'auth__content--register'
 )
 
 const isLogin = useState<boolean>(
@@ -119,3 +104,140 @@ onMounted(() => {
 </script>
 
 // TODO tests and register page
+
+<style lang="scss" scoped>
+@use '~/assets/scss/utils/colors.scss' as *;
+@use '~/assets/scss/classes/components/page.scss' as *;
+
+.auth {
+  width: 100%;
+  padding: 70px 20px 20px 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  overflow-y: auto;
+
+  box-sizing: border-box;
+
+  &__logo-container {
+    height: 50px;
+    width: 100%;
+
+    position: fixed;
+    top: 0;
+    z-index: 15;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: $zinc-700;
+
+    box-sizing: border-box;
+
+    &__logo {
+      width: 30px;
+      height: 30px;
+      margin-left: 20px;
+    }
+
+    &__controls {
+      margin: 0 20px 0 0;
+
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+
+      &__btn {
+        height: 25px;
+        width: 25px;
+        fill: $zinc-50;
+      }
+    }
+  }
+
+  &__content {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .auth {
+    height: 100dvh;
+    padding-top: 20px;
+
+    flex-direction: row;
+    justify-content: center;
+
+    &__logo-container {
+      height: 100%;
+      width: 200px;
+
+      position: relative;
+      z-index: 1;
+
+      flex-direction: column;
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+
+      &__logo {
+        width: 100px;
+        height: 100px;
+        margin: 30px 0 0 0;
+      }
+
+      &__controls {
+        margin: 0 0 50px 0;
+
+        gap: 15px;
+      }
+
+      &--register {
+        transform: translateX(500px);
+
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+      }
+    }
+
+    &__content {
+      height: 100%;
+      width: 500px;
+      padding: 50px 0;
+
+      align-items: start;
+
+      border: 2px solid $zinc-300;
+
+      transition: border 0.2s ease-in-out;
+
+      &--register {
+        transform: translateX(-200px);
+
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+  }
+}
+</style>

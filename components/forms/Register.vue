@@ -1,20 +1,18 @@
 <template lang="pug">
-.w-350px.m-a.flex.flex-col.gap-20px
-  .pb-25px.division-styling.border-0.border-b-2px
-    h1.m-0.text-center.text-styling.text-2xl {{ $t('forms.register.register') }}
+.register
+  .register__header.divider-primary
+    h1.text-primary {{ $t('forms.register.register') }}
 
-  form.flex.flex-col.gap-15px
+  form.register__form
     FieldsString(
       name='username',
       :label='$t("forms.common.username")',
       :placeholder='$t("forms.common.startTyping")',
       :value='username',
       :invalid='isUsernameTooShort',
+      :errors='usernameErrors',
       @input='changeUsername'
     )
-      Transition(name='disappear-element', mode='out-in')
-        .field-error(v-if='isUsernameTooShort')
-          | {{ $t('messages.usernameError') }}
 
     FieldsString(
       name='email',
@@ -22,11 +20,9 @@
       :placeholder='$t("forms.common.emailPlaceholder")',
       :value='email',
       :invalid='isEmail',
+      :errors='emailErrors',
       @input='changeEmail'
     )
-      Transition(name='disappear-element', mode='out-in')
-        .field-error(v-if='isEmail')
-          | {{ $t('messages.emailError') }}
 
     FieldsString(
       name='password',
@@ -35,15 +31,9 @@
       :placeholder='$t("forms.common.startTyping")',
       :value='password',
       :invalid='isWeak || isPasswordNotMatch',
+      :errors='currentErrors',
       @input='changePassword'
     )
-      Transition(name='fade', mode='out-in')
-        .field-errors.mt-5px.flex.flex-col.gap-5px(
-          v-if='isWeak || isPasswordNotMatch'
-        )
-          TransitionGroup(name='disappear-element')
-            .field-error(v-for='val in currentErrors', :key='val')
-              | {{ val }}
 
     FieldsString(
       name='repeatPassword',
@@ -55,10 +45,10 @@
       @input='changeRepeatPassword'
     )
 
-    .flex.justify-between
+    .register__form__links
       .link(@click='switchToLogin') {{ $t('forms.common.toLogin') }}
 
-  button.btn-lg.w-full.btn-primary(
+  button.btn.btn-lg.btn-primary.btn-full(
     @click='submit',
     :disabled='isButtonDisabled'
   ) {{ $t('forms.common.toRegister') }}
@@ -79,7 +69,7 @@ const repeatPassword = useState<string>(() => '')
 const isWeak = useState<boolean>(() => false)
 const isPasswordNotMatch = useState<boolean>(() => false)
 const isUsernameTooShort = useState<boolean>(() => false)
-const isEmail = useState<boolean>(() => false)
+const isNotEmail = useState<boolean>(() => false)
 
 const errorMessages = useState<AuthErrorMessages>(() => ({
   no2UpperCase: false,
@@ -89,6 +79,17 @@ const errorMessages = useState<AuthErrorMessages>(() => ({
   no8Characters: false,
   noMatch: false,
 }))
+
+const usernameErrors = computed(() => {
+  if (isUsernameTooShort.value)
+    return [getI18nMessage('messages.usernameError')]
+  else return []
+})
+
+const emailErrors = computed(() => {
+  if (isNotEmail.value) return [getI18nMessage('messages.emailError')]
+  else return []
+})
 
 const currentErrors = computed(() => {
   return Object.keys(errorMessages.value)
@@ -119,12 +120,12 @@ const changeUsername = (val: string): void => {
 }
 
 const changeEmail = (val: string): void => {
-  isEmail.value = false
+  isNotEmail.value = false
 
   if (!val.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
-    isEmail.value = true
+    isNotEmail.value = true
   } else {
-    isEmail.value = false
+    isNotEmail.value = false
   }
 
   email.value = val
@@ -228,3 +229,37 @@ useHead({
   title: 'Регистрация',
 })
 </script>
+
+<style lang="scss" scoped>
+.register {
+  width: 350px;
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__header {
+    padding-bottom: 25px;
+
+    h1 {
+      margin: 0;
+
+      text-align: center;
+      font-size: 24px;
+      line-height: 32px;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    &__links {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+</style>

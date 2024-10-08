@@ -1,8 +1,8 @@
 <template lang="pug">
-ModalsDefault(:is-shown='isShown')
+ModalsDefault(:is-shown='isShown', @switch-is-shown="switchIsShown")
   template(v-slot:modal-header)
-    h1.m-0.text-styling.text-base {{ $t('modals.forgotPassword.passwordRecovery') }}
-    .btn.icon.btn-round-sm.btn-secondary(
+    h1.title.text-primary {{ $t('modals.forgotPassword.passwordRecovery') }}
+    button.btn.icon.btn-round-sm.btn-secondary(
       @click='switchIsShown',
       v-html='IconClose'
     ) 
@@ -17,8 +17,11 @@ ModalsDefault(:is-shown='isShown')
     )
 
   template(v-slot:modal-footer)
-    button.btn-lg.btn-secondary(@click='switchIsShown') {{ $t('common.cancel') }}
-    button.btn-lg.btn-primary(@click='submit', :disabled='isButtonDisabled') {{ $t('modals.forgotPassword.recover') }}
+    button.btn.btn-lg.btn-secondary(@click='switchIsShown') {{ $t('common.cancel') }}
+    button.btn.btn-lg.btn-primary(
+      @click='submit',
+      :disabled='isButtonDisabled'
+    ) {{ $t('modals.forgotPassword.recover') }}
 </template>
 
 <script setup lang="ts">
@@ -67,3 +70,12 @@ const submit = async (): Promise<void> => {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.title {
+  margin: 0;
+
+  font-size: 16px;
+  line-height: 24px;
+}
+</style>

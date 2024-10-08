@@ -3,27 +3,25 @@ ModalsDefault(
   :is-shown='isMenuOpen',
   :hide-header='true',
   :hide-footer='true',
-  :modal-class='"!bg-zinc-700"',
-  :overlay-class='"md:hidden"'
+  :modal-class='"modal--menu"',
+  :overlay-class='"ovarlay--mobile"'
 )
   template(v-slot:modal-content)
-    .flex.justify-center.flex-col.gap-25px
-      button.btn.btn-md.flex.justify-start.items-center.gap-20px(
+    .navbar--mobile
+      button.route.btn.btn-md(
         v-for='routeItem in routes',
         @click='goToPage(routeItem)',
         :class='{ "active-route": currentPage === routeItem }',
         :key='routeItem'
       )
-        .h-25px.w-25px.fill-zinc-50(v-html='iconsByRoute[routeItem]')
+        .route__icon(v-html='iconsByRoute[routeItem]')
         Transition(name='fade', mode='out-in')
-          .text-zinc-50 {{ $t(`menu.${routeItem}`) }}
+          .route__text {{ $t(`menu.${routeItem}`) }}
 
-      button.btn.btn-md.flex.justify-start.items-center.gap-20px.mt-auto(
-        @click='exit'
-      )
-        .h-25px.w-25px.fill-zinc-50(v-html='IconExit')
+      button.route.btn.btn-md(@click='exit')
+        .route__icon(v-html='IconExit')
         Transition(name='fade', mode='out-in')
-          .text-zinc-50(v-if='isMenuOpen', :key='$t(`menu.exit`)') {{ $t(`menu.exit`) }}
+          .route__text(v-if='isMenuOpen', :key='$t(`menu.exit`)') {{ $t(`menu.exit`) }}
 </template>
 
 <script setup lang="ts">
@@ -71,3 +69,37 @@ const exit = (): void => {
   emit('exit')
 }
 </script>
+
+<style lang="scss" scoped>
+@use '~/assets/scss/utils/colors.scss' as *;
+
+.navbar--mobile {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 25px;
+
+  .route {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 20px;
+
+    &__icon {
+      height: 25px;
+      width: 25px;
+      fill: $zinc-50;
+    }
+
+    &__text {
+      color: $zinc-50;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar--mobile {
+    display: none;
+  }
+}
+</style>

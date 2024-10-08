@@ -1,11 +1,12 @@
 <template lang="pug">
 Teleport(to='#teleports')
   Transition(name='fade', mode='out-in')
-    .overlay(
+    dialog.overlay(
       v-bind='$attrs',
       v-if='isShown',
       :key='`${isShown}-${route.path}-${localeStore.locale}`',
       :class='overlayClass'
+      @click.stop="switchIsShown"
     )
       .modal(:class='modalClass')
         .modal-header(v-if='!hideHeader')
@@ -26,6 +27,16 @@ defineProps<{
   overlayClass?: string
 }>()
 
+const emit = defineEmits<{ 'switch-is-shown': [] }>()
+
 const route = useRoute()
 const localeStore = useLocaleStore()
+
+const switchIsShown = () : void => {
+  emit('switch-is-shown')
+}
 </script>
+
+<style lang="scss" scoped>
+@use '~/assets/scss/classes/components/modal.scss' as *;
+</style>

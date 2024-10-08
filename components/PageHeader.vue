@@ -1,32 +1,31 @@
 <template lang="pug">
-h1.m-0.text-styling.text-2xl {{ $t('pages.tasks.title') }}
-form.flex.gap-10px.items-center(class='md:gap-20px')
-  .content.flex-grow-1.flex.items-center.gap-10px
-    FieldsString.w-full(
-      class='md:w-600px md:gap-20px',
-      name='search',
-      :placeholder='$t("forms.common.search")',
-      :value='search',
-      :iconPrepend='IconSearch',
-      @input='changeSearch'
-    )
-    button.btn.btn-secondary.btn-round.icon.w-40px.h-40px.p-10px(
-      v-html='IconFilter',
-      v-if='isFiltersButtonShown',
-      @click.prevent='switchIsFiltersShown'
-    )
-    button.btn.btn-secondary.btn-round.icon.w-40px.h-40px.p-10px(
-      class='md:hidden',
-      v-html='IconSort',
-      v-if='isSortButtonShown',
-      @click.prevent='switchIsSortShown'
-    )
-  Transition(name='fade', mode='out-in', v-if='isFoldButtonShown')
-    button.btn.btn-secondary.btn-round.icon.w-40px.h-40px.p-10px.ml-auto(
-      v-html='IconItemsFolded',
-      @click.prevent='switchIsItemsFolded',
-      :key='IconItemsFolded'
-    )
+.page-header
+  h1.page-header__title.text-primary {{ $t('pages.tasks.title') }}
+  form.page-header__form
+    .page-header__content
+      FieldsString(
+        name='search',
+        :placeholder='$t("forms.common.search")',
+        :value='search',
+        :iconPrepend='IconSearch',
+        @input='changeSearch'
+      )
+      button.page-header__btn.btn.btn-round-xl.btn-secondary(
+        v-html='IconFilter',
+        v-if='isFiltersButtonShown',
+        @click.prevent='switchIsFiltersShown'
+      )
+      button.page-header__btn.page-header__btn--mobile.btn.btn-round-xl.btn-secondary(
+        v-html='IconSort',
+        v-if='isSortButtonShown',
+        @click.prevent='switchIsSortShown'
+      )
+    Transition(name='fade', mode='out-in', v-if='isFoldButtonShown')
+      button.page-header__btn.page-header__btn--right.btn.btn-round-xl.btn-secondary(
+        v-html='IconItemsFolded',
+        @click.prevent='switchIsItemsFolded',
+        :key='IconItemsFolded'
+      )
 </template>
 
 <script setup lang="ts">
@@ -82,4 +81,55 @@ const changeSort = (val: object): void => {
   emit('change-sort', val)
 }
 </script>
-<style lang="scss" scoped></style>
+
+<style lang="scss" scoped>
+.page-header {
+  &__title {
+    margin-top: 0;
+
+    font-size: 24px;
+    line-height: 32px;
+  }
+  &__form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-grow: 1;
+
+    :deep(.field) {
+      width: 100%;
+    }
+  }
+  &__btn {
+    &--right {
+      margin-left: auto;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .page-header {
+    &__form {
+      gap: 20px;
+    }
+
+    &__content {
+      :deep(.field) {
+        width: 600px;
+        gap: 20px;
+      }
+    }
+
+    &__btn {
+      &--mobile {
+        display: none;
+      }
+    }
+  }
+}
+</style>

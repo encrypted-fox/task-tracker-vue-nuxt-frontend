@@ -1,5 +1,5 @@
 <template lang="pug">
-.flex.items-between
+.root
   PageMenu(v-if='isMenuShown')
   Transition(name='fade', mode='out-in')
     .page-container(:key='localeStore.locale')
@@ -10,10 +10,7 @@ ModalsNotifications
 const themeStore = useThemeStore()
 const localeStore = useLocaleStore()
 
-const bodyClass = computed(
-  () =>
-    `${themeStore.theme === 'light' ? 'bg-white' : 'bg-zinc-900'} ${themeStore.theme}`
-)
+const bodyClass = computed(() => `${themeStore.theme}`)
 
 const route = useRoute()
 const localePath = useLocalePath()
@@ -27,7 +24,10 @@ useHead({
 })
 </script>
 <style lang="scss">
+@use '~/assets/scss/main.scss' as *;
 @use '~/assets/scss/animations.scss' as *;
+@use '~/assets/scss/utils/colors.scss' as *;
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 body {
@@ -55,9 +55,22 @@ body {
   }
 }
 
+.dark {
+  background-color: $zinc-950;
+}
+
+.light {
+  background-color: white;
+}
+
+.root {
+  display: flex;
+  justify-content: space-between;
+}
+
 .page-container {
-  width: 100%;
   height: 100dvh;
+  width: 100%;
   box-sizing: border-box;
 }
 
