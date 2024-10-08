@@ -16,7 +16,6 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     '@nuxt/test-utils',
-    '@unocss/nuxt',
     '@nuxt/eslint',
     '@pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/i18n',

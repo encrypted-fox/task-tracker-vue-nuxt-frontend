@@ -16,14 +16,13 @@
     "lintfix": "eslint . --fix && prettier --write --list-different ."
   },
   "dependencies": {
-    "@vueuse/components": "^11.1.0",
-    "@vueuse/core": "^11.1.0",
     "date-fns": "^3.6.0",
     "nuxt": "^3.13.0",
     "uuid": "^10.0.0",
     "vue": "latest"
   },
   "devDependencies": {
+    "@nuxt/devtools": "^1.5.0",
     "@nuxt/eslint": "^0.5.3",
     "@nuxt/test-utils": "^3.14.1",
     "@nuxtjs/i18n": "^8.5.1",
@@ -32,9 +31,6 @@
     "@pinia/nuxt": "^0.5.4",
     "@prettier/plugin-pug": "^3.0.0",
     "@types/uuid": "^10.0.0",
-    "@unocss/extractor-pug": "^0.62.3",
-    "@unocss/nuxt": "^0.62.3",
-    "@unocss/preset-wind": "^0.62.3",
     "@vitest/ui": "^2.0.5",
     "@vue/test-utils": "^2.4.6",
     "eslint": "^9.9.1",
