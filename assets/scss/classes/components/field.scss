@@ -1,0 +1,124 @@
+@use '../../utils/colors.scss' as *;
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &-label {
+    display: block;
+
+    color: $zinc-700;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+
+  &-container {
+    position: relative;
+  }
+
+  &-icon-prepend,
+  &-icon-append {
+    height: 40px;
+    width: 40px;
+
+    padding: 10px;
+
+    position: absolute;
+    top: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+
+    user-select: none;
+
+    cursor: pointer;
+
+    fill: $zinc-700;
+  }
+
+  &-icon-prepend {
+    left: 0;
+  }
+
+  &-icon-append {
+    right: 0;
+  }
+
+  &-invalid {
+    border-color: $red-500;
+  }
+
+  &-errors {
+    margin-top: 5px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  &-error {
+    display: block;
+
+    color: $red-500;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  &-string {
+    height: 40px;
+    width: 100%;
+
+    padding: 8px 10px;
+
+    font-size: 14px;
+    line-height: 20px;
+    color: $zinc-700;
+
+    background-color: transparent;
+
+    border: 2px solid $zinc-300;
+    border-radius: 6px;
+
+    box-sizing: border-box;
+
+    transition: all 0.2s ease-in-out;
+
+    &:focus {
+      border-color: $indigo-500;
+    }
+  }
+
+  &-input-icon {
+    &-left {
+      padding-left: 40px;
+    }
+
+    &-right {
+      padding-right: 40px;
+    }
+  }
+}
+
+.dark {
+  .field {
+    &-label {
+      color: $zinc-50;
+    }
+
+    &-icon-prepend,
+    &-icon-append {
+      fill: $zinc-50;
+    }
+
+    &-string {
+      color: $zinc-50;
+
+      border-color: $zinc-700;
+    }
+  }
+}

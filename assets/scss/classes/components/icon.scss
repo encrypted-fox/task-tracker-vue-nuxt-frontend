@@ -1,0 +1,13 @@
+@use '../../utils/colors.scss' as *;
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  user-select: none;
+
+  fill: inherit;
+}

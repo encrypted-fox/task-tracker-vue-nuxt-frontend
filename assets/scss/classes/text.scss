@@ -1,0 +1,40 @@
+@use '../utils/colors.scss' as *;
+
+.link {
+  width: fit-content;
+
+  transition: all 0.2s ease-in-out;
+
+  font-size: 14px;
+  line-height: 20px;
+
+  color: $indigo-500;
+
+  cursor: pointer;
+
+  &:hover {
+    color: $indigo-400;
+  }
+
+  &:active {
+    color: $indigo-500;
+  }
+}
+
+.text-primary {
+  color: $zinc-700;
+}
+
+.text-ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.dark {
+  .text-primary {
+    color: $zinc-50;
+  }
+}
+
+// .text-styling = .text-primary

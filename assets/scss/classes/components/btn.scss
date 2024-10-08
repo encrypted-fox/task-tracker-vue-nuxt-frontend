@@ -1,0 +1,185 @@
+@use '../../utils/colors.scss' as *;
+
+.btn {
+  width: fit-content;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+
+  user-select: none;
+  cursor: pointer;
+
+  transition: all 0.2s ease-in-out;
+
+  font-size: 14px;
+  line-height: 20px;
+
+  border: 2px solid transparent;
+  border-radius: 6px;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &:focus {
+    border-color: $indigo-500;
+  }
+
+  &:active {
+    opacity: 1;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &-xs {
+    font-size: 12px;
+    line-height: 16px;
+
+    padding: 4px 8px;
+  }
+
+  &-sm {
+    padding: 4px 8px;
+  }
+
+  &-md {
+    padding: 6px 10px;
+  }
+
+  &-lg {
+    padding: 8px 12px;
+  }
+
+  &-xl {
+    padding: 10px 14px;
+  }
+
+  &-round {
+    border-radius: 99999px;
+
+    &-xs {
+      width: 20px;
+      height: 20px;
+      padding: 2px;
+      border-radius: 99999px;
+    }
+
+    &-sm {
+      width: 25px;
+      height: 25px;
+      padding: 4px;
+      border-radius: 99999px;
+    }
+
+    &-md {
+      width: 30px;
+      height: 30px;
+      padding: 6px;
+      border-radius: 99999px;
+    }
+
+    &-lg {
+      width: 35px;
+      height: 35px;
+      padding: 8px;
+      border-radius: 99999px;
+    }
+
+    &-xl {
+      width: 40px;
+      height: 40px;
+      padding: 10px;
+      border-radius: 99999px;
+    }
+  }
+
+  &-full {
+    width: 100%;
+  }
+
+  &-primary {
+    background-color: $indigo-500;
+    color: $zinc-50;
+    fill: $zinc-50;
+
+    &:focus {
+      border-color: $orange-300;
+    }
+
+    &:disabled {
+      background-color: $indigo-300;
+    }
+  }
+
+  &-secondary {
+    background-color: $indigo-50;
+    fill: $indigo-500;
+    color: $indigo-500;
+
+    &:disabled {
+      background-color: $indigo-950;
+      fill: $indigo-500;
+      color: $indigo-500;
+    }
+  }
+
+  &-link {
+    background-color: $blue-100;
+    fill: $blue-700;
+    color: $blue-700;
+
+    &:disabled {
+      background-color: $blue-50;
+      fill: $blue-300;
+      color: $blue-300;
+    }
+  }
+
+  &-seamless {
+    background-color: transparent !important;
+  }
+}
+.dark {
+  .btn {
+    &-primary {
+      &:focus {
+        border-color: $zinc-50;
+      }
+
+      &:disabled {
+        background-color: $indigo-950;
+        fill: $indigo-500;
+        color: $indigo-500;
+      }
+    }
+
+    &-secondary {
+      background-color: $zinc-700;
+      fill: $zinc-50;
+      color: $zinc-50;
+
+      &:disabled {
+        background-color: $zinc-800;
+        fill: $zinc-500;
+        color: $zinc-500;
+      }
+    }
+
+    &-link {
+      background-color: $blue-700;
+      fill: $zinc-50;
+      color: $zinc-50;
+
+      &:disabled {
+        background-color: $blue-950;
+        fill: $blue-700;
+        color: $blue-700;
+      }
+    }
+  }
+}

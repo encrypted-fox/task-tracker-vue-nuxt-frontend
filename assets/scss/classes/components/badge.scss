@@ -1,0 +1,91 @@
+@use '../../utils/colors.scss' as *;
+
+.badge {
+  width: fit-content;
+  padding: 4px 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-shrink: 0;
+
+  user-select: none;
+  cursor: pointer;
+
+  border: 2px solid transparent;
+  border-radius: 6px;
+
+  box-sizing: border-box;
+
+  font-size: 14px;
+  line-height: 20px;
+
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &:active {
+    opacity: 1;
+  }
+
+  &-primary {
+    background-color: $indigo-500;
+    color: $zinc-50;
+    fill: $zinc-50;
+  }
+
+  &-secondary {
+    background-color: $indigo-50;
+    color: $indigo-500;
+    fill: $indigo-500;
+  }
+
+  &-success {
+    background-color: $emerald-100;
+    color: $emerald-500;
+    fill: $emerald-500;
+  }
+
+  &-warn {
+    background-color: $amber-100;
+    color: $amber-500;
+    fill: $amber-500;
+  }
+
+  &-danger {
+    background-color: $rose-100;
+    color: $rose-500;
+    fill: $rose-500;
+  }
+}
+
+.dark {
+  .badge {
+    &-secondary {
+      background-color: $zinc-700;
+      color: $zinc-200;
+      fill: $zinc-200;
+    }
+
+    &-success {
+      background-color: $emerald-700;
+      color: $emerald-200;
+      fill: $emerald-200;
+    }
+
+    &-warn {
+      background-color: $amber-700;
+      color: $amber-200;
+      fill: $amber-200;
+    }
+
+    &-danger {
+      background-color: $rose-700;
+      color: $rose-200;
+      fill: $rose-200;
+    }
+  }
+}
