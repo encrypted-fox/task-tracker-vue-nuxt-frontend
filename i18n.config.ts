@@ -53,6 +53,7 @@ export default defineI18nConfig(() => ({
       common: {
         cancel: 'Отмена',
         listEmpty: 'Список пуст',
+        returnHome: 'На главную страницу',
       },
       messages: {
         passwordErrors: {
@@ -129,6 +130,7 @@ export default defineI18nConfig(() => ({
       common: {
         cancel: 'Cancel',
         listEmpty: 'List is empty',
+        returnHome: 'To main page',
       },
       messages: {
         passwordErrors: {
