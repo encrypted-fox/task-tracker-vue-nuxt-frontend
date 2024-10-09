@@ -1,5 +1,5 @@
 <template lang="pug">
-ModalsDefault(:is-shown='isShown', @switch-is-shown="switchIsShown")
+ModalsDefault(:is-shown='isShown', @switch-is-shown='switchIsShown')
   template(v-slot:modal-header)
     h1.title.text-primary {{ $t('modals.forgotPassword.passwordRecovery') }}
     button.btn.icon.btn-round-sm.btn-secondary(

@@ -66,7 +66,7 @@ const exit = () => {
 
 @media (min-width: 768px) {
   .navbar--desktop {
-    padding-left: 10px;
+    padding-left: 12.5px;
     margin-top: 75px;
 
     display: flex;
@@ -82,8 +82,8 @@ const exit = () => {
       gap: 20px;
 
       &__icon {
-        height: 30px;
-        width: 30px;
+        height: 25px;
+        width: 25px;
 
         display: flex;
         justify-content: center;

@@ -1,17 +1,17 @@
 <template lang="pug">
-  Transition(name='fade', mode='out-in')
-    main.page.page--error
-      .error
-        h1.error__status-code.text-primary {{ error?.statusCode }}
-        h1.error__title.text-primary {{$t('messages.ordinaryErrorMessage')}}
-        button.btn.btn-xl.btn-full.btn-primary(@click="handleError") {{$t('common.returnHome')}}
+Transition(name='fade', mode='out-in')
+  main.page.page--error
+    .error
+      h1.error__status-code.text-primary {{ error?.statusCode }}
+      h1.error__title.text-primary {{ $t('messages.ordinaryErrorMessage') }}
+      button.btn.btn-xl.btn-full.btn-primary(@click='handleError') {{ $t('common.returnHome') }}
 </template>
 
 <script setup lang="ts">
 import type { NuxtError } from '#app'
 
 const props = defineProps({
-  error: Object as () => NuxtError
+  error: Object as () => NuxtError,
 })
 
 const themeStore = useThemeStore()
@@ -57,20 +57,19 @@ onUnmounted(() => {
 
   &__status-code {
     margin: 0;
-  
+
     font-size: 52px;
     line-height: 60px;
   }
 
   &__title {
     margin: 0;
-  
+
     font-size: 30px;
     line-height: 38px;
 
     text-align: center;
   }
-
 }
 
 .page {

@@ -1,66 +1,74 @@
 <template lang="pug">
-.list-container
-  .list
-    .list-header
-      .list-header__item(
-        v-for='headerPart in listItemsData?.header',
-        :key='`list-item-${headerPart.name}`',
-        :style='headerPart.style'
-      ) 
-        button.list-header__item__btn.btn.btn-sm(
-          :class='getSortBtnClass(headerPart.name)'
+Transition(name='fade', mode='out-in')
+  .loader(v-if='loading', :key='`list-${path}-loaded-${loading}`')
+  .list-container(v-else, :key='`list-${path}-loaded-${loading}`')
+    .list
+      .list-header
+        .list-header__item(
+          v-for='headerPart in listItemsData?.header',
+          :key='`list-item-${headerPart.name}`',
+          :style='headerPart.style'
         ) 
-          span {{ headerPart.label }}
-          .list-header__item__btn__icon.icon(
-            :class='getSortIconClass(headerPart.name)',
-            v-html='IconChevron'
-          )
-
-      div(style='width: 40px')
-
-    .list-items(ref='listItemsRef', :class='listItemsClass')
-      template(v-if='listItemsData?.items?.length')
-        .list-item.border-primary(
-          v-for='item in listItemsData?.items',
-          :key='`list-item-${item.id}`'
-        )
-          .list-item__part(
-            v-for='itemPart in item.parts',
-            :key='`list-item-${itemPart.label || itemPart.url}-${itemPart.class}`',
-            :style='itemPart.outerStyle',
-            :class='itemPart.outerClass',
-            :title='itemPart.label || ""'
+          button.list-header__item__btn.btn.btn-sm(
+            :class='getSortBtnClass(headerPart.name)'
           ) 
-            img.list-item__part__image.btn.btn-round-xl(
-              v-if='itemPart.img',
-              src='@/assets/icons/logo.svg'
-            )
-            .list-item__part__icon.icon(
-              v-if='itemPart.iconPrepend && getIconByName(itemPart.iconPrepend)',
-              v-html='getIconByName(itemPart.iconPrepend)'
-            )
-            div(
-              v-if='itemPart.label',
-              :style='itemPart.innerStyle',
-              :class='itemPart.innerClass'
-            ) {{ itemPart.label }}
-            .list-item__part__icon.icon(
-              v-if='itemPart.iconAppend && getIconByName(itemPart.iconAppend)',
-              v-html='getIconByName(itemPart.iconAppend)'
+            span {{ headerPart.label }}
+            .list-header__item__btn__icon.icon(
+              :class='getSortIconClass(headerPart.name)',
+              v-html='IconChevron'
             )
 
-          div(style='width: 40px')
-            button.btn.btn-secondary.btn-round-md.chevron-right(
-              v-html='IconChevron',
-              @click='switchIsItemModalShown({ id: item.id, path })'
-            )
+        div(style='width: 40px')
 
-      .list-empty.text-primary(v-else) {{ $t('common.listEmpty') }}
+      .list-items(ref='listItemsRef', :class='listItemsClass')
+        template(v-if='listItemsData?.items?.length')
+          .list-item.border-primary(
+            v-for='item in listItemsData?.items',
+            :key='`list-item-${item.id}`'
+          )
+            .list-item__part(
+              v-for='itemPart in item.parts',
+              :key='`list-item-${itemPart.label || itemPart.url}-${itemPart.class}`',
+              :style='itemPart.outerStyle',
+              :class='itemPart.outerClass',
+              :title='itemPart.label || ""'
+            ) 
+              img.list-item__part__image.btn.btn-round-xl(
+                v-if='itemPart.img',
+                src='@/assets/icons/logo.svg'
+              )
+              .list-item__part__icon.icon(
+                v-if='itemPart.iconPrepend && getIconByName(itemPart.iconPrepend)',
+                v-html='getIconByName(itemPart.iconPrepend)'
+              )
+              div(
+                v-if='itemPart.label',
+                :style='itemPart.innerStyle',
+                :class='itemPart.innerClass'
+              ) {{ itemPart.label }}
+              .list-item__part__icon.icon(
+                v-if='itemPart.iconAppend && getIconByName(itemPart.iconAppend)',
+                v-html='getIconByName(itemPart.iconAppend)'
+              )
 
-  .list-controls.flex.justify-end(class='m-t-[20px]')
-    button.list-control.btn.btn-round-xl.btn-secondary.icon(v-html='IconClose')
+            div(style='width: 40px')
+              button.btn.btn-secondary.btn-round-md.chevron-right(
+                v-html='IconChevron',
+                @click='switchIsItemModalShown({ id: item.id, path })'
+              )
 
-  ModalsListItem(:data='itemModalData', :is-shown='isItemModalShown', @switch-is-shown="switchIsItemModalShown(null)")
+        .list-empty.text-primary(v-else) {{ $t('common.listEmpty') }}
+
+    .list-controls.flex.justify-end(class='m-t-[20px]')
+      button.list-control.btn.btn-round-xl.btn-secondary.icon(
+        v-html='IconClose'
+      )
+
+    ModalsListItem(
+      :data='itemModalData',
+      :is-shown='isItemModalShown',
+      @switch-is-shown='switchIsItemModalShown(null)'
+    )
 </template>
 
 <script setup lang="ts">
@@ -88,6 +96,8 @@ const iconsByName = {
   time: IconTime,
   attachment: IconAttachment,
 }
+
+const loading = useState<boolean>(() => true)
 
 const page = useState<number>(() => 1)
 const sort = useState<ListDataSort | null>(() => null)
@@ -140,41 +150,49 @@ const switchIsItemModalShown = (args: {
 }
 
 const getListItemsData = async (initial: boolean = false): Promise<void> => {
-  if (
-    !initial &&
-    listItemsData.value &&
-    listItemsData.value.count / 20 < page.value
-  )
-    return
+  try {
+    loading.value = true
 
-  const params = {
-    sort: listItemsData.value?.sort || null,
-    page: page.value,
-    locale: localeStore.locale,
-  }
+    if (
+      !initial &&
+      listItemsData.value &&
+      listItemsData.value.count / 20 < page.value
+    )
+      return
 
-  if (initial) {
-    page.value = 1
-  }
-
-  const response = await $fetch<ListData>(
-    `${appConfig.backendUrl}/api/${props.path}`,
-    {
-      method: 'GET',
-      // query: params,
+    const params = {
+      sort: listItemsData.value?.sort || null,
+      page: page.value,
+      locale: localeStore.locale,
     }
-  )
 
-  page.value++
+    if (initial) {
+      page.value = 1
+    }
 
-  if (!initial && listItemsData.value)
-    listItemsData.value.items = [
-      ...listItemsData.value.items,
-      ...response.items,
-    ]
-  else {
-    listItemsData.value = response
-    sort.value = response.sort
+    const response = await $fetch<ListData>(
+      `${appConfig.backendUrl}/api/${props.path}`,
+      {
+        method: 'GET',
+        // query: params,
+      }
+    )
+
+    page.value++
+
+    if (!initial && listItemsData.value)
+      listItemsData.value.items = [
+        ...listItemsData.value.items,
+        ...response.items,
+      ]
+    else {
+      listItemsData.value = response
+      sort.value = response.sort
+    }
+  } catch (e) {
+    await useErrorHandler(e, getI18nMessage('messages.ordinaryErrorMessage'))
+  } finally {
+    loading.value = false
   }
 }
 

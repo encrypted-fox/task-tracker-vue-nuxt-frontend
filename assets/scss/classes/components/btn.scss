@@ -57,6 +57,8 @@
 
   &-xl {
     padding: 10px 14px;
+    font-size: 16px;
+    line-height: 24px;
   }
 
   &-round {
@@ -104,7 +106,7 @@
 
   &-primary {
     background-color: $indigo-500;
-    color: $zinc-50;
+    color: $zinc-50 !important;
     fill: $zinc-50;
 
     &:focus {
@@ -118,24 +120,24 @@
 
   &-secondary {
     background-color: $indigo-50;
-    fill: $indigo-500;
+    fill: $indigo-500 !important;
     color: $indigo-500;
 
     &:disabled {
       background-color: $indigo-950;
-      fill: $indigo-500;
+      fill: $indigo-500 !important;
       color: $indigo-500;
     }
   }
 
   &-link {
     background-color: $blue-100;
-    fill: $blue-700;
+    fill: $blue-700 !important;
     color: $blue-700;
 
     &:disabled {
       background-color: $blue-50;
-      fill: $blue-300;
+      fill: $blue-300 !important;
       color: $blue-300;
     }
   }
@@ -153,31 +155,31 @@
 
       &:disabled {
         background-color: $indigo-950;
-        fill: $indigo-500;
+        fill: $indigo-500 !important;
         color: $indigo-500;
       }
     }
 
     &-secondary {
       background-color: $zinc-700;
-      fill: $zinc-50;
+      fill: $zinc-50 !important;
       color: $zinc-50;
 
       &:disabled {
         background-color: $zinc-800;
-        fill: $zinc-500;
+        fill: $zinc-500 !important;
         color: $zinc-500;
       }
     }
 
     &-link {
       background-color: $blue-700;
-      fill: $zinc-50;
+      fill: $zinc-50 !important;
       color: $zinc-50;
 
       &:disabled {
         background-color: $blue-950;
-        fill: $blue-700;
+        fill: $blue-700 !important;
         color: $blue-700;
       }
     }

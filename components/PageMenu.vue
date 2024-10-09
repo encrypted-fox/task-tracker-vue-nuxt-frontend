@@ -1,5 +1,5 @@
 <template lang="pug">
-.menu--fake(:class='{ "menu--fake--closed": isMenuOpen }')
+.menu--fake(:class='{ "menu--fake--open": isMenuOpen }')
 nav.menu(:class='{ "menu--open": isMenuOpen }')
   button.menu__open-btn.btn.btn-round.chevron(
     :class='{ "chevron-left": isMenuOpen, "chevron-right": !isMenuOpen }',
@@ -286,7 +286,7 @@ const exit = (): void => {
 
       &__controls {
         padding-top: 50px;
-        padding-left: 10px;
+        padding-left: 12.5px;
         margin: auto 0 20px 0;
 
         flex-direction: column;
@@ -294,8 +294,8 @@ const exit = (): void => {
 
         .control {
           &__icon {
-            height: 30px;
-            width: 30px;
+            height: 25px;
+            width: 25px;
           }
 
           &__text {

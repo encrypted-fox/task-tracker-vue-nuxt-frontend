@@ -4,7 +4,7 @@ ModalsDefault(
   :hide-header='true',
   :hide-footer='true',
   :modal-class='"modal--menu"',
-  :overlay-class='"ovarlay--mobile"'
+  :overlay-class='"overlay--mobile"'
 )
   template(v-slot:modal-content)
     .navbar--mobile

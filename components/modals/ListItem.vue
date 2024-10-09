@@ -1,5 +1,5 @@
 <template lang="pug">
-ModalsDefault(:is-shown='isShown', @switch-is-shown="switchIsShown")
+ModalsDefault(:is-shown='isShown', @switch-is-shown='switchIsShown')
 </template>
 
 <script setup lang="ts">
@@ -13,7 +13,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{ 'switch-is-shown': [] }>()
 
-const switchIsShown = () : void => {
+const switchIsShown = (): void => {
   emit('switch-is-shown')
 }
 </script>

@@ -4,9 +4,10 @@ Teleport(to='#teleports')
     dialog.overlay(
       v-bind='$attrs',
       v-if='isShown',
+      ref='overlayRef',
       :key='`${isShown}-${route.path}-${localeStore.locale}`',
-      :class='overlayClass'
-      @click.stop="switchIsShown"
+      :class='overlayClass',
+      @click.stop='switchIsShown'
     )
       .modal(:class='modalClass')
         .modal-header(v-if='!hideHeader')
@@ -32,7 +33,10 @@ const emit = defineEmits<{ 'switch-is-shown': [] }>()
 const route = useRoute()
 const localeStore = useLocaleStore()
 
-const switchIsShown = () : void => {
+const overlayRef = useState<HTMLElement | null>()
+
+const switchIsShown = (e: Event): void => {
+  if (e.target !== overlayRef.value) return
   emit('switch-is-shown')
 }
 </script>

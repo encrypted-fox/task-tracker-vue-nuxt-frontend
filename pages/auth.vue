@@ -3,22 +3,24 @@ main.auth
   .auth__logo-container(:class='additionalAuthLogoClass', ref='authLogo')
     .auth__logo-container__logo.icon(v-html='IconLogo')
     .auth__logo-container__controls
-      Transition(name='fade', mode='out-in')
-        button.auth__logo-container__controls__btn.btn.icon(
-          v-html='IconThemeDark',
-          @click='switchTheme',
-          v-if='theme === "light"'
-        ) 
-        button.auth__logo-container__controls__btn.btn.icon(
-          v-html='IconThemeLight',
-          @click='switchTheme',
-          v-else
-        ) 
+      button.auth__logo-container__controls__btn.btn
+        Transition(name='fade', mode='out-in')
+          .auth__logo-container__controls__btn__icon.icon(
+            v-html='IconThemeDark',
+            @click='switchTheme',
+            v-if='theme === "light"'
+          ) 
+          .auth__logo-container__controls__btn__icon.icon(
+            v-html='IconThemeLight',
+            @click='switchTheme',
+            v-else
+          ) 
 
-      button.auth__logo-container__controls__btn.btn.icon(
-        v-html='IconTranslate',
-        @click='switchLocale'
-      )
+      button.auth__logo-container__controls__btn.btn
+        .auth__logo-container__controls__btn__icon.icon(
+          v-html='IconTranslate',
+          @click='switchLocale'
+        )
 
   .auth__content(:class='additionalAuthContentClass', ref='authContent')
     Transition(name='fade', mode='out-in')
@@ -152,9 +154,13 @@ onMounted(() => {
       gap: 20px;
 
       &__btn {
-        height: 25px;
-        width: 25px;
-        fill: $zinc-50;
+        &__icon {
+          height: 25px;
+          width: 25px;
+          padding: 2px;
+
+          fill: $zinc-50;
+        }
       }
     }
   }
@@ -236,6 +242,14 @@ onMounted(() => {
         border-bottom-left-radius: 6px;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
+      }
+    }
+  }
+
+  .dark {
+    .auth {
+      &__content {
+        border-color: $zinc-700;
       }
     }
   }
