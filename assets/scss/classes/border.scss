@@ -1,19 +1,19 @@
 @use '../utils/colors.scss' as *;
 
 .border-primary {
-  border: 2px solid $zinc-300;
+  border: 2px solid $gray-300;
   border-radius: 6px;
   transition: border 0.2s ease-in-out;
 }
 
 .divider-primary {
-  border-bottom: 2px solid $zinc-300;
+  border-bottom: 2px solid $gray-300;
   transition: border 0.2s ease-in-out;
 }
 
 .dark {
   .border-primary,
   .divider-primary {
-    border-color: $zinc-700;
+    border-color: $gray-700;
   }
 }

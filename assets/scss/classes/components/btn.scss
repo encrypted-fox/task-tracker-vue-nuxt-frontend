@@ -8,6 +8,9 @@
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
+  gap: 10px;
+
+  position: relative;
 
   user-select: none;
   cursor: pointer;
@@ -107,8 +110,8 @@
 
   &-primary {
     background-color: $indigo-500;
-    color: $zinc-50 !important;
-    fill: $zinc-50;
+    color: $gray-50 !important;
+    fill: $gray-50;
 
     &:focus {
       border-color: $orange-300;
@@ -140,20 +143,20 @@
   .btn {
     &-primary {
       &:focus {
-        border-color: $zinc-50;
+        border-color: $gray-50;
       }
     }
 
     &-secondary {
-      background-color: $zinc-700;
-      fill: $zinc-50 !important;
-      color: $zinc-50;
+      background-color: $gray-700;
+      fill: $gray-50 !important;
+      color: $gray-50;
     }
 
     &-link {
       background-color: $blue-700;
-      fill: $zinc-50 !important;
-      color: $zinc-50;
+      fill: $gray-50 !important;
+      color: $gray-50;
     }
   }
 }

@@ -55,7 +55,7 @@ const dismissNotification = (id: string): void => {
   align-items: center;
   gap: 10px;
 
-  border: 2px solid $zinc-300;
+  border: 2px solid $gray-300;
   border-radius: 6px;
 
   box-sizing: border-box;
@@ -119,11 +119,11 @@ const dismissNotification = (id: string): void => {
   }
 
   &-text {
-    background-color: $zinc-50;
+    background-color: $gray-50;
 
     &-icon {
-      background-color: $zinc-200;
-      fill: $zinc-50;
+      background-color: $gray-200;
+      fill: $gray-50;
     }
   }
 
@@ -168,7 +168,7 @@ const dismissNotification = (id: string): void => {
   .notification {
     width: fit-content;
 
-    border-color: $zinc-700;
+    border-color: $gray-700;
 
     &-container {
       width: fit-content;
@@ -187,11 +187,11 @@ const dismissNotification = (id: string): void => {
 .dark {
   .notification {
     &-text {
-      background-color: $zinc-50;
+      background-color: $gray-50;
 
       &-icon {
-        background-color: $zinc-200;
-        fill: $zinc-50;
+        background-color: $gray-200;
+        fill: $gray-50;
       }
     }
 
@@ -223,7 +223,7 @@ const dismissNotification = (id: string): void => {
     }
 
     &-message {
-      color: $zinc-50;
+      color: $gray-50;
     }
   }
 }

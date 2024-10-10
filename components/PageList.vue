@@ -286,7 +286,7 @@ watch(
           height: 20px;
           width: 20px;
 
-          fill: $zinc-700;
+          fill: $gray-700;
         }
       }
     }
@@ -312,7 +312,7 @@ watch(
       .list-item {
         &__part {
           &__icon {
-            fill: $zinc-50;
+            fill: $gray-50;
           }
         }
       }
@@ -341,8 +341,6 @@ watch(
         box-sizing: border-box;
 
         &__btn {
-          gap: 10px;
-
           &__icon {
             height: 12px;
             width: 12px;

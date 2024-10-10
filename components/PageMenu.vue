@@ -175,7 +175,7 @@ const exit = (): void => {
     justify-content: space-between;
     align-items: center;
 
-    background-color: $zinc-700;
+    background-color: $gray-700;
     box-sizing: border-box;
 
     overflow-x: hidden;
@@ -201,7 +201,7 @@ const exit = (): void => {
         &__icon {
           height: 25px;
           width: 25px;
-          fill: $zinc-50;
+          fill: $gray-50;
         }
 
         &__text {
@@ -251,16 +251,16 @@ const exit = (): void => {
       top: 95px;
       right: -15px;
 
-      fill: $zinc-50;
-      background-color: $zinc-700;
+      fill: $gray-50;
+      background-color: $gray-700;
 
       &:hover {
         opacity: 1;
-        background-color: $zinc-600;
+        background-color: $gray-600;
       }
 
       &:active {
-        background-color: $zinc-700;
+        background-color: $gray-700;
       }
     }
 
@@ -302,7 +302,7 @@ const exit = (): void => {
             display: block;
 
             text-wrap: nowrap;
-            color: $zinc-50;
+            color: $gray-50;
           }
 
           &--mobile {

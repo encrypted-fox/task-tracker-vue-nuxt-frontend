@@ -89,12 +89,12 @@ const exit = () => {
         justify-content: center;
         align-items: center;
 
-        fill: $zinc-50;
+        fill: $gray-50;
       }
 
       &__text {
         text-wrap: nowrap;
-        color: $zinc-50;
+        color: $gray-50;
       }
     }
   }

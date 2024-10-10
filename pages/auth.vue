@@ -136,7 +136,7 @@ onMounted(() => {
     justify-content: space-between;
     align-items: center;
 
-    background-color: $zinc-700;
+    background-color: $gray-700;
 
     box-sizing: border-box;
 
@@ -159,7 +159,7 @@ onMounted(() => {
           width: 25px;
           padding: 2px;
 
-          fill: $zinc-50;
+          fill: $gray-50;
         }
       }
     }
@@ -231,7 +231,7 @@ onMounted(() => {
 
       align-items: start;
 
-      border: 2px solid $zinc-300;
+      border: 2px solid $gray-300;
 
       transition: border 0.2s ease-in-out;
 
@@ -249,7 +249,7 @@ onMounted(() => {
   .dark {
     .auth {
       &__content {
-        border-color: $zinc-700;
+        border-color: $gray-700;
       }
     }
   }

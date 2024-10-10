@@ -225,8 +225,22 @@ const submit = async (): Promise<void> => {
   }
 }
 
+const listenToKeys = (e: KeyboardEvent) => {
+  if (e.code === 'Enter' && !isButtonDisabled.value) {
+    submit()
+  }
+}
+
 useHead({
   title: 'Регистрация',
+})
+
+onMounted(() => {
+  window.addEventListener('keypress', listenToKeys)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('keypress', listenToKeys)
 })
 </script>
 
