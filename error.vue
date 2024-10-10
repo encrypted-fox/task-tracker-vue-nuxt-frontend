@@ -58,8 +58,8 @@ onUnmounted(() => {
   &__status-code {
     margin: 0;
 
-    font-size: 52px;
-    line-height: 60px;
+    font-size: 150px;
+    line-height: 158px;
   }
 
   &__title {
