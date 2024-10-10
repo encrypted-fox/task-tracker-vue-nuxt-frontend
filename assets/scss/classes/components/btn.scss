@@ -34,6 +34,7 @@
 
   &:disabled {
     cursor: not-allowed;
+    opacity: .5;
   }
 
   &-xs {
@@ -113,8 +114,9 @@
       border-color: $orange-300;
     }
 
-    &:disabled {
-      background-color: $indigo-300;
+    &--linear {
+      background: linear-gradient(90deg, $purple-500, $indigo-500);
+      background-origin: border-box;
     }
   }
 
@@ -122,24 +124,12 @@
     background-color: $indigo-50;
     fill: $indigo-500 !important;
     color: $indigo-500;
-
-    &:disabled {
-      background-color: $indigo-950;
-      fill: $indigo-500 !important;
-      color: $indigo-500;
-    }
   }
 
   &-link {
     background-color: $blue-100;
     fill: $blue-700 !important;
     color: $blue-700;
-
-    &:disabled {
-      background-color: $blue-50;
-      fill: $blue-300 !important;
-      color: $blue-300;
-    }
   }
 
   &-seamless {
@@ -152,36 +142,18 @@
       &:focus {
         border-color: $zinc-50;
       }
-
-      &:disabled {
-        background-color: $indigo-950;
-        fill: $indigo-500 !important;
-        color: $indigo-500;
-      }
     }
 
     &-secondary {
       background-color: $zinc-700;
       fill: $zinc-50 !important;
       color: $zinc-50;
-
-      &:disabled {
-        background-color: $zinc-800;
-        fill: $zinc-500 !important;
-        color: $zinc-500;
-      }
     }
 
     &-link {
       background-color: $blue-700;
       fill: $zinc-50 !important;
       color: $zinc-50;
-
-      &:disabled {
-        background-color: $blue-950;
-        fill: $blue-700 !important;
-        color: $blue-700;
-      }
     }
   }
 }
