@@ -10,9 +10,7 @@ Transition(name='fade', mode='out-in')
 <script setup lang="ts">
 import type { NuxtError } from '#app'
 
-const props = defineProps({
-  error: Object as () => NuxtError,
-})
+const props = defineProps<{ error: NuxtError }>()
 
 const themeStore = useThemeStore()
 
@@ -30,10 +28,6 @@ useHead({
   bodyAttrs: {
     class: bodyClass,
   },
-})
-
-onUnmounted(() => {
-  handleError()
 })
 </script>
 
