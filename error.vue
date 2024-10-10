@@ -4,7 +4,7 @@ Transition(name='fade', mode='out-in')
     .error
       h1.error__status-code.text-primary {{ error?.statusCode }}
       h1.error__title.text-primary {{ $t('messages.ordinaryErrorMessage') }}
-      button.btn.btn-xl.btn-full.btn-primary(@click='handleError') {{ $t('common.returnHome') }}
+      button.btn.btn-outline.btn-xl.btn-full.btn-primary(@click='handleError') {{ $t('common.returnHome') }}
 </template>
 
 <script setup lang="ts">

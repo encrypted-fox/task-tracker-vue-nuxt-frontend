@@ -10,18 +10,18 @@
         :iconPrepend='IconSearch',
         @input='changeSearch'
       )
-      button.page-header__btn.btn.btn-round-xl.btn-secondary(
+      button.page-header__btn.btn.btn-outline.btn-round-xl.btn-secondary(
         v-html='IconFilter',
         v-if='isFiltersButtonShown',
         @click.prevent='switchIsFiltersShown'
       )
-      button.page-header__btn.page-header__btn--mobile.btn.btn-round-xl.btn-secondary(
+      button.page-header__btn.page-header__btn--mobile.btn.btn-outline.btn-round-xl.btn-secondary(
         v-html='IconSort',
         v-if='isSortButtonShown',
         @click.prevent='switchIsSortShown'
       )
     Transition(name='fade', mode='out-in', v-if='isFoldButtonShown')
-      button.page-header__btn.page-header__btn--right.btn.btn-round-xl.btn-secondary(
+      button.page-header__btn.page-header__btn--right.btn.btn-outline.btn-round-xl.btn-secondary(
         v-html='IconItemsFolded',
         @click.prevent='switchIsItemsFolded',
         :key='IconItemsFolded'

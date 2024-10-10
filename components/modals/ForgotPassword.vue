@@ -2,7 +2,7 @@
 ModalsDefault(:is-shown='isShown', @switch-is-shown='switchIsShown')
   template(v-slot:modal-header)
     h1.title.text-primary {{ $t('modals.forgotPassword.passwordRecovery') }}
-    button.btn.icon.btn-round-sm.btn-secondary(
+    button.btn.btn-outline.icon.btn-round-sm.btn-secondary(
       @click='switchIsShown',
       v-html='IconClose'
     ) 
@@ -17,8 +17,8 @@ ModalsDefault(:is-shown='isShown', @switch-is-shown='switchIsShown')
     )
 
   template(v-slot:modal-footer)
-    button.btn.btn-lg.btn-secondary(@click='switchIsShown') {{ $t('common.cancel') }}
-    button.btn.btn-lg.btn-primary(
+    button.btn.btn-outline.btn-lg.btn-secondary(@click='switchIsShown') {{ $t('common.cancel') }}
+    button.btn.btn-outline.btn-lg.btn-primary(
       @click='submit',
       :disabled='isButtonDisabled'
     ) {{ $t('modals.forgotPassword.recover') }}

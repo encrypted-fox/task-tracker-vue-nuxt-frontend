@@ -16,7 +16,7 @@ Teleport(to='#teleports')
             )
             .notification-message {{ notification.message }}
           .notification-dismiss
-            button.btn.icon.btn-round-sm.btn-secondary(
+            button.btn.btn-outline.icon.btn-round-sm(
               @click='dismissNotification(notification.id)',
               v-html='IconClose'
             )
@@ -93,10 +93,9 @@ const dismissNotification = (id: string): void => {
   &-warn,
   &-danger {
     &-icon {
-      width: 25px;
-      height: 25px;
-
-      padding: 5px;
+      width: 30px;
+      height: 30px;
+      padding: 6px;
 
       display: flex;
       justify-content: center;
@@ -122,35 +121,45 @@ const dismissNotification = (id: string): void => {
     background-color: $gray-50;
 
     &-icon {
-      background-color: $gray-200;
+      background-color: $gray-700;
       fill: $gray-50;
+    }
+
+    .notification-message {
+      color: $zinc-700;
+    }
+
+    .notification-dismiss {
+      button {
+        fill: $zinc-700;
+      }
     }
   }
 
   &-success {
-    background-color: $emerald-50;
+    background-color: $emerald-800;
 
     &-icon {
       background-color: $emerald-200;
-      fill: $emerald-50;
+      fill: $emerald-800;
     }
   }
 
   &-warn {
-    background-color: $amber-50;
+    background-color: $amber-800;
 
     &-icon {
       background-color: $amber-200;
-      fill: $amber-50;
+      fill: $amber-800;
     }
   }
 
   &-danger {
-    background-color: $rose-50;
+    background-color: $rose-800;
 
     &-icon {
       background-color: $rose-200;
-      fill: $rose-50;
+      fill: $rose-800;
     }
   }
 
@@ -161,6 +170,14 @@ const dismissNotification = (id: string): void => {
     width: 200px;
 
     display: inline-block;
+
+    color: $gray-50;
+  }
+
+  &-dismiss {
+    button {
+      fill: $zinc-50;
+    }
   }
 }
 
@@ -168,7 +185,7 @@ const dismissNotification = (id: string): void => {
   .notification {
     width: fit-content;
 
-    border-color: $gray-700;
+    border-color: $gray-300;
 
     &-container {
       width: fit-content;
@@ -186,44 +203,20 @@ const dismissNotification = (id: string): void => {
 
 .dark {
   .notification {
+    border-color: $gray-700;
+
     &-text {
-      background-color: $gray-50;
+      background-color: $gray-950;
 
-      &-icon {
-        background-color: $gray-200;
-        fill: $gray-50;
+      .notification-message {
+        color: $zinc-50;
       }
-    }
 
-    &-success {
-      background-color: $emerald-800;
-
-      &-icon {
-        background-color: $emerald-200;
-        fill: $emerald-800;
+      .notification-dismiss {
+        button {
+          fill: $zinc-50;
+        }
       }
-    }
-
-    &-warn {
-      background-color: $amber-800;
-
-      &-icon {
-        background-color: $amber-200;
-        fill: $amber-800;
-      }
-    }
-
-    &-danger {
-      background-color: $rose-800;
-
-      &-icon {
-        background-color: $rose-200;
-        fill: $rose-800;
-      }
-    }
-
-    &-message {
-      color: $gray-50;
     }
   }
 }

@@ -48,7 +48,7 @@
     .register__form__links
       .link(@click='switchToLogin') {{ $t('forms.common.toLogin') }}
 
-  button.btn.btn-lg.btn-primary.btn-full(
+  button.btn.btn-outline.btn-lg.btn-primary.btn-full(
     @click='submit',
     :disabled='isButtonDisabled'
   ) {{ $t('forms.common.toRegister') }}

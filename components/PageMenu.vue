@@ -1,7 +1,7 @@
 <template lang="pug">
 .menu--fake(:class='{ "menu--fake--open": isMenuOpen }')
 nav.menu(:class='{ "menu--open": isMenuOpen }')
-  button.menu__open-btn.btn.btn-round.chevron(
+  button.menu__open-btn.btn.btn-outline.btn-round.chevron(
     :class='{ "chevron-left": isMenuOpen, "chevron-right": !isMenuOpen }',
     @click='switchMenuExpanded',
     v-html='IconChevron'

@@ -8,7 +8,7 @@ ModalsDefault(
 )
   template(v-slot:modal-content)
     .navbar--mobile
-      button.route.btn.btn-md(
+      button.route.btn.btn-outline.btn-md(
         v-for='routeItem in routes',
         @click='goToPage(routeItem)',
         :class='{ "active-route": currentPage === routeItem }',
@@ -18,7 +18,7 @@ ModalsDefault(
         Transition(name='fade', mode='out-in')
           .route__text {{ $t(`menu.${routeItem}`) }}
 
-      button.route.btn.btn-md(@click='exit')
+      button.route.btn.btn-outline.btn-md(@click='exit')
         .route__icon(v-html='IconExit')
         Transition(name='fade', mode='out-in')
           .route__text(v-if='isMenuOpen', :key='$t(`menu.exit`)') {{ $t(`menu.exit`) }}

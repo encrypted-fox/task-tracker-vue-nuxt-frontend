@@ -9,7 +9,7 @@ Transition(name='fade', mode='out-in')
           :key='`list-item-${headerPart.name}`',
           :style='headerPart.style'
         ) 
-          button.list-header__item__btn.btn.btn-sm(
+          button.list-header__item__btn.btn.btn-outline.btn-sm(
             :class='getSortBtnClass(headerPart.name)'
           ) 
             span {{ headerPart.label }}
@@ -33,7 +33,7 @@ Transition(name='fade', mode='out-in')
               :class='itemPart.outerClass',
               :title='itemPart.label || ""'
             ) 
-              img.list-item__part__image.btn.btn-round-xl(
+              img.list-item__part__image.btn.btn-outline.btn-round-xl(
                 v-if='itemPart.img',
                 src='@/assets/icons/logo.svg'
               )
@@ -52,7 +52,7 @@ Transition(name='fade', mode='out-in')
               )
 
             div(style='width: 40px')
-              button.btn.btn-secondary.btn-round-md.chevron-right(
+              button.btn.btn-outline.btn-secondary.btn-round-md.chevron-right(
                 v-html='IconChevron',
                 @click='switchIsItemModalShown({ id: item.id, path })'
               )
@@ -60,7 +60,7 @@ Transition(name='fade', mode='out-in')
         .list-empty.text-primary(v-else) {{ $t('common.listEmpty') }}
 
     .list-controls.flex.justify-end(class='m-t-[20px]')
-      button.list-control.btn.btn-round-xl.btn-secondary.icon(
+      button.list-control.btn.btn-outline.btn-round-xl.btn-secondary.icon(
         v-html='IconClose'
       )
 

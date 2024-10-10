@@ -60,7 +60,7 @@ describe('login page renders correctly', () => {
   it('switch to register is working', async () => {
     const page = await createPage('/auth')
 
-    await page.locator('button.btn.btn-secondary').click()
+    await page.locator('button.btn.btn-outline.btn-secondary').click()
     await page.waitForTimeout(1500)
 
     expect(await page.locator('h1').textContent()).toBe('Регистрация')
@@ -73,7 +73,7 @@ describe('register page renders correctly', () => {
   it('login heading presented', async () => {
     const page = await createPage('/auth')
 
-    await page.locator('button.btn.btn-secondary').click()
+    await page.locator('button.btn.btn-outline.btn-secondary').click()
     await page.waitForTimeout(1500)
 
     expect(await page.locator('h1').isVisible()).toBe(true)
@@ -85,7 +85,7 @@ describe('register page renders correctly', () => {
   it('login form presented', async () => {
     const page = await createPage('/auth')
 
-    await page.locator('button.btn.btn-secondary').click()
+    await page.locator('button.btn.btn-outline.btn-secondary').click()
     await page.waitForTimeout(1500)
     expect(await page.locator('form').isVisible()).toBe(true)
 
@@ -95,7 +95,7 @@ describe('register page renders correctly', () => {
   it('login inputs presented', async () => {
     const page = await createPage('/auth')
 
-    await page.locator('button.btn.btn-secondary').click()
+    await page.locator('button.btn.btn-outline.btn-secondary').click()
     await page.waitForTimeout(1500)
     expect(await page.locator('input').count()).toBe(3)
 
@@ -105,7 +105,7 @@ describe('register page renders correctly', () => {
   it('login labels presented', async () => {
     const page = await createPage('/auth')
 
-    await page.locator('button.btn.btn-secondary').click()
+    await page.locator('button.btn.btn-outline.btn-secondary').click()
     await page.waitForTimeout(1500)
     expect(await page.locator('label').count()).toBe(3)
 
@@ -115,7 +115,7 @@ describe('register page renders correctly', () => {
   it('login buttons presented', async () => {
     const page = await createPage('/auth')
 
-    await page.locator('button.btn.btn-secondary').click()
+    await page.locator('button.btn.btn-outline.btn-secondary').click()
     await page.waitForTimeout(1500)
 
     expect(await page.locator('button').count()).toBe(2)
@@ -126,10 +126,10 @@ describe('register page renders correctly', () => {
   it('switch to login is working', async () => {
     const page = await createPage('/auth')
 
-    await page.locator('button.btn.btn-secondary').click()
+    await page.locator('button.btn.btn-outline.btn-secondary').click()
     await page.waitForTimeout(1500)
 
-    await page.locator('button.btn.btn-secondary').click()
+    await page.locator('button.btn.btn-outline.btn-secondary').click()
     await page.waitForTimeout(1500)
 
     expect(await page.locator('h1').textContent()).toBe('Вход')

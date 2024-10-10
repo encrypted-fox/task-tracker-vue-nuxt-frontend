@@ -127,16 +127,23 @@
     background-color: $indigo-50;
     fill: $indigo-500 !important;
     color: $indigo-500;
+    border-color: $indigo-500;
   }
 
   &-link {
     background-color: $blue-100;
     fill: $blue-700 !important;
     color: $blue-700;
+    border-color: $blue-700;
   }
 
   &-seamless {
     background-color: transparent !important;
+    border: 2px solid transparent !important;
+  }
+
+  &-outline {
+    border: 2px solid transparent !important;
   }
 }
 .dark {

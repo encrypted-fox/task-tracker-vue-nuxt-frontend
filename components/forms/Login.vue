@@ -23,7 +23,7 @@
       .link(@click='switchIsForgotPasswordModalShown') {{ $t('forms.login.forgotPassword') }}
       .link(@click='switchToRegister') {{ $t('forms.common.toRegister') }}
 
-  button.btn.btn-lg.btn-primary.btn-full(
+  button.btn.btn-outline.btn-lg.btn-primary.btn-full(
     @click='submit',
     :disabled='isButtonDisabled'
   ) {{ $t('forms.common.toLogin') }}

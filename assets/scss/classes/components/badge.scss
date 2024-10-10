@@ -35,30 +35,39 @@
     background-color: $indigo-500;
     color: $gray-50;
     fill: $gray-50;
+    border-color: $gray-50;
   }
 
   &-secondary {
     background-color: $indigo-50;
     color: $indigo-500;
     fill: $indigo-500;
+    border-color: $indigo-500;
   }
 
   &-success {
     background-color: $emerald-100;
     color: $emerald-500;
     fill: $emerald-500;
+    border-color: $emerald-500;
   }
 
   &-warn {
     background-color: $amber-100;
     color: $amber-500;
     fill: $amber-500;
+    border-color: $amber-500;
   }
 
   &-danger {
     background-color: $rose-100;
     color: $rose-500;
     fill: $rose-500;
+    border-color: $rose-500;
+  }
+
+  &-outline {
+    border: 2px solid transparent !important;
   }
 }
 
@@ -68,24 +77,28 @@
       background-color: $gray-700;
       color: $gray-200;
       fill: $gray-200;
+      border-color: $gray-200;
     }
 
     &-success {
       background-color: $emerald-700;
       color: $emerald-200;
       fill: $emerald-200;
+      border-color: $emerald-200;
     }
 
     &-warn {
       background-color: $amber-700;
       color: $amber-200;
       fill: $amber-200;
+      border-color: $amber-200;
     }
 
     &-danger {
       background-color: $rose-700;
       color: $rose-200;
       fill: $rose-200;
+      border-color: $rose-200;
     }
   }
 }
