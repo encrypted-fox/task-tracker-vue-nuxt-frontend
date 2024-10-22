@@ -13,11 +13,14 @@
     )
     FieldsString(
       name='password',
-      type='password',
+      :type='passwordFieldType',
       :label='$t("forms.common.password")',
       :placeholder='$t("forms.common.startTyping")',
       :value='password',
-      @input='changePassword'
+      :icon-append="IconEye",
+      :icon-append-action="'switchType'",
+      @input='changePassword',
+      @switch-type='switchPasswordType'
     )
     .login__form__links
       .link(@click='switchIsForgotPasswordModalShown') {{ $t('forms.login.forgotPassword') }}
@@ -35,6 +38,7 @@
 </template>
 <script setup lang="ts">
 import type { AuthUser } from '~/types'
+import IconEye from "~/assets/icons/eye.svg?raw"
 
 const emit = defineEmits(['switch-to-register'])
 
@@ -44,6 +48,7 @@ const userStore = useUserStore()
 
 const username = useState<string>(() => '')
 const password = useState<string>(() => '')
+const passwordFieldType = useState<string>(() => 'password')
 
 const isForgotPasswordModalShown = useState<boolean>(() => false)
 
@@ -61,6 +66,11 @@ const changeUsername = (val: string): void => {
 
 const changePassword = (val: string): void => {
   password.value = val
+}
+
+const switchPasswordType = (type: string) => {
+  if (type === 'password') passwordFieldType.value = 'text'
+  else passwordFieldType.value = 'password'
 }
 
 const switchToRegister = (): void => {

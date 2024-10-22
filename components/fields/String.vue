@@ -3,9 +3,9 @@
   label.field-label(:for='name', v-if='label') {{ label }}
 
   .field-container
-    .field-icon-prepend(
+    button.field-icon-prepend(
       v-html='iconPrepend',
-      @click='iconPrependAction',
+      @click.prevent='actions[iconPrependAction]()',
       v-if='iconPrepend'
     )
     input.field-string(
@@ -16,9 +16,9 @@
       :value='value',
       @input='input'
     )
-    .field-icon-append(
+    button.field-icon-append(
       v-html='iconAppend',
-      @click='iconPrependAction',
+      @click.prevent='actions[iconAppendAction]()',
       v-if='iconAppend'
     )
     .field-errors(v-if='errors?.length')
@@ -29,7 +29,7 @@
 <script lang="ts" setup>
 import IconClose from '~/assets/icons/close.svg?raw'
 
-defineProps<{
+const props = defineProps<{
   name: string
   value?: string
   placeholder?: string
@@ -43,12 +43,23 @@ defineProps<{
   errors?: Array<string>
 }>()
 
-const emit = defineEmits<{ input: [value: string] }>()
+const emit = defineEmits<{
+  'input': [string]
+  'switch-type': [string | undefined]
+}>()
 
 const input = (e: Event): void => {
   const val = (e.target as HTMLInputElement).value
 
   emit('input', val)
+}
+
+const switchType = () => {
+  emit('switch-type', props.type)
+}
+
+const actions = {
+  switchType
 }
 </script>
 

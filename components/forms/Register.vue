@@ -19,30 +19,36 @@
       :label='$t("forms.register.email")',
       :placeholder='$t("forms.common.emailPlaceholder")',
       :value='email',
-      :invalid='isEmail',
+      :invalid='isNotEmail',
       :errors='emailErrors',
       @input='changeEmail'
     )
 
     FieldsString(
       name='password',
-      type='password',
+      :type='passwordFieldType',
       :label='$t("forms.common.password")',
       :placeholder='$t("forms.common.startTyping")',
       :value='password',
       :invalid='isWeak || isPasswordNotMatch',
       :errors='currentErrors',
+      :icon-append="IconEye",
+      :icon-append-action="'switchType'",
       @input='changePassword'
+      @switch-type='switchPasswordType'
     )
 
     FieldsString(
       name='repeatPassword',
-      type='password',
+      :type='repeatPasswordFieldType',
       :label='$t("forms.register.repeatPassword")',
       :placeholder='$t("forms.common.startTyping")',
       :value='repeatPassword',
       :invalid='isPasswordNotMatch',
+      :icon-append="IconEye",
+      :icon-append-action="'switchType'",
       @input='changeRepeatPassword'
+      @switch-type='switchRepeatPasswordType'
     )
 
     .register__form__links
@@ -56,6 +62,7 @@
 
 <script setup lang="ts">
 import type { AuthErrorMessages, AuthUser } from '~/types'
+import IconEye from "~/assets/icons/eye.svg?raw"
 
 const emit = defineEmits(['switch-to-login'])
 
@@ -64,7 +71,9 @@ const appConfig = useAppConfig()
 const username = useState<string>(() => '')
 const email = useState<string>(() => '')
 const password = useState<string>(() => '')
+const passwordFieldType = useState<string>(() => 'password')
 const repeatPassword = useState<string>(() => '')
+const repeatPasswordFieldType = useState<string>(() => 'password')
 
 const isWeak = useState<boolean>(() => false)
 const isPasswordNotMatch = useState<boolean>(() => false)
@@ -196,6 +205,16 @@ const changeRepeatPassword = (val: string): void => {
   if (isPasswordNotMatch.value) console.log('weak')
 
   repeatPassword.value = val
+}
+
+const switchPasswordType = (type: string) => {
+  if (type === 'password') passwordFieldType.value = 'text'
+  else passwordFieldType.value = 'password'
+}
+
+const switchRepeatPasswordType = (type: string) => {
+  if (type === 'password') repeatPasswordFieldType.value = 'text'
+  else repeatPasswordFieldType.value = 'password'
 }
 
 const switchToLogin = (): void => {
