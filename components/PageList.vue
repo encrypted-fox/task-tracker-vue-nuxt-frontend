@@ -18,7 +18,7 @@ Transition(name='fade', mode='out-in')
               v-html='IconChevron'
             )
 
-        div(style='width: 40px')
+        div.list-item__last
 
       .list-items(ref='listItemsRef', :class='listItemsClass')
         template(v-if='listItemsData?.items?.length')
@@ -51,7 +51,7 @@ Transition(name='fade', mode='out-in')
                 v-html='getIconByName(itemPart.iconAppend)'
               )
 
-            div(style='width: 40px')
+            .list-item__last
               button.btn.btn-outline.btn-secondary.btn-round-md.chevron-right(
                 v-html='IconChevron',
                 @click='switchIsItemModalShown({ id: item.id, path })'
@@ -81,8 +81,8 @@ import type { ListData, ListDataSort } from '~/types'
 
 const props = defineProps<{
   path: string
-  // search: string,
-  // filters: Object //TODO: change to actual type
+  search: string,
+  filters: Object //TODO: change to actual type
 }>()
 
 const appConfig = useAppConfig()
@@ -289,6 +289,12 @@ watch(
           fill: $gray-700;
         }
       }
+    }
+  }
+
+  &-item {
+    &__last {
+      width: 30px;
     }
   }
 

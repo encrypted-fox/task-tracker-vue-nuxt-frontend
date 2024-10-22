@@ -67,7 +67,7 @@ const exit = () => {
 @media (min-width: 768px) {
   .navbar--desktop {
     padding-left: 12.5px;
-    margin-top: 75px;
+    margin-top: 55px;
 
     display: flex;
     flex-direction: column;
@@ -95,6 +95,9 @@ const exit = () => {
       &__text {
         text-wrap: nowrap;
         color: $gray-50;
+
+        font-size: 16px;
+        line-height: 24px;
       }
     }
   }

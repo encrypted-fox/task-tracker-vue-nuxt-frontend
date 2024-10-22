@@ -9,7 +9,7 @@ main.page
     @switch-is-items-folded='switchIsItemsFolded',
     @changeSearch='changeSearch'
   )
-  PageList(:path='"tasks"')
+  PageList(:path='"tasks"', :search="''")
 </template>
 
 <script setup lang="ts">

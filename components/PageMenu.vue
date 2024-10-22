@@ -248,7 +248,7 @@ const exit = (): void => {
       padding: 5px;
 
       position: absolute;
-      top: 95px;
+      top: 85px;
       right: -15px;
 
       fill: $gray-50;
@@ -280,8 +280,8 @@ const exit = (): void => {
       &__logo {
         height: 50px;
         width: 50px;
-        margin-left: 0;
         margin-top: 20px;
+        margin-left: 6.25px;
       }
 
       &__controls {
@@ -303,6 +303,9 @@ const exit = (): void => {
 
             text-wrap: nowrap;
             color: $gray-50;
+
+            font-size: 16px;
+            line-height: 24px;
           }
 
           &--mobile {
