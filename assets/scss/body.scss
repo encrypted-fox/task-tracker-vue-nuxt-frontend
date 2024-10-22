@@ -29,14 +29,6 @@ body {
   }
 }
 
-.dark {
-  background-color: $gray-950;
-}
-
-.light {
-  background-color: white;
-}
-
 .root {
   display: flex;
   justify-content: space-between;
@@ -51,9 +43,9 @@ body {
 }
 
 .active-route {
-  div {
-    fill: #fdba74;
-    color: #fdba74;
+  .route__icon, .route__text {
+    fill: $orange-300 !important;
+    color: $orange-300 !important;
     transition: all ease-in-out 0.2s;
   }
 }
@@ -73,16 +65,18 @@ body {
 }
 
 .light {
+  background-color: white;
+
   ::-webkit-scrollbar-track {
-    background: #e4e4e7;
+    background: $gray-300;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #71717a;
+    background: $gray-600;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #71717a;
+    background: $gray-500;
   }
 
   input:-internal-autofill-selected {
@@ -91,15 +85,17 @@ body {
 }
 
 .dark {
+  background-color: $gray-800;
+
   ::-webkit-scrollbar-track {
-    background: #27272a;
+    background: $gray-600;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #71717a;
+    background: $gray-400;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #71717a;
+    background: $gray-300;
   }
 }
