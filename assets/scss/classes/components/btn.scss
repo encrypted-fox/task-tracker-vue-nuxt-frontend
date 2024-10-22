@@ -4,6 +4,8 @@
   width: fit-content;
   box-sizing: border-box;
 
+  padding: 2px;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,7 +30,7 @@
   }
 
   &:focus {
-    border-color: $indigo-500;
+    border-color: $indigo-500 !important;
   }
 
   &:active {
