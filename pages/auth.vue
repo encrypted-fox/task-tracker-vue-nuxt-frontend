@@ -72,6 +72,9 @@ const switchTheme = (): void => {
 
 const switchLocale = (): void => {
   localeStore.changeLocale()
+
+  additionalAuthLogoClass.value = route.query?.type !== 'register' ? '' : 'auth__logo-container--register'
+  additionalAuthContentClass.value = route.query?.type !== 'register' ? '' : 'auth__content--register'
 }
 
 const switchToRegister = (): void => {
