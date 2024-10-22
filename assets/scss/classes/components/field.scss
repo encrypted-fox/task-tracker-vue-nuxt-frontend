@@ -20,13 +20,13 @@
 
   &-icon-prepend,
   &-icon-append {
-    height: 40px;
-    width: 40px;
+    height: 36px;
+    width: 36px;
 
     padding: 10px;
 
     position: absolute;
-    top: 0;
+    top: 2px;
 
     display: flex;
     justify-content: center;
@@ -39,14 +39,21 @@
     cursor: pointer;
 
     fill: $gray-700;
+    border: none;
+
+    transition: border-color .2s ease-in-out;
   }
 
   &-icon-prepend {
-    left: 0;
+    left: 2px;
+
+    border-right: 2px solid $gray-300;
   }
 
   &-icon-append {
-    right: 0;
+    right: 2px;
+
+    border-left: 2px solid $gray-300;
   }
 
   &-invalid {
@@ -95,11 +102,11 @@
 
   &-input-icon {
     &-left {
-      padding-left: 40px;
+      padding-left: 50px;
     }
 
     &-right {
-      padding-right: 40px;
+      padding-right: 50px;
     }
   }
 }
@@ -113,12 +120,20 @@
     &-icon-prepend,
     &-icon-append {
       fill: $gray-50;
+
+      border-color: $gray-700;
+
+      transition: border-color .2s ease-in-out;
     }
 
     &-string {
       color: $gray-50;
 
       border-color: $gray-700;
+
+      &:focus {
+        border-color: $indigo-500;
+      }
     }
   }
 }
