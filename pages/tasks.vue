@@ -24,6 +24,10 @@ const switchIsItemsFolded = (): void => {
 const changeSearch = (val: string): void => {
   search.value = val
 }
+
+useHead({
+  title: getI18nMessage('pages.tasks.title'),
+})
 </script>
 
 <style lang="scss" scoped>

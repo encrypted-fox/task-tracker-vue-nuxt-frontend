@@ -102,7 +102,7 @@ const listenToKeys = (e: KeyboardEvent) => {
 }
 
 useHead({
-  title: 'Вход',
+  title: getI18nMessage('pages.auth.login.title'),
 })
 
 onMounted(() => {

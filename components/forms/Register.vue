@@ -251,7 +251,7 @@ const listenToKeys = (e: KeyboardEvent) => {
 }
 
 useHead({
-  title: 'Регистрация',
+  title: getI18nMessage('pages.auth.register.title'),
 })
 
 onMounted(() => {

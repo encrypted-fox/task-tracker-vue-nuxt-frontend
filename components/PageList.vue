@@ -175,6 +175,7 @@ const getListItemsData = async (initial: boolean = false): Promise<void> => {
       {
         method: 'GET',
         // query: params,
+        headers: getAuthHeaders()
       }
     )
 

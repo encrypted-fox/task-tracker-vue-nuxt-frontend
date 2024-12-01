@@ -4,6 +4,14 @@ export default defineI18nConfig(() => ({
   messages: {
     ru: {
       pages: {
+        auth: {
+          login: {
+            title: 'Вход'
+          },
+          register: {
+            title: 'Регистрация'
+          }
+        },
         tasks: {
           title: 'Список задач',
         },
@@ -82,6 +90,14 @@ export default defineI18nConfig(() => ({
     },
     en: {
       pages: {
+        auth: {
+          login: {
+            title: 'Login'
+          },
+          register: {
+            title: 'Register'
+          }
+        },
         tasks: {
           title: 'Tasks list',
         },

@@ -79,6 +79,14 @@ const exit = (): void => {
   flex-direction: column;
   gap: 25px;
 
+  .active-route {
+    .route__icon, .route__text {
+      fill: $orange-300 !important;
+      color: $orange-300 !important;
+      transition: all ease-in-out 0.2s;
+    }
+  }
+
   .route {
     display: flex;
     justify-content: start;
