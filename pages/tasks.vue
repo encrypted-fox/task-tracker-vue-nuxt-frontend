@@ -2,6 +2,7 @@
 main.page
   PageHeader(
     :isItemsFolded='isItemsFolded',
+    :title='$t("pages.tasks.title")',
     :search='search',
     :is-filters-button-shown='true',
     :is-sort-button-shown='true',
@@ -9,7 +10,7 @@ main.page
     @switch-is-items-folded='switchIsItemsFolded',
     @changeSearch='changeSearch'
   )
-  PageList(:path='"tasks"', :search="''")
+  PageList(:path='"tasks"', :search='""', :filters='{}')
 </template>
 
 <script setup lang="ts">
