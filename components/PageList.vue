@@ -3,7 +3,7 @@ Transition(name='fade', mode='out-in')
   .loader(v-if='loading', :key='`list-${path}-loaded-${loading}`')
   .list-container(v-else, :key='`list-${path}-loaded-${loading}`')
     .list
-      .list-header
+      .list-header(v-if="listItemsData?.data.length")
         .list-header__item(
           v-for='headerPart in listItemsData?.header',
           :key='`list-item-${headerPart.name}`',
@@ -21,34 +21,39 @@ Transition(name='fade', mode='out-in')
         div.list-item__last
 
       .list-items(ref='listItemsRef', :class='listItemsClass')
-        template(v-if='listItemsData?.items?.length')
+        template(v-if='listItemsData?.data?.length')
           .list-item.border-primary(
-            v-for='item in listItemsData?.items',
+            v-for='item in listItemsData?.data',
             :key='`list-item-${item.id}`'
           )
             .list-item__part(
-              v-for='itemPart in item.parts',
-              :key='`list-item-${itemPart.label || itemPart.url}-${itemPart.class}`',
-              :style='itemPart.outerStyle',
-              :class='itemPart.outerClass',
+              v-for='(itemPart, key) in item.parts',
+              :key='`list-item-${key}`',
+              :style='listItemsData?.table[key].outerStyle',
+              :class='listItemsData?.table[key].outerClass',
               :title='itemPart.label || ""'
             ) 
               img.list-item__part__image.btn.btn-outline.btn-round-xl(
-                v-if='itemPart.img',
+                v-if='item.parts[key].img',
                 src='@/assets/icons/logo.svg'
               )
               .list-item__part__icon.icon(
-                v-if='itemPart.iconPrepend && getIconByName(itemPart.iconPrepend)',
-                v-html='getIconByName(itemPart.iconPrepend)'
+                v-if='listItemsData?.table[key].iconPrepend && getIconByName(listItemsData?.table[key].iconPrepend)',
+                v-html='getIconByName(listItemsData?.table[key].iconPrepend)'
               )
               div(
-                v-if='itemPart.label',
-                :style='itemPart.innerStyle',
-                :class='itemPart.innerClass'
-              ) {{ itemPart.label }}
+                v-if='item.parts[key].label',
+                :style='listItemsData?.table[key].innerStyle',
+                :class='listItemsData?.table[key].innerClass'
+              ) {{ item.parts[key].label }}
+              div(
+                v-else,
+                :style='listItemsData?.table[key].innerStyle',
+                :class='listItemsData?.table[key].innerClass'
+              ) {{ '-' }}
               .list-item__part__icon.icon(
-                v-if='itemPart.iconAppend && getIconByName(itemPart.iconAppend)',
-                v-html='getIconByName(itemPart.iconAppend)'
+                v-if='listItemsData?.table[key].iconAppend && getIconByName(listItemsData?.table[key].iconAppend)',
+                v-html='getIconByName(listItemsData?.table[key].iconAppend)'
               )
 
             .list-item__last
@@ -62,12 +67,18 @@ Transition(name='fade', mode='out-in')
     .list-controls.flex.justify-end(class='m-t-[20px]')
       button.list-control.btn.btn-outline.btn-round-xl.btn-secondary.icon(
         v-html='IconClose'
+        @click="switchIsCreateModalShown"
       )
 
     ModalsListItem(
       :data='itemModalData',
       :is-shown='isItemModalShown',
       @switch-is-shown='switchIsItemModalShown(null)'
+    )
+    ModalsCreateItem(
+      :is-shown='isCreateModalShown',
+      :path='path'
+      @switch-is-shown='switchIsCreateModalShown(null)',
     )
 </template>
 
@@ -106,6 +117,8 @@ const listItemsRef = useState<HTMLElement | null>(() => null)
 const listItemsClass = useState<string>(() => '')
 
 const isItemModalShown = useState<boolean>(() => false)
+const isCreateModalShown = useState<boolean>(() => false)
+
 const itemModalData = useState<{ id: string | number; path: string } | null>(
   () => null
 )
@@ -149,6 +162,10 @@ const switchIsItemModalShown = (args: {
   itemModalData.value = args
 }
 
+const switchIsCreateModalShown = (): void => {
+  isCreateModalShown.value = !isCreateModalShown.value
+}
+
 const getListItemsData = async (initial: boolean = false): Promise<void> => {
   try {
     loading.value = true
@@ -174,7 +191,7 @@ const getListItemsData = async (initial: boolean = false): Promise<void> => {
       `${appConfig.backendUrl}/api/${props.path}`,
       {
         method: 'GET',
-        // query: params,
+        query: params,
         headers: getAuthHeaders()
       }
     )
@@ -306,6 +323,10 @@ watch(
     font-style: italic;
 
     opacity: 0.75;
+
+    display: flex;
+    justify-items: center;
+    align-items: center;
   }
 
   &-control {
