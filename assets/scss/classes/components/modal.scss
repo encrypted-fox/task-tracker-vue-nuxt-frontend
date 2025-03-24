@@ -21,11 +21,8 @@
   width: 100%;
   height: 100%;
 
-  padding: 20px;
-
   display: flex;
   flex-direction: column;
-  gap: 20px;
 
   box-sizing: border-box;
   overflow-y: auto;
@@ -35,7 +32,7 @@
   &-header {
     border-bottom: 2px solid $gray-300;
 
-    padding-bottom: 20px;
+    padding: 20px;
 
     display: flex;
     justify-content: space-between;
@@ -45,12 +42,16 @@
   }
 
   &-content {
+    padding: 20px;
+
     display: flex;
     flex-direction: column;
     gap: 15px;
   }
 
   &-footer {
+    padding: 20px;
+
     display: flex;
     justify-content: space-between;
   }
