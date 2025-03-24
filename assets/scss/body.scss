@@ -60,11 +60,11 @@ body {
   background-color: white;
 
   ::-webkit-scrollbar-track {
-    background: $gray-300;
+    background: $gray-200;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: $gray-600;
+    background: $gray-400;
   }
 
   ::-webkit-scrollbar-thumb:hover {
@@ -84,10 +84,10 @@ body {
   }
 
   ::-webkit-scrollbar-thumb {
-    background: $gray-400;
+    background: $gray-500;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: $gray-300;
+    background: $gray-400;
   }
 }
