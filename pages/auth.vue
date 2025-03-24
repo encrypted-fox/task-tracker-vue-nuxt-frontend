@@ -26,7 +26,7 @@ main.auth
     Transition(name='fade', mode='out-in')
       FormsLogin(
         @switch-to-register='switchToRegister',
-        v-if='isLogin',
+        v-if='route.query.type !== "register"',
         key='login-form'
       )
       FormsRegister(
@@ -61,7 +61,7 @@ const additionalAuthContentClass = useState<string>(() =>
 
 const isLogin = useState<boolean>(
   'isLogin',
-  () => route.query?.type !== 'register' || false
+  () => route.query?.type !== 'register' || true
 )
 
 const theme = computed(() => themeStore.theme)
@@ -84,8 +84,6 @@ const switchToRegister = (): void => {
   authContent.value?.classList.add('bounceContentRight')
   authLogo.value?.classList.remove('bounceLogoLeft')
   authContent.value?.classList.remove('bounceContentLeft')
-
-  isLogin.value = false
 }
 
 const switchToLogin = (): void => {
@@ -95,13 +93,10 @@ const switchToLogin = (): void => {
   authContent.value?.classList.add('bounceContentLeft')
   authLogo.value?.classList.remove('bounceLogoRight')
   authContent.value?.classList.remove('bounceContentRight')
-
-  isLogin.value = true
 }
 
 onMounted(() => {
   if (route.query?.type === 'register') {
-    isLogin.value = false
   } else if (route.query?.type !== 'login') {
     router.push({ path: localePath(`/auth`), query: { type: 'login' } })
   }
