@@ -1,6 +1,6 @@
 <template lang="pug">
 .page-header
-  h1.page-header__title.text-primary {{ $t('pages.tasks.title') }}
+  h1.page-header__title.text-primary {{ title }}
   form.page-header__form
     .page-header__content
       FieldsString(
@@ -37,6 +37,7 @@ import IconFold from '~/assets/icons/fold.svg?raw'
 
 const props = defineProps<{
   isItemsFolded: boolean
+  title: string
   search: string
   filters?: object
   sort?: object
