@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/i18n',
+    'nuxt-tiptap-editor',
   ],
   buildModules: ['@nuxtjs/svg'],
 
