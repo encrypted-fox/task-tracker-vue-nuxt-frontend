@@ -14,7 +14,12 @@ export default defineI18nConfig(() => ({
         },
         tasks: {
           title: 'Список задач',
+          createItemTitle: 'Создание задачи',
         },
+        projects: {
+          title: 'Список проектов',
+          createItemTitle: 'Создание проекта',
+        }
       },
       forms: {
         login: {
@@ -62,6 +67,8 @@ export default defineI18nConfig(() => ({
         cancel: 'Отмена',
         listEmpty: 'Список пуст',
         returnHome: 'На главную страницу',
+        createItemSubmitButtonTitle: 'Создать',
+
       },
       messages: {
         passwordErrors: {
@@ -100,7 +107,12 @@ export default defineI18nConfig(() => ({
         },
         tasks: {
           title: 'Tasks list',
+          createItemTitle: 'Create task',
         },
+        projects: {
+          title: 'Projects list',
+          createItemTitle: 'Create project',
+        }
       },
       forms: {
         login: {
@@ -147,6 +159,7 @@ export default defineI18nConfig(() => ({
         cancel: 'Cancel',
         listEmpty: 'List is empty',
         returnHome: 'To main page',
+        createItemSubmitButtonTitle: 'Create',
       },
       messages: {
         passwordErrors: {
