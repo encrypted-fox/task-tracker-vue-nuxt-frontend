@@ -6,11 +6,11 @@ export default defineI18nConfig(() => ({
       pages: {
         auth: {
           login: {
-            title: 'Вход'
+            title: 'Вход',
           },
           register: {
-            title: 'Регистрация'
-          }
+            title: 'Регистрация',
+          },
         },
         tasks: {
           title: 'Список задач',
@@ -19,7 +19,7 @@ export default defineI18nConfig(() => ({
         projects: {
           title: 'Список проектов',
           createItemTitle: 'Создание проекта',
-        }
+        },
       },
       forms: {
         login: {
@@ -68,7 +68,6 @@ export default defineI18nConfig(() => ({
         listEmpty: 'Список пуст',
         returnHome: 'На главную страницу',
         createItemSubmitButtonTitle: 'Создать',
-
       },
       messages: {
         passwordErrors: {
@@ -99,11 +98,11 @@ export default defineI18nConfig(() => ({
       pages: {
         auth: {
           login: {
-            title: 'Login'
+            title: 'Login',
           },
           register: {
-            title: 'Register'
-          }
+            title: 'Register',
+          },
         },
         tasks: {
           title: 'Tasks list',
@@ -112,7 +111,7 @@ export default defineI18nConfig(() => ({
         projects: {
           title: 'Projects list',
           createItemTitle: 'Create project',
-        }
+        },
       },
       forms: {
         login: {
@@ -174,13 +173,13 @@ export default defineI18nConfig(() => ({
         usernameError: 'Username must contain at least 3 symbols',
         emailError: 'Incorrect email format',
 
-        loginSuccessMessage: 'Login is successfull!',
+        loginSuccessMessage: 'Login is successful!',
         loginErrorMessage: 'There is an error during login!',
 
-        registerSuccessMessage: 'Registration is successfull!',
+        registerSuccessMessage: 'Registration is successful!',
         registerErrorMessage: 'There is an error during registration!',
 
-        recoverySuccessMessage: 'Recovery is successfull! Check the email',
+        recoverySuccessMessage: 'Recovery is successful! Check the email',
         recoveryErrorMessage: 'There is an error during recovery!',
         ordinaryErrorMessage: 'There is an error!',
       },
